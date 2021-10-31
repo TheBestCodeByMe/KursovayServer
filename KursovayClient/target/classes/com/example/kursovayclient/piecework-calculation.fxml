@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="261.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.PieceworkCalculation">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="310.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Text layoutX="60.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сдельная система расчёта" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
+                <Button fx:id="buttonPayment" layoutX="54.0" layoutY="47.0" mnemonicParsing="false" text="Прямая сдельная система расчёта" />
+                <Button fx:id="buttonBack" layoutX="68.0" layoutY="170.0" mnemonicParsing="false" text="Вернуться в меню администратора" />
+                <Button fx:id="buttonUpdate" layoutX="53.0" layoutY="90.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="205.0" text="Косвенная сдельная система&#10;расчёта" textAlignment="CENTER" />
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

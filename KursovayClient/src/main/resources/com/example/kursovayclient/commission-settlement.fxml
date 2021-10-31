@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="430.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.CommissionSettlement">
+<children>
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="434.0" VBox.vgrow="ALWAYS">
+        <children>
+            <Text layoutX="124.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Комиссионная система расчёта" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
+            <Button fx:id="buttonPayment" layoutX="52.0" layoutY="61.0" mnemonicParsing="false" onAction="#clickPayment" text="Комиссионная система расчёта по проценту от выручки" />
+            <Button fx:id="buttonBack" layoutX="211.0" layoutY="240.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
+            <Button fx:id="buttonUpdate" layoutX="51.0" layoutY="104.0" mnemonicParsing="false" onAction="#clickUpdate" prefHeight="46.0" prefWidth="330.0" text="Комиссионная система расчёта по проценту от выручки&#10;с фиксированным окладом" textAlignment="CENTER" />
+            <Button fx:id="buttonUpdate1" layoutX="51.0" layoutY="168.0" mnemonicParsing="false" onAction="#clickUpdate1" prefHeight="46.0" prefWidth="330.0" text="Комиссионная система расчёта по проценту от&#10;выручки, но не менее фиксированного оклада" textAlignment="CENTER" />
+        </children>
+    </AnchorPane>
+</children>
+</VBox>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="555.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ViewSpentDaysHours">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="557.0" VBox.vgrow="ALWAYS">
+    <children>
+        <Text layoutX="111.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Просмотр отработанных дней и часов работников" textAlignment="CENTER" wrappingWidth="331.2811584472656" />
+        <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" text="Вернуться в меню пользователя" />
+        <TableView layoutX="14.0" layoutY="65.0" prefHeight="275.0" prefWidth="526.0">
+            <columns>
+                <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
+                <TableColumn fx:id="columnFam" editable="false" prefWidth="136.79999542236328" text="Фамилия" />
+                <TableColumn fx:id="columnName" editable="false" prefWidth="110.4000244140625" text="Имя" />
+                <TableColumn fx:id="columnOtchestvo" prefWidth="134.4000244140625" text="Отчество" />
+                <TableColumn fx:id="columnDays" prefWidth="51.20001220703125" text="Дни" />
+               <TableColumn fx:id="columnHours" prefWidth="67.9998779296875" text="Часы" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
+</VBox>
