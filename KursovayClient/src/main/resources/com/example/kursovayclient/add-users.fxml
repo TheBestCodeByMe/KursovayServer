@@ -11,11 +11,11 @@
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="252.0" VBox.vgrow="ALWAYS">
             <children>
                 <Text layoutX="30.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация пользователей" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-                <Button fx:id="buttonRegistration" layoutX="66.0" layoutY="175.0" mnemonicParsing="false" text="Зарегистрироваться" />
+                <Button fx:id="buttonRegistration" layoutX="66.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickRegistration"  text="Зарегистрироваться" />
                 <TextField fx:id="txtLogin" layoutX="55.0" layoutY="54.0" promptText="Введите логин" />
                 <TextField fx:id="txtPassword" layoutX="54.0" layoutY="96.0" promptText="Введите пароль" />
                 <TextField fx:id="txtPassword1" layoutX="54.0" layoutY="133.0" promptText="Повторите пароль" />
-            <Button fx:id="buttonBack" layoutX="51.0" layoutY="224.0" mnemonicParsing="false" text="Вернутья в главное меню" />
+            <Button fx:id="buttonBack" layoutX="51.0" layoutY="224.0" mnemonicParsing="false" onAction="#clickBack" text="Вернутья в главное меню" />
             </children>
         </AnchorPane>
     </children>

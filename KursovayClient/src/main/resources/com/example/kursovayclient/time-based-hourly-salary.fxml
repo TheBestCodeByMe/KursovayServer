@@ -13,8 +13,8 @@
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="557.0" VBox.vgrow="ALWAYS">
             <children>
                 <Text layoutX="182.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Простая повременная система расчёта по часовой ставке" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-                <Button fx:id="buttonPayment" layoutX="362.0" layoutY="294.0" mnemonicParsing="false" text="Рассчитать" />
-                <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" text="Вернуться в меню администратора" />
+                <Button fx:id="buttonPayment" layoutX="362.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickPayment" text="Рассчитать" />
+                <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
                 <TableView layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="526.0">
                     <columns>
                         <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
@@ -25,7 +25,7 @@
                         <TableColumn fx:id="columnHours" prefWidth="100.79996337890623" text="Часы" />
                     </columns>
                 </TableView>
-                <Button fx:id="buttonUpdate" layoutX="469.0" layoutY="294.0" mnemonicParsing="false" text="Обновить" />
+                <Button fx:id="buttonUpdate" layoutX="469.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить" />
                 <TextField fx:id="txtIncome1" layoutX="14.0" layoutY="293.0" prefHeight="26.0" prefWidth="266.0" promptText="Введите количество часов, если таковых нет" />
             </children>
         </AnchorPane>

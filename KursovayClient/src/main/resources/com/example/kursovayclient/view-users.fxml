@@ -11,7 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="557.0" VBox.vgrow="ALWAYS">
     <children>
         <Text layoutX="182.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Просмотр зарплат работников" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-        <Button fx:id="buttonBack" layoutX="327.0" layoutY="193.0" mnemonicParsing="false" text="Вернуться в меню администратора" />
+        <Button fx:id="buttonBack" layoutX="327.0" layoutY="193.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
         <TableView layoutX="14.0" layoutY="65.0" prefHeight="303.0" prefWidth="307.0">
             <columns>
                 <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />

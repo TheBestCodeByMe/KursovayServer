@@ -2,9 +2,14 @@ package com.example.admin;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.kursovayclient.Menu_Admin;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class AddWorkingHours {
 
@@ -40,14 +45,27 @@ public class AddWorkingHours {
 
     @FXML
     void initialize() {
-        assert buttonAdd != null : "fx:id=\"buttonAdd\" was not injected: check your FXML file 'add-working-hours.fxml'.";
-        assert buttonBack != null : "fx:id=\"buttonBack\" was not injected: check your FXML file 'add-working-hours.fxml'.";
-        assert columnId != null : "fx:id=\"columnId\" was not injected: check your FXML file 'add-working-hours.fxml'.";
-        assert columnFam != null : "fx:id=\"columnFam\" was not injected: check your FXML file 'add-working-hours.fxml'.";
-        assert columnName != null : "fx:id=\"columnName\" was not injected: check your FXML file 'add-working-hours.fxml'.";
-        assert columnPatronymic != null : "fx:id=\"columnPatronymic\" was not injected: check your FXML file 'add-working-hours.fxml'.";
-        assert columnHours != null : "fx:id=\"columnHours\" was not injected: check your FXML file 'add-working-hours.fxml'.";
-        assert buttonUpdate != null : "fx:id=\"buttonUpdate\" was not injected: check your FXML file 'add-working-hours.fxml'.";
 
     }
+
+    @FXML
+    void clickBack(ActionEvent event) {
+        try {
+            buttonBack.getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Menu_Admin menuAdmin = new Menu_Admin();
+            menuAdmin.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open admin menu.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
+
+    @FXML
+    void clickUpdate(ActionEvent event)
+    {}
+
+    @FXML
+    void clickAdd(ActionEvent event)
+    {}
 }

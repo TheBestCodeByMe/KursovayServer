@@ -2,10 +2,16 @@ package com.example.admin.salary;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.kursovayclient.Menu_Admin;
+import com.example.kursovayclient.Varieble_System;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class TimeBasedDaily {
 
@@ -58,5 +64,26 @@ public class TimeBasedDaily {
         assert buttonUpdate != null : "fx:id=\"buttonUpdate\" was not injected: check your FXML file 'time-based-daily.fxml'.";
         assert txtIncome1 != null : "fx:id=\"txtIncome1\" was not injected: check your FXML file 'time-based-daily.fxml'.";
 
+    }
+
+    @FXML
+    void clickBack(ActionEvent event) {
+        try {
+            buttonBack.getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Varieble_System variebleSystem = new Varieble_System();
+            variebleSystem.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open varieble system.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
+
+    @FXML
+    void clickUpdate(ActionEvent event) {
+    }
+
+    @FXML
+    void clickPayment(ActionEvent event) {
     }
 }

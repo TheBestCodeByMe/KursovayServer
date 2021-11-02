@@ -8,27 +8,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="311.0" prefWidth="610.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.EditingUsers">
-<children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="416.0" prefWidth="610.0" VBox.vgrow="ALWAYS">
-        <children>
-            <Text layoutX="209.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Редактирование пользователей" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-            <Button fx:id="buttonEnter" layoutX="408.0" layoutY="207.0" mnemonicParsing="false" text="Добавить пользователя" />
-            <TextField fx:id="txtLogin" layoutX="407.0" layoutY="81.0" promptText="Введите логин" />
-            <TextField fx:id="txtPassword" layoutX="406.0" layoutY="123.0" promptText="Введите пароль" />
-            <TextField fx:id="txtPassword1" layoutX="406.0" layoutY="160.0" promptText="Введите отчество" />
-            <Button fx:id="buttonDelete" layoutX="194.0" layoutY="276.0" mnemonicParsing="false" text="Удалить пользователя" />
-            <Button fx:id="buttonUpdate" layoutX="63.0" layoutY="276.0" mnemonicParsing="false" text="Обновить таблицу" />
-            <Button fx:id="buttonBack" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" text="Назад" />
-          <TableView layoutX="38.0" layoutY="58.0" prefHeight="200.0" prefWidth="311.0">
-              <columns>
-                  <TableColumn fx:id="columnId" editable="false" minWidth="2.3999632596969604" prefWidth="32.800047278404236" text="Id" />
-                  <TableColumn fx:id="columnLogin" prefWidth="80.79999542236328" text="Логин" />
-                  <TableColumn fx:id="columnPassword" prefWidth="76.800048828125" text="Пароль" />
-                  <TableColumn fx:id="columnBlock" prefWidth="120.00001831054686" text="Заблокированные" />
-              </columns>
-          </TableView>
-        </children>
-    </AnchorPane>
-</children>
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="311.0" prefWidth="610.0" spacing="20.0"
+      xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.admin.EditingUsers">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="416.0" prefWidth="610.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Text layoutX="209.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Редактирование пользователей" textAlignment="CENTER" wrappingWidth="192.08126831054688"/>
+                <Button fx:id="buttonEnter" layoutX="408.0" layoutY="207.0" mnemonicParsing="false" onAction="#clickEnter"
+                        text="Добавить пользователя"/>
+                <TextField fx:id="txtLogin" layoutX="407.0" layoutY="81.0" promptText="Введите логин"/>
+                <TextField fx:id="txtPassword" layoutX="406.0" layoutY="123.0" promptText="Введите пароль"/>
+                <TextField fx:id="txtPassword1" layoutX="406.0" layoutY="160.0" promptText="Введите отчество"/>
+                <Button fx:id="buttonDelete" layoutX="194.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickDelete"
+                        text="Удалить пользователя"/>
+                <Button fx:id="buttonUpdate" layoutX="63.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickUpdate"
+                        text="Обновить таблицу"/>
+                <Button fx:id="buttonBack" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickBack"
+                        text="Назад"/>
+                <TableView layoutX="38.0" layoutY="58.0" prefHeight="200.0" prefWidth="311.0">
+                    <columns>
+                        <TableColumn fx:id="columnId" editable="false" minWidth="2.3999632596969604"
+                                     prefWidth="32.800047278404236" text="Id"/>
+                        <TableColumn fx:id="columnLogin" prefWidth="80.79999542236328" text="Логин"/>
+                        <TableColumn fx:id="columnPassword" prefWidth="76.800048828125" text="Пароль"/>
+                        <TableColumn fx:id="columnBlock" prefWidth="120.00001831054686" text="Заблокированные"/>
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>

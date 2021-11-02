@@ -2,9 +2,14 @@ package com.example.admin;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.kursovayclient.Menu_Admin;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class BlockUsers {
 
@@ -34,12 +39,27 @@ public class BlockUsers {
 
     @FXML
     void initialize() {
-        assert buttonBlock != null : "fx:id=\"buttonBlock\" was not injected: check your FXML file 'block-users.fxml'.";
-        assert buttonBack != null : "fx:id=\"buttonBack\" was not injected: check your FXML file 'block-users.fxml'.";
-        assert columnId != null : "fx:id=\"columnId\" was not injected: check your FXML file 'block-users.fxml'.";
-        assert columnLogin != null : "fx:id=\"columnLogin\" was not injected: check your FXML file 'block-users.fxml'.";
-        assert columnPassword != null : "fx:id=\"columnPassword\" was not injected: check your FXML file 'block-users.fxml'.";
-        assert buttonUnblock != null : "fx:id=\"buttonUnblock\" was not injected: check your FXML file 'block-users.fxml'.";
 
     }
+
+    @FXML
+    void clickBack(ActionEvent event) {
+        try {
+            buttonBack.getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Menu_Admin menuAdmin = new Menu_Admin();
+            menuAdmin.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open admin menu.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
+
+    @FXML
+    void clickBlock(ActionEvent event)
+    {}
+
+    @FXML
+    void clickUnblock(ActionEvent event)
+    {}
 }

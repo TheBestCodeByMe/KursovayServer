@@ -10,9 +10,9 @@
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="434.0" VBox.vgrow="ALWAYS">
             <children>
                 <Text layoutX="124.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Повременная система расчёта" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-                <Button fx:id="buttonPayment" layoutX="75.0" layoutY="58.0" mnemonicParsing="false" text="Повременная система расчёта по часовой ставке" />
-                <Button fx:id="buttonBack" layoutX="211.0" layoutY="152.0" mnemonicParsing="false" text="Вернуться в меню администратора" />
-                <Button fx:id="buttonUpdate" layoutX="74.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="290.0" text="Повременная система расчёта по дневной ставке" textAlignment="CENTER" />
+                <Button fx:id="buttonPayment" layoutX="75.0" layoutY="58.0" mnemonicParsing="false" onAction="#clickPayment" text="Повременная система расчёта по часовой ставке" />
+                <Button fx:id="buttonBack" layoutX="211.0" layoutY="152.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
+                <Button fx:id="buttonUpdate" layoutX="74.0" layoutY="101.0" mnemonicParsing="false" onAction="#clickUpdate" prefHeight="26.0" prefWidth="290.0" text="Повременная система расчёта по дневной ставке" textAlignment="CENTER" />
             </children>
         </AnchorPane>
     </children>
