@@ -8,25 +8,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="555.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.TimeBasedDaily">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="1110.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.TimeBasedDaily">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="557.0" VBox.vgrow="ALWAYS">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="1110.0" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="182.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Простая повременная система расчёта по дневной ставке" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-                <Button fx:id="buttonPayment" layoutX="362.0" layoutY="294.0" mnemonicParsing="false" text="Рассчитать" />
-                <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" text="Вернуться в меню администратора" />
-                <TableView layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="526.0">
+                <Text layoutX="462.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Простая повременная система расчёта по дневной ставке" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
+                <Button fx:id="buttonPayment" layoutX="362.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickPayment" text="Рассчитать" />
+                <Button fx:id="buttonBack" layoutX="805.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
+                <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="336.0">
                     <columns>
                         <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
-                        <TableColumn fx:id="columnFam" editable="false" prefWidth="124.00001525878906" text="Фамилия" />
-                        <TableColumn fx:id="columnName" editable="false" prefWidth="93.60003662109375" text="Имя" />
-                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="114.4000244140625" text="Отчество" />
-                        <TableColumn fx:id="columnSalaries" editable="false" prefWidth="65.60003662109375" text="Зарплата" />
-                  <TableColumn fx:id="copumnDays" prefWidth="100.79996337890623" text="Дни" />
+                        <TableColumn fx:id="columnFam" editable="false" prefWidth="91.99999237060547" text="Фамилия" />
+                        <TableColumn fx:id="columnName" editable="false" prefWidth="88.79995727539062" text="Имя" />
+                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="133.59999084472656" text="Отчество" />
+                  <TableColumn fx:id="copumnDays" prefWidth="64.79998779296875" text="Дни" />
                     </columns>
                 </TableView>
-                <Button fx:id="buttonUpdate" layoutX="469.0" layoutY="294.0" mnemonicParsing="false" text="Обновить" />
+                <Button fx:id="buttonUpdate" layoutX="523.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить" />
             <TextField fx:id="txtIncome1" layoutX="14.0" layoutY="293.0" prefHeight="26.0" prefWidth="266.0" promptText="Введите количество дней, если таковых нет" />
+                <TextField fx:id="txtMonth" layoutX="718.0" layoutY="293.0" prefHeight="26.0" prefWidth="122.0" promptText="Введите месяц" />
+                <TableView fx:id="tableViewMonth" layoutX="492.0" layoutY="65.0" prefHeight="200.0" prefWidth="616.0">
+                    <columns>
+                        <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" text="Январь" />
+                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="Февраль" />
+                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" text="Март" />
+                        <TableColumn fx:id="columnApril" prefWidth="68.7999267578125" text="Апрель" />
+                        <TableColumn fx:id="columnMay" prefWidth="29.60003662109375" text="Май" />
+                        <TableColumn fx:id="columnJune" prefWidth="40.79998779296875" text="Июнь" />
+                        <TableColumn fx:id="columnJuly" prefWidth="40.79998779296875" text="Июль" />
+                        <TableColumn fx:id="columnAugust" prefWidth="47.20001220703125" text="Август" />
+                        <TableColumn fx:id="columnSeptember" prefWidth="68.00006103515625" text="Сентябрь" />
+                        <TableColumn fx:id="columnOctober" prefWidth="56.7999267578125" text="Октябрь" />
+                        <TableColumn fx:id="columnNovember" prefWidth="55.199951171875" text="Ноябрь" />
+                        <TableColumn fx:id="columnDecember" prefWidth="57.5999755859375" text="Декабрь" />
+                    </columns>
+                </TableView>
+                <TableView fx:id="tableViewDescription" layoutX="349.0" layoutY="65.0" prefHeight="200.0" prefWidth="142.0">
+                    <columns>
+                        <TableColumn fx:id="columnDays" prefWidth="36.79998779296875" text="Дни" />
+                        <TableColumn fx:id="columnHours" prefWidth="47.20001220703125" text="Часы" />
+                        <TableColumn fx:id="columnKol" prefWidth="62.39996337890625" text="Кол-во" />
+                    </columns>
+                </TableView>
             </children>
         </AnchorPane>
     </children>

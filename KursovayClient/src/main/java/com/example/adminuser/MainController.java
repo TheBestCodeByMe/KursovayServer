@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.connection.InteractionsWithServer;
 import com.example.kursovayclient.Add_Users;
 import com.example.kursovayclient.Menu_User;
 import javafx.event.ActionEvent;
@@ -14,11 +15,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.example.kursovayclient.Menu_Admin;
-import work_with_table_user.UsersWorks;
 
 public class MainController {
 
-    private UsersWorks usersWorks;
+    private InteractionsWithServer interactionsWithServer;
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     @FXML
@@ -58,7 +58,7 @@ public class MainController {
                 System.out.println("Cannot open admin menu.\nWith exception" + e.getLocalizedMessage());
             }
         } else {
-            if(usersWorks.exists(txtLogin.getText(), txtPassword.getText())) { //СДЕЛАТЬ, поменять пусть к функции
+            if(interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) { //СДЕЛАТЬ, поменять пусть к функции
                 try {
                     buttonEnter.getScene().getWindow().hide();
                     Stage stage = new Stage();

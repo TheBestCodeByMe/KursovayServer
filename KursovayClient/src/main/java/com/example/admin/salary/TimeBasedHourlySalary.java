@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,16 +17,13 @@ import javafx.stage.Stage;
 public class TimeBasedHourlySalary {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button buttonPayment;
 
     @FXML
     private Button buttonBack;
+
+    @FXML
+    private TableView<?> tableViewEmployee;
 
     @FXML
     private TableColumn<?, ?> columnId;
@@ -40,29 +38,68 @@ public class TimeBasedHourlySalary {
     private TableColumn<?, ?> columnPatronymic;
 
     @FXML
-    private TableColumn<?, ?> columnSalaries;
-
-    @FXML
-    private TableColumn<?, ?> columnHours;
-
-    @FXML
     private Button buttonUpdate;
 
     @FXML
     private TextField txtIncome1;
 
     @FXML
+    private TextField txtMonth;
+
+    @FXML
+    private TableView<?> tableViewMonth;
+
+    @FXML
+    private TableColumn<?, ?> columnJanuary;
+
+    @FXML
+    private TableColumn<?, ?> columnFebruary;
+
+    @FXML
+    private TableColumn<?, ?> columnMarch;
+
+    @FXML
+    private TableColumn<?, ?> columnApril;
+
+    @FXML
+    private TableColumn<?, ?> columnMay;
+
+    @FXML
+    private TableColumn<?, ?> columnJune;
+
+    @FXML
+    private TableColumn<?, ?> columnJuly;
+
+    @FXML
+    private TableColumn<?, ?> columnAugust;
+
+    @FXML
+    private TableColumn<?, ?> columnSeptember;
+
+    @FXML
+    private TableColumn<?, ?> columnOctober;
+
+    @FXML
+    private TableColumn<?, ?> columnNovember;
+
+    @FXML
+    private TableColumn<?, ?> columnDecember;
+
+    @FXML
+    private TableView<?> tableViewDescription;
+
+    @FXML
+    private TableColumn<?, ?> columnDays;
+
+    @FXML
+    private TableColumn<?, ?> columnHours;
+
+    @FXML
+    private TableColumn<?, ?> columnKol;
+
+
+    @FXML
     void initialize() {
-        assert buttonPayment != null : "fx:id=\"buttonPayment\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert buttonBack != null : "fx:id=\"buttonBack\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert columnId != null : "fx:id=\"columnId\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert columnFam != null : "fx:id=\"columnFam\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert columnName != null : "fx:id=\"columnName\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert columnPatronymic != null : "fx:id=\"columnPatronymic\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert columnSalaries != null : "fx:id=\"columnSalaries\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert columnHours != null : "fx:id=\"columnHours\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert buttonUpdate != null : "fx:id=\"buttonUpdate\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
-        assert txtIncome1 != null : "fx:id=\"txtIncome1\" was not injected: check your FXML file 'time-based-hourly-salary.fxml'.";
 
     }
 

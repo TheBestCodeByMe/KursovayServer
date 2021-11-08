@@ -13,7 +13,7 @@ public class Day_Off extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add-day-off.fxml")));
         stage.setTitle("Добавление выходных дней");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 258, 258));
         stage.setResizable(false);
         stage.show();
     }

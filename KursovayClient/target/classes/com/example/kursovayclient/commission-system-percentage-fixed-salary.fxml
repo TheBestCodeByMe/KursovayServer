@@ -8,24 +8,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="555.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.CommissionSystemPercentageFixedSalary">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="978.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.CommissionSystemPercentageFixedSalary">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="557.0" VBox.vgrow="ALWAYS">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="985.0" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="113.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Комиссионная система расчёта по проценту от выручки с фиксированным окладом" textAlignment="CENTER" wrappingWidth="328.0" />
-                <Button fx:id="buttonPayment" layoutX="362.0" layoutY="294.0" mnemonicParsing="false" text="Рассчитать" />
-                <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" text="Вернуться в меню администратора" />
-                <TableView layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="526.0">
+                <Text layoutX="353.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Комиссионная система расчёта по проценту от выручки с фиксированным окладом" textAlignment="CENTER" wrappingWidth="328.0" />
+                <Button fx:id="buttonPayment" layoutX="441.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickPayment" text="Рассчитать" />
+                <Button fx:id="buttonBack" layoutX="761.0" layoutY="354.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
+                <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="362.0">
                     <columns>
                         <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
                         <TableColumn fx:id="columnFam" editable="false" prefWidth="124.00001525878906" text="Фамилия" />
                         <TableColumn fx:id="columnName" editable="false" prefWidth="93.60003662109375" text="Имя" />
-                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="114.4000244140625" text="Отчество" />
-                        <TableColumn fx:id="columnSalaries" editable="false" prefWidth="170.39990234375" text="Зарплата" />
+                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="118.39999999999998" text="Отчество" />
                     </columns>
                 </TableView>
-                <Button fx:id="buttonUpdate" layoutX="469.0" layoutY="294.0" mnemonicParsing="false" text="Обновить" />
-                <TextField fx:id="txtIncome" layoutX="14.0" layoutY="293.0" prefHeight="26.0" prefWidth="328.0" promptText="Введите доход, полученный от деятельности сотрудника" />
+                <Button fx:id="buttonUpdate" layoutX="601.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить" />
+                <TextField fx:id="txtIncome" layoutX="34.0" layoutY="293.0" prefHeight="26.0" prefWidth="328.0" promptText="Введите доход, полученный от деятельности сотрудника" />
+                <TextField fx:id="txtMonth" layoutX="777.0" layoutY="293.0" prefHeight="26.0" prefWidth="122.0" promptText="Введите месяц" />
+                <TableView fx:id="tableViewMonth" layoutX="374.0" layoutY="65.0" prefHeight="200.0" prefWidth="596.0">
+                    <columns>
+                        <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" text="Январь" />
+                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="February" />
+                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" text="March" />
+                        <TableColumn fx:id="columnApril" prefWidth="38.39996337890625" text="April" />
+                        <TableColumn fx:id="columnMay" prefWidth="32.0" text="May" />
+                        <TableColumn fx:id="columnJune" prefWidth="40.0" text="Июнь" />
+                        <TableColumn fx:id="columnJuly" prefWidth="42.39996337890625" text="Июль" />
+                        <TableColumn fx:id="columnAugust" prefWidth="54.39996337890625" text="Август" />
+                        <TableColumn fx:id="columnSeptember" prefWidth="62.39990234375" text="Сентябрь" />
+                        <TableColumn fx:id="columnOctober" prefWidth="59.19989013671875" text="Октябрь" />
+                        <TableColumn fx:id="columnNovember" prefWidth="55.19989013671875" text="Ноябрь" />
+                        <TableColumn fx:id="columnDecember" prefWidth="56.800048828125" text="Декабрь" />
+                    </columns>
+                </TableView>
             </children>
         </AnchorPane>
     </children>

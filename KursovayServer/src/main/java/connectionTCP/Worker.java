@@ -21,104 +21,69 @@ public class Worker implements Runnable {
             soos = new ObjectOutputStream(clientSocket.getOutputStream());
             while (true) {
                 String choice = sois.readObject().toString();
+                System.out.println(choice);
                 switch (choice) {
-                    case "enter": {
+                    case "все рабочие": {
 
                     }
                     break;
-                    case "saveSchedule": {
+                    case "все пользователи": {
 
                     }
                     break;
-                    case "createAdminMenu": {
+                    case "просмотр компании": {
 
                     }
                     break;
-                    case "showSchedule": {
+                    case "просмотр описания": {
 
                     }
                     break;
-                    case "editSchedule": {
+                    case "авторизация": {
 
                     }
                     break;
-                    case "saveEdit": {
+                    case "удалить рабочего": {
 
                     }
                     break;
-                    case "deleteSchedule": {
+                    case "удалить пользователя": {
 
                     }
                     break;
-                    case "registrationUser": {
+                    case "добавить рабочего": {
 
                     }
                     break;
-                    case "getFlights": {
+                    case "регистрация пользователя": {
 
                     }
                     break;
-                    case "getInfAboutPassenger": {
+                    case "расчет зарплаты по комиссионной системе": {
 
                     }
                     break;
-                    case "orderTicket": {
+                    case "расчет зарплаты по комиссионной системе не менее фикс оклада": {
 
                     }
                     break;
-                    case "orderTicketCasher": {
+                    case "расчет зарплаты по комиссионной системе по фикс окладу": {
 
                     }
                     break;
-                    case "getListTicket": {
+                    case "расчет зарплаты по прямой сдельной": {
 
                     }
                     break;
-                    case "getNumberOfTicket": {
+                    case "расчет зарплаты по косвенное сдельной": {
 
                     }
                     break;
-                    case "getInfTicketByNum": {
+                    case "расчет зарплаты по повременной дневной": {
 
                     }
                     break;
-                    case "returnTicket": {
-
-                    }
-                    break;
-                    case "createListPassenger": {
-
-                    }
-                    break;
-                    case "createListPlane": {
-
-                    }
-                    break;
-                    case "addPlane": {
-
-                    }
-                    break;
-                    case "deletePlane": {
-
-                    }
-                    break;
-                    case "addFutureFlight": {
-
-                    }
-                    break;
-                    case "grafic": {
-
-                    }
-                    break;
-                    case "createFormCB": {
-
-                    }
-                    break;
-                    case "createFlightScheduleMessage": {
-
-                    }
-                    break;
-                    case "doText": {
+                    case "расчет зарплаты по повременной часовой": {
 
                     }
                     break;
@@ -130,6 +95,22 @@ public class Worker implements Runnable {
             }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Client disconnected.");
+        }
+    }
+
+    public void writeObject(Object object) {
+        try {
+            soos.writeObject(object);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Object readObject() {
+        try {
+            return sois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);// не требует обработки
         }
     }
 }

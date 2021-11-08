@@ -13,7 +13,7 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="316.0" prefWidth="591.0" VBox.vgrow="ALWAYS">
         <children>
             <Text layoutX="209.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Редактирование работников" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-            <Button fx:id="buttonEnter" layoutX="127.0" layoutY="276.0" mnemonicParsing="false" text="Добавить работника" />
+            <Button fx:id="buttonEnter" layoutX="127.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEnter" text="Добавить работника" />
             <TextField fx:id="txtLogin" layoutX="22.0" layoutY="160.0" promptText="Введите фамилию" />
             <TextField fx:id="txtPassword" layoutX="21.0" layoutY="202.0" promptText="Введите имя" />
             <TextField fx:id="txtPassword1" layoutX="21.0" layoutY="239.0" promptText="Введите отчество" />
@@ -22,9 +22,9 @@
             <TextField fx:id="txtPassword111" layoutX="215.0" layoutY="238.0" prefHeight="26.0" prefWidth="238.0" promptText="Введите количество изготовленных изделий" />
             <Text layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Обязательные поля ввода:" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
             <Text layoutX="238.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Можете добавить информацию в 1 поле в зависимости от того, по какой системе для этого работника будет рассчитываться зарплата:" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-            <Button fx:id="buttonDelete" layoutX="482.0" layoutY="289.0" mnemonicParsing="false" text="Удалить работника" />
-            <Button fx:id="buttonUpdate" layoutX="354.0" layoutY="289.0" mnemonicParsing="false" text="Обновить таблицу" />
-            <Button fx:id="buttonBack" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" text="Назад" />
+            <Button fx:id="buttonDelete" layoutX="482.0" layoutY="289.0" mnemonicParsing="false" onAction="#clickDelete" text="Удалить работника" />
+            <Button fx:id="buttonUpdate" layoutX="354.0" layoutY="289.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить таблицу" />
+            <Button fx:id="buttonBack" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" />
         </children>
     </AnchorPane>
       <TableView prefHeight="200.0" prefWidth="200.0">
