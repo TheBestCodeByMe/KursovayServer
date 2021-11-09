@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ConnectionToServer {
+    /*
     public static InteractionsWithServer interactionsWithServer;
     public void connectToServer() {
         try {
@@ -15,4 +16,5 @@ public class ConnectionToServer {
             e.printStackTrace();
         }
     }
+    */
 }

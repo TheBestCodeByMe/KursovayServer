@@ -18,11 +18,10 @@ public class Main extends Application {
         stage.setScene(new Scene(root, 495, 292));
         stage.setResizable(false);
         stage.show();
-
     }
 
     public static void main(String[] args) {
-        new ConnectionToServer().connectToServer();
+        // new ConnectionToServer().connectToServer();
         launch();
     }
 }

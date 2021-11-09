@@ -25,4 +25,13 @@ public class Users implements Serializable {
         this.password = password;
         this.status = status;
     }
+
+    public Users() {
+
+    }
+
+    public Users(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 }

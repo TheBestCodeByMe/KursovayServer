@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.connection.ConnectionToServer;
 import com.example.connection.InteractionsWithServer;
 import com.example.kursovayclient.Add_Users;
 import com.example.kursovayclient.Menu_User;
@@ -17,8 +18,7 @@ import javafx.stage.Stage;
 import com.example.kursovayclient.Menu_Admin;
 
 public class MainController {
-
-    private InteractionsWithServer interactionsWithServer;
+    InteractionsWithServer interactionsWithServer;
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     @FXML
@@ -41,12 +41,11 @@ public class MainController {
 
     @FXML
     void initialize() {
-
+        interactionsWithServer = new InteractionsWithServer();
     }
 
     @FXML
-    void clickEnter(ActionEvent event) throws IOException {
-
+    void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
         if(txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
             try {
                 buttonEnter.getScene().getWindow().hide();
@@ -58,7 +57,7 @@ public class MainController {
                 System.out.println("Cannot open admin menu.\nWith exception" + e.getLocalizedMessage());
             }
         } else {
-            if(interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) { //СДЕЛАТЬ, поменять пусть к функции
+            if(interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) {
                 try {
                     buttonEnter.getScene().getWindow().hide();
                     Stage stage = new Stage();
@@ -72,7 +71,7 @@ public class MainController {
             {
                 alert.setTitle("Ошибка");
                 alert.setHeaderText(null);
-                alert.setContentText("Введён неверный логин или пароль.");
+                alert.setContentText("У вас нет прав доступа. Введите другие данные.");
                 alert.showAndWait();
             }
         }

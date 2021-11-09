@@ -1,5 +1,6 @@
 package com.example.kursovayclient;
 
+import com.example.connection.ConnectionToServer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,8 @@ public class Add_Users extends Application {
         stage.setScene(new Scene(root, 600, 536));
         stage.setResizable(false);
         stage.show();
+
+        //new ConnectionToServer().connectToServer();
     }
 
     public static void main(String[] args) {
