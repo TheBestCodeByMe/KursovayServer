@@ -13,11 +13,12 @@
             <Text layoutX="182.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Блокировка пользователей" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
             <Button fx:id="buttonBlock" layoutX="151.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickBlock" text="Заблокировать" />
             <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
-            <TableView layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="526.0">
+            <TableView fx:id="tableUser" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="526.0">
                 <columns>
                     <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
-                    <TableColumn fx:id="columnLogin" editable="false" prefWidth="252.8000030517578" text="Логин" />
-                    <TableColumn fx:id="columnPassword" editable="false" prefWidth="248.7999267578125" text="Пароль" />
+                    <TableColumn fx:id="columnLogin" editable="false" prefWidth="140.0000762939453" text="Логин" />
+                    <TableColumn fx:id="columnPassword" editable="false" prefWidth="169.60003662109375" text="Пароль" />
+               <TableColumn fx:id="columnBlock" editable="false" prefWidth="190.39999999999998" text="Заблокированные" />
                 </columns>
             </TableView>
             <Button fx:id="buttonUnblock" layoutX="307.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickUnblock" text="Разблокировать" />

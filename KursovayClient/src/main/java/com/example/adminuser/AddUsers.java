@@ -2,14 +2,11 @@ package com.example.adminuser;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-import com.example.connection.ConnectionToServer;
 import com.example.connection.InteractionsWithServer;
 import com.example.kursovayclient.Main;
-import com.example.kursovayclient.Time_Based_Daily;
-import com.example.kursovayclient.Time_Based_Hourly_Salary;
+import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -50,37 +47,7 @@ public class AddUsers {
 
     @FXML
     void clickRegistration(ActionEvent event) throws IOException, ClassNotFoundException {
-        if (validateTextFields()) {
-            if (txtPassword.getText().equals(txtPassword1.getText())) {
-                if(!txtLogin.getText().equals("admin")) {
-                    if (interactionsWithServer.registerUser(txtLogin.getText(), txtPassword.getText())) {
-                        alert.setHeaderText(null);
-                        alert.setContentText("Регистрация прошла успешно.");
-                    } else {
-                        alert.setTitle("Ошибка");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Пользователи с таким логином уже существуют");
-                    }
-                    alert.showAndWait();
-                    txtLogin.setText("");
-                    txtPassword.setText("");
-                    txtPassword1.setText("");
-                } else{
-                    alert.setTitle("Ошибка");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Введённый вами логин использовать нельзя.");
-                    alert.showAndWait();
-                    txtLogin.setText("");
-                }
-            } else {
-                alert.setTitle("Ошибка");
-                alert.setHeaderText(null);
-                alert.setContentText("Пароли не совпадают.");
-                alert.showAndWait();
-                txtPassword.setText("");
-                txtPassword1.setText("");
-            }
-        }
+            HelpersCl.registration(txtLogin.getText(), txtPassword.getText(), txtPassword1.getText());
     }
 
     @FXML
@@ -94,9 +61,5 @@ public class AddUsers {
         } catch (Exception e) {
             System.out.println("Cannot open main.\nWith exception " + e.getLocalizedMessage());
         }
-    }
-
-    private boolean validateTextFields() {
-        return !Objects.equals(txtLogin.getText(), "") && !Objects.equals(txtPassword.getText(), "") && !Objects.equals(txtPassword1.getText(), "");
     }
 }

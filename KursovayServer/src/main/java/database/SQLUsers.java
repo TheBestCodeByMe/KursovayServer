@@ -4,7 +4,6 @@ import constants.Constants;
 import entity.Users;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class SQLUsers implements IUsers{
     private static SQLUsers instance;
@@ -42,9 +41,15 @@ public class SQLUsers implements IUsers{
     }
 
     @Override
-    public LinkedList<Users> selectAllUsers() {
+    public ArrayList<Users> selectAllUsers() {
         String str = "SELECT * FROM users";
         return getSelUsers(str);
+    }
+
+    @Override
+    public ArrayList<String[]> selectAllUsersV() {
+        String str = "SELECT * FROM users";
+        return getSelUsersV(str);
     }
 
     @Override
@@ -55,8 +60,14 @@ public class SQLUsers implements IUsers{
         return result.size() == 0;
     }
 
-    private LinkedList<Users> getSelUsers(String str) {
+    private ArrayList<String[]> getSelUsersV(String str) {
+            ArrayList<String[]> result = dbConnection.getArrayResult(str);
+            return result;
+        }
+
+    private ArrayList<Users> getSelUsers(String str) {
         ArrayList<String[]> result = dbConnection.getArrayResult(str);
+
         ArrayList<Users> listUsers = new ArrayList<>();
 
         for (String[] items: result){
@@ -67,7 +78,8 @@ public class SQLUsers implements IUsers{
             user.setStatus(items[3]);
             listUsers.add(user);
         }
-        return new LinkedList<>(listUsers);
+
+        return listUsers;
     }
 
     @Override
@@ -88,6 +100,13 @@ public class SQLUsers implements IUsers{
     @Override
     public void block(int id) {
         String str = "UPDATE users SET status = '" + Constants.STATUS_BLOCK +
+                "' WHERE iduser = '" + id + "'";
+        dbConnection.execute(str);
+    }
+
+    @Override
+    public void unblock(int id) {
+        String str = "UPDATE users SET status = '" + Constants.STATUS_UNBLOCK +
                 "' WHERE iduser = '" + id + "'";
         dbConnection.execute(str);
     }

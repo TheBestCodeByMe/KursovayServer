@@ -34,4 +34,14 @@ public class Users implements Serializable {
         this.login = login;
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

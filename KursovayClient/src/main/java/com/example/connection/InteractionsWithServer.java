@@ -5,6 +5,8 @@ import com.example.entity.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class InteractionsWithServer extends Constants {
@@ -37,6 +39,17 @@ public class InteractionsWithServer extends Constants {
     }
      */
 
+    public Object readObject(){
+        Object object = new Object();
+        try {
+            object = sois.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+
+            e.printStackTrace();
+        }
+        return object;
+    }
+
     private void sendMsg(String message) {
         try {
             //out.write(message + "\n");
@@ -60,7 +73,7 @@ public class InteractionsWithServer extends Constants {
     }
 
     public LinkedList<Employee> showAllEmployes() throws IOException, ClassNotFoundException {
-        sendMSG("все рабочие");
+        sendMSG("showEmpl");
         LinkedList<Employee> workers = new LinkedList<>();
 
         int sizeList = Integer.parseInt(sois.readObject().toString());
@@ -76,26 +89,34 @@ public class InteractionsWithServer extends Constants {
         list.add(new Employee(Integer.parseInt(subStr[0]), subStr[1], subStr[2], subStr[3]));
     }
 
-    public LinkedList<Users> showAllUsers() throws IOException, ClassNotFoundException {
-        sendMSG("все пользователи");
-        LinkedList<Users> users = new LinkedList<>();
+    public ArrayList<Users> showAllUsers() throws IOException, ClassNotFoundException {
+        sendMSG("showUsers");
 
-        int sizeList = Integer.parseInt(sois.readObject().toString());
-        for (int i = 0; i < sizeList; i++) {
-            parseStringInUsersAll(sois.readObject().toString(), users);
+ArrayList<String[]> result = (ArrayList<String[]>) readObject();
+
+        ArrayList<Users> listUsers = new ArrayList<>();
+
+        for (String[] items: result){
+            Users user = new Users();
+            user.setId(Integer.parseInt(items[0]));
+            user.setLogin(items[1]);
+            user.setPassword(items[2]);
+            user.setStatus(items[3]);
+            listUsers.add(user);
         }
-        return users;
+
+        return listUsers;
     }
 
-    private void parseStringInUsersAll(String user, LinkedList<Users> list) {
+    private void parseStringInUsersAll(String user, ArrayList<Users> list) {
         String[] subStr;
         subStr = user.split(" ");
         list.add(new Users(Integer.parseInt(subStr[0]), subStr[1], subStr[2], subStr[3]));
     }
 
-    public LinkedList<Company> showAllCompany() throws IOException, ClassNotFoundException {
-        sendMSG("просмотр компании");
-        LinkedList<Company> company = new LinkedList<>();
+    public ArrayList<Company> showAllCompany() throws IOException, ClassNotFoundException {
+        sendMSG("showCompany");
+        ArrayList<Company> company = new ArrayList<>();
 
         int sizeList = Integer.parseInt(sois.readObject().toString());
         for (int i = 0; i < sizeList; i++) {
@@ -105,38 +126,42 @@ public class InteractionsWithServer extends Constants {
     }
 
     public void deleteCompany(int id) {
-        sendMSG("удаление компании");
+        sendMSG("deleteCompany");
         sendMsg(String.valueOf(id));
     }
 
     public void editCompany(int id, String name, int numberEmpl) throws IOException {
-        sendMSG("редактирование компании");
+        sendMSG("editCompany");
         sendMsg(id + " " + name + " " + numberEmpl);
     }
 
     public void editUser(int id, String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
-        sendMSG("изменить пользователя");
+        sendMSG("editUser");
         sendMsg(id + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText + " " + salaryTextFieldText);
     }
 
     public void editEmployee(int id, String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
-        sendMSG("изменить рабочего");
+        sendMSG("editEmpl");
         sendMsg(id + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText + " " + salaryTextFieldText);
     }
 
     public void addCompany(String name, int numberEmpl) throws IOException {
-        sendMSG("добавление компании");
+        sendMSG("addCompany");
         sendMsg(name + " " + numberEmpl);
     }
 
-    private void parseStringInCompanyAll(String company, LinkedList<Company> list) {
+    public void exit(){
+        sendMSG("exit");
+    }
+
+    private void parseStringInCompanyAll(String company, ArrayList<Company> list) {
         String[] subStr;
         subStr = company.split(" ");
         list.add(new Company(Integer.parseInt(subStr[0]), subStr[1], Integer.parseInt(subStr[2])));
     }
 
     public LinkedList<Description> showAllDescription() throws IOException, ClassNotFoundException {
-        sendMSG("просмотр описания");
+        sendMSG("showDescription");
         LinkedList<Description> description = new LinkedList<>();
 
         int sizeList = Integer.parseInt(sois.readObject().toString());
@@ -165,7 +190,7 @@ public class InteractionsWithServer extends Constants {
     }
 
     public boolean checkAccount(String login, String password) throws IOException, ClassNotFoundException {
-        sendMSG("авторизация");
+        sendMSG("authorization");
         sendMSG(login + " " + password);
         if (sois.readObject().toString().equals("true")) {
             return true;
@@ -175,17 +200,27 @@ public class InteractionsWithServer extends Constants {
     }
 
     public void deleteWorker(int id) {
-        sendMSG("удалить рабочего");
+        sendMSG("deleteEmpl");
         sendMsg(String.valueOf(id));
     }
 
     public void deleteUsers(int id) {
-        sendMSG("удалить пользователя");
+        sendMSG("deleteUser");
         sendMsg(String.valueOf(id));
     }
 
+    public void blockUsers(int id){
+        sendMSG("blockUser");
+        sendMSG(""+id+"");
+    }
+
+    public void unblockUsers(int id){
+        sendMSG("unblockUser");
+        sendMSG(""+id+"");
+    }
+
     public void addWorker(String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
-        sendMSG("добавить рабочего");
+        sendMSG("addEmpl");
         sendMsg(name + " " + firstNameTextFieldText + " " + patronymicTextFieldText + " " + salaryTextFieldText);
     }
 

@@ -3,7 +3,9 @@ package com.example.admin.salary;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.admin.EditingUsers;
 import com.example.kursovayclient.*;
+import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -62,14 +64,6 @@ public class TimeBasedCalculation {
 
     @FXML
     void clickBack(ActionEvent event) {
-        try {
-            buttonBack.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Menu_Admin menuAdmin = new Menu_Admin();
-            menuAdmin.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open admin menu.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToMenuAdmin(buttonBack);
     }
 }

@@ -4,6 +4,7 @@ package com.example.admin;
         import java.util.ResourceBundle;
 
         import com.example.kursovayclient.Menu_Admin;
+        import helpers.HelpersCl;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
         import javafx.scene.control.Button;
@@ -50,15 +51,7 @@ public class AddWorkingDay {
 
     @FXML
     void clickBack(ActionEvent event) {
-        try {
-            buttonBack.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Menu_Admin menuAdmin = new Menu_Admin();
-            menuAdmin.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open admin menu.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToMenuAdmin(buttonBack);
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package connectionTCP;
 
+import com.mysql.cj.result.SqlDateValueFactory;
 import database.SQLFactory;
 import entity.Users;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 // может нужно создать только 1 SQLFactory вместо инициализации в каждом методе
@@ -28,28 +30,44 @@ public class Worker implements Runnable {
                 String choice = sois.readObject().toString();
                 System.out.println(choice);
                 switch (choice) {
-                    case ("все рабочие"):
+                    case "showEmpl":
                         break;
-                    case ("все пользователи"):
+                    case "showUsers":
                         viewUsers();
                         break;
-                    case ("просмотр компании"):
+                    case "showCompany":
                         break;
-                    case ("просмотр описания"):
+                    case "showDescription":
                         break;
-                    case ("авторизация"):
+                    case "authorization":
                         authorization();
                         break;
-                    case ("удалить рабочего"):
+                    case "deleteEmpl":
                         break;
-                    case ("удалить пользователя"):
+                    case "deleteCompany":
+                        break;
+                    case "addCompany":
+                        break;
+                    case "editCompany":
+                        break;
+                    case "deleteUser":
                         deleteUsers();
                         break;
-                    case "добавить рабочего":
+                    case "editUser":
+                        break;
+                    case "editEmpl":
+                        break;
+                    case "addEmpl":
 // сделать проверку, если такой есть
                         break;
                     case "registerUser":
                         registration();
+                        break;
+                    case "blockUser":
+                        block();
+                        break;
+                    case "unblockUser":
+                        unblock();
                         break;
                     case "расчет зарплаты по комиссионной системе":
                         break;
@@ -145,7 +163,24 @@ public class Worker implements Runnable {
         System.out.println("Просмотр пользователей");
         SQLFactory sqlFactory = new SQLFactory();
 
-        LinkedList<Users> users = sqlFactory.getUsers().selectAllUsers();
+        //ArrayList<Users> users = sqlFactory.getUsers().selectAllUsers();
+        ArrayList<String[]> users = sqlFactory.getUsers().selectAllUsersV();
+        //soos.writeObject(users.size());
         soos.writeObject(users);
+    }
+
+    public void block() throws IOException, ClassNotFoundException {
+        System.out.println("Блокировка пользователей");
+        SQLFactory sqlFactory = new SQLFactory();
+
+        sqlFactory.getUsers().block(Integer.parseInt(sois.readObject().toString()));
+    }
+
+    public void unblock() throws IOException, ClassNotFoundException {
+        System.out.println("Разблокировка пользователей");
+
+        SQLFactory sqlFactory = new SQLFactory();
+
+        sqlFactory.getUsers().unblock(Integer.parseInt(sois.readObject().toString()));
     }
 }
