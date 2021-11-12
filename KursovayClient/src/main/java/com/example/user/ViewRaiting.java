@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.kursovayclient.Menu_User;
+import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,14 +51,6 @@ public class ViewRaiting {
 
     @FXML
     void clickBack(ActionEvent event) {
-        try {
-            buttonBack.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Menu_User menuUser = new Menu_User();
-            menuUser.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open menu user.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToMenuUser(buttonBack);
     }
 }

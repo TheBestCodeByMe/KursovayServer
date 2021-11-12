@@ -2,20 +2,22 @@ package com.example.admin;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.entity.Users;
+import com.example.entity.property.UsersProperty;
 import helpers.HelpersCl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class EditingUsers {
     InteractionsWithServer interactionsWithServer;
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    ActionEvent event;
 
     @FXML
     private ResourceBundle resources;
@@ -45,20 +47,32 @@ public class EditingUsers {
     private Button buttonBack;
 
     @FXML
-    private TableColumn<?, ?> columnId;
+    private TableView<UsersProperty> tableUsers;
 
     @FXML
-    private TableColumn<?, ?> columnLogin;
+    private TableColumn<UsersProperty, Integer> columnId;
 
     @FXML
-    private TableColumn<?, ?> columnPassword;
+    private TableColumn<UsersProperty, String> columnLogin;
 
     @FXML
-    private TableColumn<?, ?> columnBlock;
+    private TableColumn<UsersProperty, String> columnPassword;
 
     @FXML
-    void initialize() {
+    private TableColumn<UsersProperty, String> columnBlock;
+
+    private final ObservableList<UsersProperty> usersObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
+
+        columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
+        columnLogin.setCellValueFactory(cellValue -> cellValue.getValue().loginProperty());
+        columnPassword.setCellValueFactory(cellValue -> cellValue.getValue().passwordProperty());
+        columnBlock.setCellValueFactory(cellValue -> cellValue.getValue().statusProperty());
+
+        clickUpdate(event);
     }
 
     @FXML
@@ -67,15 +81,38 @@ public class EditingUsers {
     }
 
     @FXML
-    void clickUpdate(ActionEvent event) {
+    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
+        usersObservableList.clear();
+
+        ArrayList<Users> users = interactionsWithServer.showAllUsers();
+        for (Users user : users) {
+            UsersProperty e = new UsersProperty(user);
+            usersObservableList.add(e);
+        }
+
+        tableUsers.setItems(usersObservableList);
     }
 
     @FXML
     void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
+
         HelpersCl.registration(txtLogin.getText(), txtPassword.getText(), txtPassword1.getText());
+
+        clickUpdate(event);
     }
 
     @FXML
-    void clickDelete(ActionEvent event) {
+    void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(tableUsers.getSelectionModel().getSelectedItem() != null) {
+            int id = tableUsers.getSelectionModel().getSelectedItem().getId();
+            interactionsWithServer.deleteUsers(id);
+            clickUpdate(event);
+        } else{
+                alert.setTitle("Ошибка");
+                alert.setHeaderText(null);
+                alert.setContentText("Вы не выбрали пользователя для удаления!");
+                alert.showAndWait();
+        }
     }
 }

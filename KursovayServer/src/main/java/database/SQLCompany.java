@@ -2,9 +2,9 @@ package database;
 
 import entity.Company;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-public class SQLCompany implements ICompany{
+public class SQLCompany implements ICompany {
     private static SQLCompany instance;
     private ConnectionDatabase dbConnection;
 
@@ -20,27 +20,54 @@ public class SQLCompany implements ICompany{
     }
 
     @Override
-    public boolean isFind(Company object) {
-        return false;
+    public ArrayList<String[]> selectAllCompany() {
+        String str = "SELECT * FROM company";
+        return getSelCompanyV(str);
     }
 
     @Override
-    public LinkedList<Company> selectAllCompany() {
-        return null;
+    public int selectIdCompany() {
+        String str = "SELECT id FROM company";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Integer.parseInt(result.get(0)[0]);
+    }
+
+    private ArrayList<String[]> getSelCompanyV(String str) {
+        return dbConnection.getArrayResult(str);
     }
 
     @Override
-    public void update(Company object, int id) {
+    public int selectNumberEmpl(int id) {
+        String str = "SELECT idcompany FROM company WHERE idcompany = '" + id + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Integer.parseInt(result.get(0)[0]);
+    }
 
+    @Override
+    public void updateNumbEmpl() {
+        String str = "UPDATE company SET numberEmpl = '" + (selectNumberEmpl(selectIdCompany()) + 1) +
+                "' WHERE idcompany = '" + selectIdCompany() + "'";
+        dbConnection.execute(str);
+    }
+
+    @Override
+    public void updateNameCompany(String name, int id) {
+        String str = "UPDATE company SET name = '" + name +
+                "' WHERE idcompany = '" + id + "'";
+        dbConnection.execute(str);
     }
 
     @Override
     public void insert(Company object) {
-
+        String str = "INSERT INTO company(name, numberEmpl) VALUES('" +
+                object.getName() + "', '" +
+                object.getNumberEmpl() + "')";
+        dbConnection.execute(str);
     }
 
     @Override
     public void delete(int id) {
-
+        String str = "DELETE FROM company WHERE idcompany = '" + id + "'";
+        dbConnection.execute(str);
     }
 }

@@ -2,6 +2,7 @@ package com.example.connection;
 
 import com.example.constants.Constants;
 import com.example.entity.*;
+import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.net.Socket;
@@ -15,6 +16,8 @@ public class InteractionsWithServer extends Constants {
     private ObjectInputStream sois;
     private ObjectOutputStream soos;
     private Socket clientSocket;
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    ArrayList<String[]> result;
 
     public InteractionsWithServer() {
         try {
@@ -39,7 +42,7 @@ public class InteractionsWithServer extends Constants {
     }
      */
 
-    public Object readObject(){
+    public Object readObject() {
         Object object = new Object();
         try {
             object = sois.readObject();
@@ -89,19 +92,15 @@ public class InteractionsWithServer extends Constants {
         list.add(new Employee(Integer.parseInt(subStr[0]), subStr[1], subStr[2], subStr[3]));
     }
 
-    public ArrayList<Users> showAllUsers() throws IOException, ClassNotFoundException {
+    public ArrayList<Users> showAllUsers() {
         sendMSG("showUsers");
 
-ArrayList<String[]> result = (ArrayList<String[]>) readObject();
+        result = (ArrayList<String[]>) readObject();
 
         ArrayList<Users> listUsers = new ArrayList<>();
 
-        for (String[] items: result){
-            Users user = new Users();
-            user.setId(Integer.parseInt(items[0]));
-            user.setLogin(items[1]);
-            user.setPassword(items[2]);
-            user.setStatus(items[3]);
+        for (String[] items : result) {
+            Users user = new Users(Integer.parseInt(items[0]), items[1], items[2], items[3]);
             listUsers.add(user);
         }
 
@@ -114,25 +113,53 @@ ArrayList<String[]> result = (ArrayList<String[]>) readObject();
         list.add(new Users(Integer.parseInt(subStr[0]), subStr[1], subStr[2], subStr[3]));
     }
 
-    public ArrayList<Company> showAllCompany() throws IOException, ClassNotFoundException {
+    public ArrayList<Company> showAllCompany() {
         sendMSG("showCompany");
-        ArrayList<Company> company = new ArrayList<>();
 
-        int sizeList = Integer.parseInt(sois.readObject().toString());
-        for (int i = 0; i < sizeList; i++) {
-            parseStringInCompanyAll(sois.readObject().toString(), company);
+        result = (ArrayList<String[]>) readObject();
+        ArrayList<Company> listCompany = new ArrayList<>();
+
+        for (String[] items : result) {
+            Company company = new Company(Integer.parseInt(items[0]), items[1], Integer.parseInt(items[2]));
+            listCompany.add(company);
         }
-        return company;
+
+        return listCompany;
     }
+
+    public void addCompany(String name, int numberEmpl) throws IOException, ClassNotFoundException {
+        if(showAllCompany().size() == 0) {
+            sendMSG("addCompany");
+            sendMSG(name + " " + numberEmpl);
+        } else{
+            alert.setTitle("Ошибка");
+            alert.setHeaderText(null);
+            alert.setContentText("Компания уже существует. Удалите предыдущую для создания новой.");
+            alert.showAndWait();
+        }
+    }
+
+    public void changeNameCompany(String name, int id) throws IOException {
+        sendMSG("changeNameCompany");
+        sendMsg(name + " " + id);
+    }
+
 
     public void deleteCompany(int id) {
         sendMSG("deleteCompany");
-        sendMsg(String.valueOf(id));
+        sendMSG(String.valueOf(id));
+        sendMSG("deleteAllEmployee");
     }
 
-    public void editCompany(int id, String name, int numberEmpl) throws IOException {
-        sendMSG("editCompany");
-        sendMsg(id + " " + name + " " + numberEmpl);
+    public void updateCompany() {
+        if (showAllCompany().size() != 0) {
+            sendMSG("updateCompany");
+        } else {
+            alert.setTitle("Ошибка");
+            alert.setHeaderText(null);
+            alert.setContentText("Человек не состоит в компании. Сначала добавьте компанию.");
+            alert.showAndWait();
+        }
     }
 
     public void editUser(int id, String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
@@ -140,17 +167,20 @@ ArrayList<String[]> result = (ArrayList<String[]>) readObject();
         sendMsg(id + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText + " " + salaryTextFieldText);
     }
 
-    public void editEmployee(int id, String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
-        sendMSG("editEmpl");
-        sendMsg(id + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText + " " + salaryTextFieldText);
+    public void editNameEmployee(int id, String name) {
+        sendMSG("editNameEmpl");
+        sendMsg(id + " " + name);
+    }
+    public void editLastnameEmployee(int id, String lastname) {
+        sendMSG("editLastnameEmpl");
+        sendMsg(id + " " + lastname);
+    }
+    public void editPatronymicEmployee(int id, String patronymicTextFieldText) {
+        sendMSG("editPatronymicEmpl");
+        sendMsg(id + " " + patronymicTextFieldText);
     }
 
-    public void addCompany(String name, int numberEmpl) throws IOException {
-        sendMSG("addCompany");
-        sendMsg(name + " " + numberEmpl);
-    }
-
-    public void exit(){
+    public void exit() {
         sendMSG("exit");
     }
 
@@ -192,11 +222,7 @@ ArrayList<String[]> result = (ArrayList<String[]>) readObject();
     public boolean checkAccount(String login, String password) throws IOException, ClassNotFoundException {
         sendMSG("authorization");
         sendMSG(login + " " + password);
-        if (sois.readObject().toString().equals("true")) {
-            return true;
-        } else {
-            return false;
-        }
+        return sois.readObject().toString().equals("true");
     }
 
     public void deleteWorker(int id) {
@@ -206,17 +232,17 @@ ArrayList<String[]> result = (ArrayList<String[]>) readObject();
 
     public void deleteUsers(int id) {
         sendMSG("deleteUser");
-        sendMsg(String.valueOf(id));
+        sendMSG(String.valueOf(id));
     }
 
-    public void blockUsers(int id){
+    public void blockUsers(int id) {
         sendMSG("blockUser");
-        sendMSG(""+id+"");
+        sendMSG(String.valueOf(id));
     }
 
-    public void unblockUsers(int id){
+    public void unblockUsers(int id) {
         sendMSG("unblockUser");
-        sendMSG(""+id+"");
+        sendMSG(String.valueOf(id));
     }
 
     public void addWorker(String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {

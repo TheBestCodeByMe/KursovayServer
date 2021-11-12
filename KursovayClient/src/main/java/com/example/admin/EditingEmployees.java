@@ -3,15 +3,12 @@ package com.example.admin;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.example.kursovayclient.Menu_Admin;
 import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class EditingEmployees {
 

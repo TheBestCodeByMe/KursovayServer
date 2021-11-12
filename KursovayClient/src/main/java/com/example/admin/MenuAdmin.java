@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.example.admin.salary.CommisionSystemPercentage;
 import com.example.admin.salary.PieceworkCalculation;
+import com.example.constants.Constants;
 import com.example.kursovayclient.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,10 +50,13 @@ public class MenuAdmin {
     private Button buttonOutput;
 
     @FXML
-    private Button buttonAddUsers;
+    private Button buttonEditEmployee;
 
     @FXML
-    private Button buttonEditEmployee;
+    private Button buttonViewCompany;
+
+    @FXML
+    private Button buttonEditCompany;
 
     @FXML
     void initialize() {
@@ -60,15 +64,29 @@ public class MenuAdmin {
     }
 
     @FXML
-    void clickAddUsers(ActionEvent event) throws IOException {
+    void clickViewCompany(ActionEvent event) {
         try {
-            buttonAddUsers.getScene().getWindow().hide();
+            buttonViewCompany.getScene().getWindow().hide();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            Add_Users userMenu = new Add_Users();
-            userMenu.start(stage);
+            View_Company viewCompany = new View_Company();
+            viewCompany.start(stage);
+            Constants.FLAG_TRANSITION = false;
         } catch (Exception e) {
-            System.out.println("Cannot open registration.\nWith exception " + e.getLocalizedMessage());
+            System.out.println("Cannot open view company.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
+
+    @FXML
+    void clickEditCompany(ActionEvent event) {
+        try {
+            buttonViewCompany.getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Edit_Company editCompany = new Edit_Company();
+            editCompany.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open view company.\nWith exception " + e.getLocalizedMessage());
         }
     }
 

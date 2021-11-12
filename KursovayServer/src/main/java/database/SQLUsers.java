@@ -5,7 +5,7 @@ import entity.Users;
 
 import java.util.ArrayList;
 
-public class SQLUsers implements IUsers{
+public class SQLUsers implements IUsers {
     private static SQLUsers instance;
     private ConnectionDatabase dbConnection;
 
@@ -22,28 +22,22 @@ public class SQLUsers implements IUsers{
 
     @Override
     public boolean isFind(Users object) {
-        String str = "SELECT * FROM users WHERE login = '"+object.getLogin()+
-                "' and password = '" + object.getPassword() +"'";
+        String str = "SELECT * FROM users WHERE login = '" + object.getLogin() +
+                "' and password = '" + object.getPassword() + "'";
         ArrayList<String[]> result = dbConnection.getArrayResult(str);
         return result.size() != 0;
     }
 
     @Override
     public boolean checkUser(Users object) {
-        if(isFind(object)) {
-            String str = "SELECT status FROM users WHERE login = '"+object.getLogin()+
-                    "' and password = '" + object.getPassword() +"'";
+        if (isFind(object)) {
+            String str = "SELECT status FROM users WHERE login = '" + object.getLogin() +
+                    "' and password = '" + object.getPassword() + "'";
             ArrayList<String[]> result = dbConnection.getArrayResult(str);
             return !result.get(0)[0].equals("block");
         } else {
             return false;
         }
-    }
-
-    @Override
-    public ArrayList<Users> selectAllUsers() {
-        String str = "SELECT * FROM users";
-        return getSelUsers(str);
     }
 
     @Override
@@ -61,39 +55,21 @@ public class SQLUsers implements IUsers{
     }
 
     private ArrayList<String[]> getSelUsersV(String str) {
-            ArrayList<String[]> result = dbConnection.getArrayResult(str);
-            return result;
-        }
-
-    private ArrayList<Users> getSelUsers(String str) {
-        ArrayList<String[]> result = dbConnection.getArrayResult(str);
-
-        ArrayList<Users> listUsers = new ArrayList<>();
-
-        for (String[] items: result){
-            Users user = new Users();
-            user.setId(Integer.parseInt(items[0]));
-            user.setLogin(items[1]);
-            user.setPassword(items[2]);
-            user.setStatus(items[3]);
-            listUsers.add(user);
-        }
-
-        return listUsers;
+        return dbConnection.getArrayResult(str);
     }
 
     @Override
     public void insert(Users object) {
-            String str = "INSERT INTO users(login, password, status) VALUES('" +
-                    object.getLogin() + "', '" +
-                    object.getPassword() + "', '" +
-                    Constants.STATUS_UNBLOCK + "')";
-            dbConnection.execute(str);
+        String str = "INSERT INTO users(login, password, status) VALUES('" +
+                object.getLogin() + "', '" +
+                object.getPassword() + "', '" +
+                Constants.STATUS_UNBLOCK + "')";
+        dbConnection.execute(str);
     }
 
     @Override
     public void delete(int id) {
-        String str = "DELETE FROM users WHERE iduser = '"+id+"'";
+        String str = "DELETE FROM users WHERE iduser = '" + id + "'";
         dbConnection.execute(str);
     }
 

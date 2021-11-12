@@ -1,5 +1,6 @@
 package com.example.user;
 
+import com.example.constants.Constants;
 import com.example.kursovayclient.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +27,23 @@ public class MenuUser {
 
     @FXML
     private Button buttonViewSalary;
+
+    @FXML
+    private Button buttonViewCompany;
+
+    @FXML
+    void clickViewCompany(ActionEvent event){
+        try {
+            buttonViewCompany.getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            View_Company viewCompany = new View_Company();
+            viewCompany.start(stage);
+            Constants.FLAG_TRANSITION = true;
+        } catch (Exception e) {
+            System.out.println("Cannot open view company.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
 
     @FXML
     void clickChangeFIO(ActionEvent event) {

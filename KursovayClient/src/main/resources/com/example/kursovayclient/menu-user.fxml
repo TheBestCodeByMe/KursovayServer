@@ -11,12 +11,13 @@
         <AnchorPane maxHeight="-Infinity" maxWidth="-1.0" prefHeight="388.0" prefWidth="474.0" VBox.vgrow="ALWAYS">
             <children>
                 <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Меню пользователя" textAlignment="CENTER" wrappingWidth="481.6812744140625" />
-                <Button fx:id="buttonDayOff" layoutX="161.0" layoutY="204.0" mnemonicParsing="false" onAction="#clickDayOff" text="Взять выходной день" />
-                <Button fx:id="buttonSpentDaysHours" layoutX="257.0" layoutY="133.0" mnemonicParsing="false" onAction="#clickSpentDaysHours" text="Просмотр отработанных дней и часов" />
+                <Button fx:id="buttonDayOff" layoutX="305.0" layoutY="246.0" mnemonicParsing="false" onAction="#clickDayOff" text="Взять выходной день" />
+                <Button fx:id="buttonSpentDaysHours" layoutX="257.0" layoutY="189.0" mnemonicParsing="false" onAction="#clickSpentDaysHours" text="Просмотр отработанных дней и часов" />
                 <Button fx:id="buttonChangePass" layoutX="45.0" layoutY="71.0" mnemonicParsing="false" onAction="#clickChangePass" text="Смена пароля" />
                 <Button fx:id="buttonChangeFIO" layoutX="13.0" layoutY="133.0" mnemonicParsing="false" onAction="#clickChangeFIO" text="Сменя логина пользователя" />
                 <Button fx:id="buttonOutput" layoutX="431.0" layoutY="309.0" mnemonicParsing="false" onAction="#clickOutput" text="Выход" />
                 <Button fx:id="buttonViewSalary" layoutX="312.0" layoutY="71.0" mnemonicParsing="false" onAction="#clickViewSalary" text="Просмотр зарплат" />
+            <Button fx:id="buttonViewCompany" layoutX="263.0" layoutY="133.0" mnemonicParsing="false" onAction="#clickViewCompany" text="Просмотр информации о компании" />
             </children>
         </AnchorPane>
     </children>

@@ -86,7 +86,6 @@ public class BlockUsers {
         HelpersCl.backToMenuAdmin(buttonBack);
     }
 
-    // обновление в отдельный метод занести
     @FXML
     void clickBlock(ActionEvent event) throws IOException, ClassNotFoundException {
         try {

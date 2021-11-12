@@ -2,6 +2,7 @@ package helpers;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.kursovayclient.Menu_Admin;
+import com.example.kursovayclient.Menu_User;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
@@ -21,6 +22,18 @@ public class HelpersCl {
             menuAdmin.start(stage);
         } catch (Exception e) {
             System.out.println("Cannot open admin menu.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
+
+    public static void backToMenuUser(Button buttonBack) {
+        try {
+            buttonBack.getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Menu_User menuUser = new Menu_User();
+            menuUser.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open menu user.\nWith exception " + e.getLocalizedMessage());
         }
     }
 

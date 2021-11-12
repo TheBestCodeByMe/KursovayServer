@@ -20,7 +20,7 @@
                 <Button fx:id="buttonDelete" layoutX="194.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickDelete" text="Удалить пользователя" />
                 <Button fx:id="buttonUpdate" layoutX="63.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить таблицу" />
                 <Button fx:id="buttonBack" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" />
-                <TableView layoutX="38.0" layoutY="58.0" prefHeight="200.0" prefWidth="311.0">
+                <TableView fx:id="tableUsers" layoutX="38.0" layoutY="58.0" prefHeight="200.0" prefWidth="311.0">
                     <columns>
                         <TableColumn fx:id="columnId" editable="false" minWidth="2.3999632596969604" prefWidth="32.800047278404236" text="Id" />
                         <TableColumn fx:id="columnLogin" prefWidth="80.79999542236328" text="Логин" />
