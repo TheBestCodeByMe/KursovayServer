@@ -75,15 +75,18 @@ public class InteractionsWithServer extends Constants {
         }
     }
 
-    public LinkedList<Employee> showAllEmployes() throws IOException, ClassNotFoundException {
+    public ArrayList<Employee> showAllEmployes() throws IOException, ClassNotFoundException {
         sendMSG("showEmpl");
-        LinkedList<Employee> workers = new LinkedList<>();
+        result = (ArrayList<String[]>) readObject();
 
-        int sizeList = Integer.parseInt(sois.readObject().toString());
-        for (int i = 0; i < sizeList; i++) {
-            parseStringInContributionAll(sois.readObject().toString(), workers);
+        ArrayList<Employee> listWorkers = new ArrayList<>();
+
+        for (String[] items : result) {
+            Employee employee = new Employee(Integer.parseInt(items[0]), items[2], items[3], items[4]);
+            listWorkers.add(employee);
         }
-        return workers;
+
+        return listWorkers;
     }
 
     private void parseStringInContributionAll(String employee, LinkedList<Employee> list) {
@@ -141,7 +144,7 @@ public class InteractionsWithServer extends Constants {
 
     public void changeNameCompany(String name, int id) throws IOException {
         sendMSG("changeNameCompany");
-        sendMsg(name + " " + id);
+        sendMSG(name + " " + id);
     }
 
 
@@ -227,7 +230,7 @@ public class InteractionsWithServer extends Constants {
 
     public void deleteWorker(int id) {
         sendMSG("deleteEmpl");
-        sendMsg(String.valueOf(id));
+        sendMSG(String.valueOf(id));
     }
 
     public void deleteUsers(int id) {
@@ -245,9 +248,16 @@ public class InteractionsWithServer extends Constants {
         sendMSG(String.valueOf(id));
     }
 
-    public void addWorker(String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
+    public String addWorker(String name, String firstNameTextFieldText, String patronymicTextFieldText) throws IOException, ClassNotFoundException {
         sendMSG("addEmpl");
-        sendMsg(name + " " + firstNameTextFieldText + " " + patronymicTextFieldText + " " + salaryTextFieldText);
+        sendMSG(name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
+
+        return sois.readObject().toString();
+    }
+
+    public void addDescription(String days, String hours, String products, String name, String firstNameTextFieldText, String patronymicTextFieldText) throws IOException, ClassNotFoundException {
+        sendMSG("addDesc");
+        sendMSG(days + " " + hours + " " + products + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
     }
 
     public boolean registerUser(String login, String password) throws IOException, ClassNotFoundException {

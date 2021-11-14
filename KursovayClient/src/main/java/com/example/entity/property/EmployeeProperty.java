@@ -9,22 +9,37 @@ import javafx.beans.property.StringProperty;
 
 public class EmployeeProperty {
     private IntegerProperty id;
+    private IntegerProperty idCompany;
     private StringProperty name;
     private StringProperty lastName;
     private StringProperty patronymic;
 
     public EmployeeProperty(Employee employee) {
         id = new SimpleIntegerProperty(employee.getId());
+        idCompany = new SimpleIntegerProperty(employee.getIdCompany());
         name = new SimpleStringProperty(employee.getName());
         lastName = new SimpleStringProperty(employee.getLastName());
-        patronymic = new SimpleStringProperty(employee.getLastName());
+        patronymic = new SimpleStringProperty(employee.getPatronymic());
     }
 
     public Employee toEmployee() {
         return new Employee(id.intValue(),
+                idCompany.intValue(),
                 name.getValue(),
                 lastName.getValue(),
                 patronymic.getValue());
+    }
+
+    public int getIdCompany() {
+        return idCompany.get();
+    }
+
+    public IntegerProperty idCompanyProperty() {
+        return idCompany;
+    }
+
+    public void setIdCompany(int idCompany) {
+        this.idCompany.set(idCompany);
     }
 
     public int getId() {

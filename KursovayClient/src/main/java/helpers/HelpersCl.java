@@ -39,40 +39,34 @@ public class HelpersCl {
 
     public static void registration(String login, String password, String repeatPassword) throws IOException, ClassNotFoundException {
         InteractionsWithServer interactionsWithServer = new InteractionsWithServer();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(validateTextFields(login, password, repeatPassword)) {
+        if (validateTextFields(login, password, repeatPassword)) {
             if (password.equals(repeatPassword)) {
                 if (!login.equals("admin")) {
                     if (interactionsWithServer.registerUser(login, password)) {
-                        alert.setHeaderText(null);
-                        alert.setContentText("Регистрация прошла успешно.");
+                        bug("Регистрация прошла успешно.");
                     } else {
-                        alert.setTitle("Ошибка");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Пользователи с таким логином уже существуют");
+                        bug("Пользователи с таким логином уже существуют.");
                     }
-                    alert.showAndWait();
                 } else {
-                    alert.setTitle("Ошибка");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Введённый вами логин использовать нельзя.");
-                    alert.showAndWait();
+                    bug("Введённый вами логин использовать нельзя.");
                 }
             } else {
-                alert.setTitle("Ошибка");
-                alert.setHeaderText(null);
-                alert.setContentText("Пароли не совпадают.");
-                alert.showAndWait();
+                bug("Пароли не совпадают.");
             }
         } else {
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(null);
-            alert.setContentText("Все поля должны быть заполнены!!!");
-            alert.showAndWait();
+            bug("Все поля должны быть заполнены!!!");
         }
     }
 
     private static boolean validateTextFields(String login, String password, String repeatPassword) {
         return !Objects.equals(login, "") && !Objects.equals(password, "") && !Objects.equals(repeatPassword, "");
+    }
+
+    public static void bug(String str) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ошибка");
+        alert.setHeaderText(null);
+        alert.setContentText(str);
+        alert.showAndWait();
     }
 }

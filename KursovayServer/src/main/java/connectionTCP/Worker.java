@@ -3,6 +3,7 @@ package connectionTCP;
 import com.mysql.cj.result.SqlDateValueFactory;
 import database.SQLFactory;
 import entity.Company;
+import entity.Employee;
 import entity.Users;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.LinkedList;
 
 // может нужно создать только 1 SQLFactory вместо инициализации в каждом методе
@@ -55,6 +57,7 @@ public class Worker implements Runnable {
                         updateCompany();
                         break;
                     case "changeNameCompany":
+                        updateNameCompany();
                         break;
                     case "deleteUser":
                         deleteUsers();
@@ -66,7 +69,7 @@ public class Worker implements Runnable {
                         break;
                     case "deleteAllEmployee":
                         deleteAllEmployee();
-                        break;
+                        break;/*
                     case "editNameEmpl":
                         editNameEmployee();
                         break;
@@ -75,7 +78,7 @@ public class Worker implements Runnable {
                         break;
                     case "editPatronymicEmpl":
                         editPatronymicEmployee();
-                        break;
+                        break;*/
                     case "addEmpl":
                         addEmployee();
                         break;
@@ -196,7 +199,6 @@ public class Worker implements Runnable {
 
     public void viewCompany() throws IOException {
         System.out.println("Просмотр компании");
-        SQLFactory sqlFactory = new SQLFactory();
         ArrayList<String[]> company = sqlFactory.getCompany().selectAllCompany();
         soos.writeObject(company);
     }
@@ -207,13 +209,12 @@ public class Worker implements Runnable {
             messageFromClient = sois.readObject().toString().split(" ");
             Company company = new Company(messageFromClient[0], Integer.parseInt(messageFromClient[1]));
             sqlFactory.getCompany().insert(company);
-            soos.writeObject("true");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteCompany(){
+    public void deleteCompany() {
         System.out.println("Удаление компании");
         try {
             id = Integer.parseInt(sois.readObject().toString());
@@ -228,24 +229,68 @@ public class Worker implements Runnable {
         sqlFactory.getCompany().updateNumbEmpl();
     }
 
+    public void updateNameCompany() throws IOException, ClassNotFoundException {
+        System.out.println("Обновление названия компании");
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Company company = new Company(Integer.parseInt(messageFromClient[1]), messageFromClient[0]);
+
+            sqlFactory.getCompany().updateNameCompany(company);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void deleteEmloyee() {
+        System.out.println("Удаление работника");
+        try {
+            id = Integer.parseInt(sois.readObject().toString());
+            sqlFactory.getCompany().delete(id);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addEmployee() {
+        System.out.println("Добавление работника");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Employee employee = new Employee(messageFromClient[0], messageFromClient[1], messageFromClient[2], sqlFactory.getCompany().selectIdCompany());
+            if (sqlFactory.getCompany().selectAllCompany().size() != 0) {
+                if (sqlFactory.getEmployee().isFind(employee)) {
+                    sqlFactory.getEmployee().insert(employee);
+                    soos.writeObject("true");
+                } else {
+                    soos.writeObject("Работник с таким ФИО уже существует.");
+                }
+            } else {
+                soos.writeObject("Компании не существует.");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void editPatronymicEmployee() {
-    }
+    /*
+        private void editPatronymicEmployee() {
+            System.out.println("Смена отчества работника");
+        }
 
-    private void editLastnameEmployee() {
-    }
+        private void editLastnameEmployee() {
+        }
 
-    private void editNameEmployee() {
-    }
-
+        private void editNameEmployee() {
+        }
+    */
     private void deleteAllEmployee() {
+        System.out.println("Удаление всех работников");
+        sqlFactory.getEmployee().deleteAllEmployee();
     }
 
-    private void showEmployee() {
+    private void showEmployee() throws IOException {
+        System.out.println("Просмотр ФИО работников");
+        ArrayList<String[]> fioEmployee = sqlFactory.getEmployee().selectAllEmployee();
+        soos.writeObject(fioEmployee);
     }
 }

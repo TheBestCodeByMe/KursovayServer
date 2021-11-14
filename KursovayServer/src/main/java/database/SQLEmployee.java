@@ -22,10 +22,10 @@ public class SQLEmployee implements IEmployee {
     @Override
     public boolean isFind(Employee object) {
         String str = "SELECT * FROM employes WHERE name = '" + object.getName() +
-                "', lastname = '" + object.getLastName() + "', patronymic = '" +
+                "' and lastname = '" + object.getLastName() + "' and patronymic = '" +
                 object.getPatronymic() + "'";
         ArrayList<String[]> result = dbConnection.getArrayResult(str);
-        return result.size() != 0;
+        return result.size() == 0;
     }
 
     @Override
@@ -61,8 +61,8 @@ public class SQLEmployee implements IEmployee {
 
     @Override
     public void insert(Employee object) {
-        String str = "INSERT INTO employes(name, lastname, patronymic) VALUES('" +
-                object.getName() + "', '" +
+        String str = "INSERT INTO employes(companyid, name, lastname, patronymic) VALUES('" +
+                object.getCompanyId() + "', '" + object.getName() + "', '" +
                 object.getLastName() + "', '" +
                 object.getPatronymic() + "')";
         dbConnection.execute(str);
@@ -76,7 +76,7 @@ public class SQLEmployee implements IEmployee {
 
     @Override
     public void deleteAllEmployee() {
-        String str = "DELETE * FROM employes"; // скорее всего неправильно
+        String str = "DELETE FROM employes"; // скорее всего неправильно
         dbConnection.execute(str);
     }
 }

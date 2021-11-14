@@ -27,7 +27,7 @@ public class SQLCompany implements ICompany {
 
     @Override
     public int selectIdCompany() {
-        String str = "SELECT id FROM company";
+        String str = "SELECT idcompany FROM company";
         ArrayList<String[]> result = dbConnection.getArrayResult(str);
         return Integer.parseInt(result.get(0)[0]);
     }
@@ -51,9 +51,9 @@ public class SQLCompany implements ICompany {
     }
 
     @Override
-    public void updateNameCompany(String name, int id) {
-        String str = "UPDATE company SET name = '" + name +
-                "' WHERE idcompany = '" + id + "'";
+    public void updateNameCompany(Company company) {
+        String str = "UPDATE company SET name = '" + company.getName() +
+                "' WHERE idcompany = '" + company.getId() + "'";
         dbConnection.execute(str);
     }
 

@@ -1,14 +1,24 @@
 package com.example.admin;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
+import com.example.connection.InteractionsWithServer;
+import com.example.entity.Company;
+import com.example.entity.Description;
+import com.example.entity.Employee;
+import com.example.entity.property.CompanyProperty;
+import com.example.entity.property.DescriptionProperty;
+import com.example.entity.property.EmployeeProperty;
 import helpers.HelpersCl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class EditingEmployees {
 
@@ -22,22 +32,22 @@ public class EditingEmployees {
     private Button buttonEnter;
 
     @FXML
-    private TextField txtLogin;
+    private TextField txtLastname;
 
     @FXML
-    private TextField txtPassword;
+    private TextField txtName;
 
     @FXML
-    private TextField txtPassword1;
+    private TextField txtPatronymic;
 
     @FXML
-    private TextField txtPassword11;
+    private TextField txtHours;
 
     @FXML
-    private TextField txtPassword12;
+    private TextField txtDays;
 
     @FXML
-    private TextField txtPassword111;
+    private TextField txtProducts;
 
     @FXML
     private Button buttonDelete;
@@ -49,32 +59,51 @@ public class EditingEmployees {
     private Button buttonBack;
 
     @FXML
-    private TableColumn<?, ?> columnId;
+    private TableView<EmployeeProperty> tableFIO;
 
     @FXML
-    private TableColumn<?, ?> columnFam;
+    private TableColumn<EmployeeProperty, Integer> columnId;
 
     @FXML
-    private TableColumn<?, ?> columnName;
+    private TableColumn<EmployeeProperty, String> columnFam;
 
     @FXML
-    private TableColumn<?, ?> columnOtchestvo;
+    private TableColumn<EmployeeProperty, String> columnName;
 
     @FXML
-    private TableColumn<?, ?> columnHours;
+    private TableColumn<EmployeeProperty, String> columnOtchestvo;
 
     @FXML
-    private TableColumn<?, ?> columnDays;
+    private TableView<DescriptionProperty> tableDescription;
 
     @FXML
-    private TableColumn<?, ?> columnAmount;
+    private TableColumn<DescriptionProperty, Integer> columnHours;
 
     @FXML
-    private TableColumn<?, ?> columnSalaries;
+    private TableColumn<DescriptionProperty, Integer> columnDays;
 
     @FXML
-    void initialize() {
+    private TableColumn<DescriptionProperty, Integer> columnAmount;
 
+    ActionEvent event1 = new ActionEvent();
+    InteractionsWithServer interactionsWithServer;
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private final ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
+    private final ObservableList<DescriptionProperty> descriptionPropertyObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    void initialize() throws IOException, ClassNotFoundException {
+        interactionsWithServer = new InteractionsWithServer();
+
+        columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
+        columnName.setCellValueFactory(cellValue -> cellValue.getValue().nameProperty());
+        columnFam.setCellValueFactory(cellValue -> cellValue.getValue().lastNameProperty());
+        columnOtchestvo.setCellValueFactory(cellValue -> cellValue.getValue().patronymicProperty());
+        columnDays.setCellValueFactory(cellValue -> cellValue.getValue().daysProperty().asObject());
+        columnHours.setCellValueFactory(cellValue -> cellValue.getValue().hoursProperty().asObject());
+        columnAmount.setCellValueFactory(cellValue -> cellValue.getValue().numbOfProdProperty().asObject());
+
+        clickUpdate(event1);
     }
 
     @FXML
@@ -83,13 +112,79 @@ public class EditingEmployees {
     }
 
     @FXML
-    void clickEnter(ActionEvent event)
-    {}
+    void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
+        if (validateTextFields(txtName.getText(), txtLastname.getText(), txtPatronymic.getText())) {
+            String result = interactionsWithServer.addWorker(txtName.getText(), txtLastname.getText(), txtPatronymic.getText());
+            if (result.equals("true")) {
+                HelpersCl.bug("Добавление работника прошло успешно.");
+            } else if (result.equals("Работник с таким ФИО уже существует.")) {
+                HelpersCl.bug("Такие работники уже существуют");
+            } else {
+                HelpersCl.bug("Работник не состоит в компании. Сначала добавьте компанию.");
+            }
+            alert.showAndWait();
+            String days = txtDays.getText();
+            String hours = txtDays.getText();
+            String products = txtDays.getText();
+            if (days.equals("") || days.matches("-?([1-9][0-9]*)?") && hours.equals("") || hours.matches("-?([1-9][0-9]*)?") && products.equals("") || products.matches("-?([1-9][0-9]*)?")) {
+                if (!days.equals("") || !hours.equals("") || !products.equals("")) {
+                    if (days.equals("")) {
+                        days = "0";
+                    }
+                    if (hours.equals("")) {
+                        hours = "0";
+                    }
+                    if (products.equals("")) {
+                        products = "0";
+                    }
+                    if (Integer.parseInt(days) < 0 || Integer.parseInt(hours) < 0 || Integer.parseInt(products) < 0) {
+                        interactionsWithServer.addDescription(days, hours, products, txtName.getText(), txtLastname.getText(), txtPatronymic.getText());
+                    } else {
+                        HelpersCl.bug("Число не должно быть меньше 0.");
+                    }
+                }
+            } else {
+                HelpersCl.bug("Вы ввели не цифры.");
+            }
+        } else {
+            HelpersCl.bug("ФИО работника должно быть заполнено!!!");
+        }
+
+        clickUpdate(event1);
+    }
 
     @FXML
-    void clickUpdate(ActionEvent event)
-    {}
+    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
+        employeePropertyObservableList.clear();
+        descriptionPropertyObservableList.clear();
+
+        ArrayList<Employee> workers = interactionsWithServer.showAllEmployes();
+        //ArrayList<Description> descriptions = interactionsWithServer.showAllDescription();
+        for (Employee worker : workers) {
+            EmployeeProperty e = new EmployeeProperty(worker);
+            employeePropertyObservableList.add(e);
+        }
+        //for (Description description : descriptions) {
+        //    DescriptionProperty e = new DescriptionProperty(description);
+        //    descriptionPropertyObservableList.add(e);
+        //}
+
+        tableFIO.setItems(employeePropertyObservableList);
+        // tableDescription.setItems(descriptionPropertyObservableList);
+    }
 
     @FXML
-    void clickDelete(ActionEvent event){}
+    void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
+        if (tableFIO.getSelectionModel().getSelectedItem() != null) {
+            int id = tableFIO.getSelectionModel().getSelectedItem().getId();
+            interactionsWithServer.deleteWorker(id);
+            clickUpdate(event1);
+        } else {
+            HelpersCl.bug("Вы не выбрали работника для удаления!");
+        }
+    }
+
+    private static boolean validateTextFields(String name, String lastname, String patronymic) {
+        return !Objects.equals(name, "") && !Objects.equals(lastname, "") && !Objects.equals(patronymic, "");
+    }
 }

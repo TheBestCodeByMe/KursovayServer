@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Setter
 public class Employee implements Serializable {
     private int id;
+    private int companyId;
     private String name;
     private String lastName;
     private String patronymic;
@@ -20,9 +21,10 @@ public class Employee implements Serializable {
         this.patronymic = patronymic;
     }
 
-    public Employee(String name, String lastName, String patronymic) {
+    public Employee(String name, String lastName, String patronymic, int companyId) {
         this.name = name;
         this.lastName = lastName;
         this.patronymic = patronymic;
+        this.companyId = companyId;
     }
 }

@@ -14,5 +14,5 @@ public interface ICompany {
     void updateNumbEmpl();
     void insert(Company object);
     void delete(int id);
-    void updateNameCompany(String name, int id);
+    void updateNameCompany(Company company);
 }

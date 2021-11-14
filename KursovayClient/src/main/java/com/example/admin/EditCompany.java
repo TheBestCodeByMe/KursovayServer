@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import lombok.experimental.Helper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,7 +57,6 @@ public class EditCompany {
 
     ActionEvent event1 = new ActionEvent();
     InteractionsWithServer interactionsWithServer;
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     private final ObservableList<CompanyProperty> companyPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
@@ -81,10 +81,7 @@ public class EditCompany {
             interactionsWithServer.changeNameCompany(txtName.getText(), tableCompany.getSelectionModel().getSelectedItem().getId());
             clickUpdate(event1);
         } else {
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(null);
-            alert.setContentText("Название компании должно быть заполнено!!! А также выбрана компания, у которой изменяется имя.");
-            alert.showAndWait();
+            HelpersCl.bug("Название компании должно быть заполнено!!! А также выбрана компания, у которой изменяется имя.");
         }
     }
 
@@ -105,11 +102,9 @@ public class EditCompany {
     void clickAdd(ActionEvent event) throws IOException, ClassNotFoundException {
         if (!txtName.getText().equals("")) {
             interactionsWithServer.addCompany(txtName.getText(), 0);
+            clickUpdate(event1);
         } else {
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(null);
-            alert.setContentText("Название компании должно быть заполнено!!!");
-            alert.showAndWait();
+            HelpersCl.bug("Название компании должно быть заполнено!!!");
         }
     }
 
@@ -120,10 +115,7 @@ public class EditCompany {
             interactionsWithServer.deleteCompany(id);
             clickUpdate(event1);
         } else {
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(null);
-            alert.setContentText("Вы не выбрали пользователя для удаления!");
-            alert.showAndWait();
+            HelpersCl.bug("Вы не выбрали пользователя для удаления!");
         }
     }
 }

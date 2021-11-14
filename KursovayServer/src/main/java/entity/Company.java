@@ -22,4 +22,9 @@ public class Company implements Serializable {
         this.name = name;
         this.numberEmpl = numberEmpl;
     }
+
+    public Company(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
