@@ -117,17 +117,10 @@ public class EditingEmployees {
             String result = interactionsWithServer.addWorker(txtName.getText(), txtLastname.getText(), txtPatronymic.getText());
             if (result.equals("true")) {
                 HelpersCl.bug("Добавление работника прошло успешно.");
-            } else if (result.equals("Работник с таким ФИО уже существует.")) {
-                HelpersCl.bug("Такие работники уже существуют");
-            } else {
-                HelpersCl.bug("Работник не состоит в компании. Сначала добавьте компанию.");
-            }
-            alert.showAndWait();
-            String days = txtDays.getText();
-            String hours = txtDays.getText();
-            String products = txtDays.getText();
-            if (days.equals("") || days.matches("-?([1-9][0-9]*)?") && hours.equals("") || hours.matches("-?([1-9][0-9]*)?") && products.equals("") || products.matches("-?([1-9][0-9]*)?")) {
-                if (!days.equals("") || !hours.equals("") || !products.equals("")) {
+                String days = txtDays.getText();
+                String hours = txtHours.getText();
+                String products = txtProducts.getText();
+                if (days.equals("") || days.matches("-?([1-9][0-9]*)?") && hours.equals("") || hours.matches("-?([1-9][0-9]*)?") && products.equals("") || products.matches("-?([1-9][0-9]*)?")) {
                     if (days.equals("")) {
                         days = "0";
                     }
@@ -138,19 +131,29 @@ public class EditingEmployees {
                         products = "0";
                     }
                     if (Integer.parseInt(days) < 0 || Integer.parseInt(hours) < 0 || Integer.parseInt(products) < 0) {
-                        interactionsWithServer.addDescription(days, hours, products, txtName.getText(), txtLastname.getText(), txtPatronymic.getText());
-                    } else {
                         HelpersCl.bug("Число не должно быть меньше 0.");
+                    } else {
+                        interactionsWithServer.addDescription(days, hours, products, txtName.getText(), txtLastname.getText(), txtPatronymic.getText());
+                        txtName.setText("");
+                        txtLastname.setText("");
+                        txtPatronymic.setText("");
+                        txtDays.setText("");
+                        txtHours.setText("");
+                        txtProducts.setText("");
                     }
+                } else {
+                    HelpersCl.bug("Вы ввели не цифры.");
                 }
+                interactionsWithServer.updateCompany();
+                clickUpdate(event1);
+            } else if (result.equals("Работник с таким ФИО уже существует.")) {
+                HelpersCl.bug("Такие работники уже существуют");
             } else {
-                HelpersCl.bug("Вы ввели не цифры.");
+                HelpersCl.bug("Работник не состоит в компании. Сначала добавьте компанию.");
             }
         } else {
             HelpersCl.bug("ФИО работника должно быть заполнено!!!");
         }
-
-        clickUpdate(event1);
     }
 
     @FXML
@@ -159,18 +162,18 @@ public class EditingEmployees {
         descriptionPropertyObservableList.clear();
 
         ArrayList<Employee> workers = interactionsWithServer.showAllEmployes();
-        //ArrayList<Description> descriptions = interactionsWithServer.showAllDescription();
+        ArrayList<Description> descriptions = interactionsWithServer.showAllDescription();
         for (Employee worker : workers) {
             EmployeeProperty e = new EmployeeProperty(worker);
             employeePropertyObservableList.add(e);
         }
-        //for (Description description : descriptions) {
-        //    DescriptionProperty e = new DescriptionProperty(description);
-        //    descriptionPropertyObservableList.add(e);
-        //}
+        for (Description description : descriptions) {
+            DescriptionProperty e = new DescriptionProperty(description);
+            descriptionPropertyObservableList.add(e);
+        }
 
         tableFIO.setItems(employeePropertyObservableList);
-        // tableDescription.setItems(descriptionPropertyObservableList);
+        tableDescription.setItems(descriptionPropertyObservableList);
     }
 
     @FXML
@@ -182,6 +185,7 @@ public class EditingEmployees {
         } else {
             HelpersCl.bug("Вы не выбрали работника для удаления!");
         }
+        interactionsWithServer.updateDelCompany();
     }
 
     private static boolean validateTextFields(String name, String lastname, String patronymic) {

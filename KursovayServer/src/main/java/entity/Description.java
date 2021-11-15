@@ -9,18 +9,19 @@ import java.io.Serializable;
 @Setter
 public class Description implements Serializable {
     private int id;
+    private int employeeid;
     private int hours;
     private int days;
     private int numbOfProd;
 
-    public Description(int id, int hours, int days, int numbOfProd) {
-        this.id = id;
+    public Description(int hours, int days, int numbOfProd) {
         this.hours = hours;
         this.days = days;
         this.numbOfProd = numbOfProd;
     }
 
-    public Description(int hours, int days, int numbOfProd) {
+    public Description(int hours, int days, int numbOfProd, int employeeid) {
+        this.employeeid = employeeid;
         this.hours = hours;
         this.days = days;
         this.numbOfProd = numbOfProd;

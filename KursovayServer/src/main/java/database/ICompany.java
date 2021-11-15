@@ -15,4 +15,5 @@ public interface ICompany {
     void insert(Company object);
     void delete(int id);
     void updateNameCompany(Company company);
+    void updateDelNumbEmpl();
 }

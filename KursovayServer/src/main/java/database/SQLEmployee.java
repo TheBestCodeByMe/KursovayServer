@@ -29,12 +29,21 @@ public class SQLEmployee implements IEmployee {
     }
 
     @Override
-    public ArrayList<String[]> selectAllEmployee() {
-        String str = "SELECT * FROM employes";
-        return getSelEmployee(str);
+    public int selectIdEmpl(Employee object) {
+        String str = "SELECT idempl FROM employes WHERE name = '" + object.getName() +
+                "' and lastname = '" + object.getLastName() + "' and patronymic = '" +
+                object.getPatronymic() + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Integer.parseInt(result.get(0)[0]);
     }
 
-    private ArrayList<String[]> getSelEmployee(String str) {
+    @Override
+    public ArrayList<String[]> selectAllEmployee() {
+        String str = "SELECT * FROM employes";
+        return selectAllEmployee(str);
+    }
+
+    private ArrayList<String[]> selectAllEmployee(String str) {
         return dbConnection.getArrayResult(str);
     }
 

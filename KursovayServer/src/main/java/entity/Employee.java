@@ -21,6 +21,12 @@ public class Employee implements Serializable {
         this.patronymic = patronymic;
     }
 
+    public Employee(String name, String lastName, String patronymic) {
+        this.name = name;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+    }
+
     public Employee(String name, String lastName, String patronymic, int companyId) {
         this.name = name;
         this.lastName = lastName;

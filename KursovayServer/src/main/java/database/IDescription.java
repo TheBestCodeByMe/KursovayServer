@@ -2,12 +2,13 @@ package database;
 
 import entity.Description;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public interface IDescription {
     boolean isFind(Description object);
-    LinkedList<Description> selectAllDescription();
-    void update(Description object, int id);
+    ArrayList<String[]> selectAllDescription();
+    void updateHours(int hours, int id);
+    void updateDays(int days, int id);
+    void updateProducts(int amount, int id);
     void insert(Description object);
-    void delete(int id);
 }

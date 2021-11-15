@@ -2,6 +2,7 @@ package com.example.connection;
 
 import com.example.constants.Constants;
 import com.example.entity.*;
+import helpers.HelpersCl;
 import javafx.scene.control.Alert;
 
 import java.io.*;
@@ -131,22 +132,33 @@ public class InteractionsWithServer extends Constants {
     }
 
     public void addCompany(String name, int numberEmpl) throws IOException, ClassNotFoundException {
-        if(showAllCompany().size() == 0) {
+        if (showAllCompany().size() == 0) {
             sendMSG("addCompany");
             sendMSG(name + " " + numberEmpl);
-        } else{
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(null);
-            alert.setContentText("Компания уже существует. Удалите предыдущую для создания новой.");
-            alert.showAndWait();
+        } else {
+            HelpersCl.bug("Компания уже существует. Удалите предыдущую для создания новой.");
         }
     }
 
-    public void changeNameCompany(String name, int id) throws IOException {
+    public void changeNameCompany(String name, int id) {
         sendMSG("changeNameCompany");
         sendMSG(name + " " + id);
     }
 
+    public void changeHours(int hours, int id) {
+        sendMSG("updateHours");
+        sendMSG(hours + " " + id);
+    }
+
+    public void changeDays(String days, int id) {
+        sendMSG("updateDays");
+        sendMSG(days + " " + id);
+    }
+
+    public void changeNumbProduct(String amount, int id) {
+        sendMSG("updateNumbProduct");
+        sendMSG(amount + " " + id);
+    }
 
     public void deleteCompany(int id) {
         sendMSG("deleteCompany");
@@ -155,14 +167,11 @@ public class InteractionsWithServer extends Constants {
     }
 
     public void updateCompany() {
-        if (showAllCompany().size() != 0) {
-            sendMSG("updateCompany");
-        } else {
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(null);
-            alert.setContentText("Человек не состоит в компании. Сначала добавьте компанию.");
-            alert.showAndWait();
-        }
+        sendMSG("updateCompany");
+    }
+
+    public void updateDelCompany() {
+        sendMSG("updateDelCompany");
     }
 
     public void editUser(int id, String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
@@ -174,10 +183,12 @@ public class InteractionsWithServer extends Constants {
         sendMSG("editNameEmpl");
         sendMsg(id + " " + name);
     }
+
     public void editLastnameEmployee(int id, String lastname) {
         sendMSG("editLastnameEmpl");
         sendMsg(id + " " + lastname);
     }
+
     public void editPatronymicEmployee(int id, String patronymicTextFieldText) {
         sendMSG("editPatronymicEmpl");
         sendMsg(id + " " + patronymicTextFieldText);
@@ -193,15 +204,17 @@ public class InteractionsWithServer extends Constants {
         list.add(new Company(Integer.parseInt(subStr[0]), subStr[1], Integer.parseInt(subStr[2])));
     }
 
-    public LinkedList<Description> showAllDescription() throws IOException, ClassNotFoundException {
+    public ArrayList<Description> showAllDescription() throws IOException, ClassNotFoundException {
         sendMSG("showDescription");
-        LinkedList<Description> description = new LinkedList<>();
 
-        int sizeList = Integer.parseInt(sois.readObject().toString());
-        for (int i = 0; i < sizeList; i++) {
-            parseStringInDescriptionAll(sois.readObject().toString(), description);
+        result = (ArrayList<String[]>) readObject();
+        ArrayList<Description> listDesc = new ArrayList<>();
+
+        for (String[] items : result) {
+            Description description = new Description(Integer.parseInt(items[0]), Integer.parseInt(items[2]), Integer.parseInt(items[3]), Integer.parseInt(items[4]), Integer.parseInt(items[1]));
+            listDesc.add(description);
         }
-        return description;
+        return listDesc;
     }
 
     private void parseStringInDescriptionAll(String worker, LinkedList<Description> list) {
@@ -251,13 +264,12 @@ public class InteractionsWithServer extends Constants {
     public String addWorker(String name, String firstNameTextFieldText, String patronymicTextFieldText) throws IOException, ClassNotFoundException {
         sendMSG("addEmpl");
         sendMSG(name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
-
         return sois.readObject().toString();
     }
 
     public void addDescription(String days, String hours, String products, String name, String firstNameTextFieldText, String patronymicTextFieldText) throws IOException, ClassNotFoundException {
-        sendMSG("addDesc");
-        sendMSG(days + " " + hours + " " + products + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
+        sendMSG("addDescription");
+        sendMSG(hours + " " + days + " " + products + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
     }
 
     public boolean registerUser(String login, String password) throws IOException, ClassNotFoundException {

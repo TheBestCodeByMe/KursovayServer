@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Setter
 public class Salaries implements Serializable {
     private int id;
+    private int employeeid;
     private int december;
     private int january;
     private int february;
@@ -39,6 +40,23 @@ public class Salaries implements Serializable {
     }
 
     public Salaries(int december, int january, int february, int march, int april, int may, int june, int july, int august, int september, int october, int november) {
+        this.december = december;
+        this.january = january;
+        this.february = february;
+        this.march = march;
+        this.april = april;
+        this.may = may;
+        this.june = june;
+        this.july = july;
+        this.august = august;
+        this.september = september;
+        this.october = october;
+        this.november = november;
+    }
+
+    public Salaries(int id, int employeeid, int december, int january, int february, int march, int april, int may, int june, int july, int august, int september, int october, int november) {
+        this.id = id;
+        this.employeeid = employeeid;
         this.december = december;
         this.january = january;
         this.february = february;

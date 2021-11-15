@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class DescriptionProperty {
     private IntegerProperty id;
+    private IntegerProperty employeeid;
     private IntegerProperty hours;
     private IntegerProperty days;
     private IntegerProperty numbOfProd;
@@ -15,6 +16,7 @@ public class DescriptionProperty {
     public DescriptionProperty(Description description)
     {
         id = new SimpleIntegerProperty(description.getId());
+        employeeid = new SimpleIntegerProperty(description.getEmployeeid());
         hours = new SimpleIntegerProperty(description.getHours());
         days = new SimpleIntegerProperty(description.getDays());
         numbOfProd = new SimpleIntegerProperty(description.getNumbOfProd());
@@ -22,6 +24,7 @@ public class DescriptionProperty {
 
     public Description toDescription(){
         return new Description(id.intValue(),
+                employeeid.intValue(),
                 hours.intValue(),
                 days.intValue(),
                 numbOfProd.intValue());
@@ -37,6 +40,18 @@ public class DescriptionProperty {
 
     public void setId(int id) {
         this.id.set(id);
+    }
+
+    public int getEmployeeid() {
+        return employeeid.get();
+    }
+
+    public IntegerProperty employeeidProperty() {
+        return employeeid;
+    }
+
+    public void setEmployeeid(int employeeid) {
+        this.employeeid.set(employeeid);
     }
 
     public int getHours() {

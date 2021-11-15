@@ -36,9 +36,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="3161eae5-dc7d-4168-b367-7c3f9b485122" object-ref="schemas/kurswork/tables/employes" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="3161eae5-dc7d-4168-b367-7c3f9b485122" />
@@ -46,6 +44,8 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="3161eae5-dc7d-4168-b367-7c3f9b485122" dataset="kurswork.users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="3161eae5-dc7d-4168-b367-7c3f9b485122" dataset="kurswork.employes" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="3161eae5-dc7d-4168-b367-7c3f9b485122" dataset="kurswork.description" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="3161eae5-dc7d-4168-b367-7c3f9b485122" dataset="kurswork.salaries" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

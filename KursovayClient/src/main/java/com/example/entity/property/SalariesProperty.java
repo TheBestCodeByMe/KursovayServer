@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class SalariesProperty {
     private IntegerProperty id;
+    private IntegerProperty employeeid;
     private IntegerProperty december;
     private IntegerProperty january;
     private IntegerProperty february;
@@ -23,6 +24,7 @@ public class SalariesProperty {
 
     public SalariesProperty(Salaries salaries) {
         id = new SimpleIntegerProperty(salaries.getId());
+        employeeid = new SimpleIntegerProperty(salaries.getEmployeeid());
         december = new SimpleIntegerProperty(salaries.getDecember());
         january = new SimpleIntegerProperty(salaries.getJanuary());
         february = new SimpleIntegerProperty(salaries.getFebruary());
@@ -39,6 +41,7 @@ public class SalariesProperty {
 
     public Salaries toSalaries() {
         return new Salaries(id.intValue(),
+                employeeid.intValue(),
                 december.intValue(),
                 january.intValue(),
                 february.intValue(),
@@ -63,6 +66,18 @@ public class SalariesProperty {
 
     public void setId(int id) {
         this.id.set(id);
+    }
+
+    public int getEmployeeid() {
+        return employeeid.get();
+    }
+
+    public IntegerProperty employeeidProperty() {
+        return employeeid;
+    }
+
+    public void setEmployeeid(int employeeid) {
+        this.employeeid.set(employeeid);
     }
 
     public int getDecember() {

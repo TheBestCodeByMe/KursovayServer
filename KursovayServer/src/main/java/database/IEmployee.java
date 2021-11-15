@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public interface IEmployee {
     boolean isFind(Employee object);
     ArrayList<String[]> selectAllEmployee();
+    int selectIdEmpl(Employee object);
     void updateName(Employee object, int id);
     void updateLastName(Employee object, int id);
     void updatePatronymic(Employee object, int id);

@@ -2,9 +2,9 @@ package database;
 
 import entity.Description;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-public class SQLDescription implements IDescription{
+public class SQLDescription implements IDescription {
     private static SQLDescription instance;
     private ConnectionDatabase dbConnection;
 
@@ -21,26 +21,44 @@ public class SQLDescription implements IDescription{
 
     @Override
     public boolean isFind(Description object) {
-        return false;
+        String str = "SELECT * FROM description WHERE employeeid = '" + object.getEmployeeid() + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return result.size() == 0;
     }
 
     @Override
-    public LinkedList<Description> selectAllDescription() {
-        return null;
+    public ArrayList<String[]> selectAllDescription() {
+        String str = "SELECT * FROM description";
+        return dbConnection.getArrayResult(str);
     }
 
     @Override
-    public void update(Description object, int id) {
+    public void updateHours(int hours, int id) {
+        String str = "UPDATE description SET hours = '" +hours +
+                "' WHERE idempl = '" + id + "'";
+        dbConnection.execute(str);
+    }
 
+    @Override
+    public void updateDays(int days, int id) {
+        String str = "UPDATE description SET days = '" + days +
+                "' WHERE idempl = '" + id + "'";
+        dbConnection.execute(str);
+    }
+
+    @Override
+    public void updateProducts(int amount, int id) {
+        String str = "UPDATE description SET numbOfProd = '" + amount +
+                "' WHERE idempl = '" + id + "'";
+        dbConnection.execute(str);
     }
 
     @Override
     public void insert(Description object) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
+        String str = "INSERT INTO description(employeeid, hours, days, numbOfProd) VALUES('" +
+                object.getEmployeeid() + "', '" + object.getHours() + "', '" +
+                object.getDays() + "', '" +
+                object.getNumbOfProd() + "')";
+        dbConnection.execute(str);
     }
 }
