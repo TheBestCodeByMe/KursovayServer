@@ -174,10 +174,15 @@ public class InteractionsWithServer extends Constants {
         sendMSG("updateDelCompany");
     }
 
-    public void editUser(int id, String name, String firstNameTextFieldText, String patronymicTextFieldText, String salaryTextFieldText) {
-        sendMSG("editUser");
-        sendMsg(id + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText + " " + salaryTextFieldText);
+    public void editUserLogin(String login, String newLogin, String password) {
+        sendMSG("editUserLogin");
+        sendMsg(login + " " + password + " " + newLogin);
     }
+
+    public void editUserPassword(String login, String newPassword, String password) {
+        sendMSG("editUserPassword");
+        sendMsg(login + " " + password + " " + newPassword);
+            }
 
     public void editNameEmployee(int id, String name) {
         sendMSG("editNameEmpl");
@@ -196,6 +201,10 @@ public class InteractionsWithServer extends Constants {
 
     public void exit() {
         sendMSG("exit");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText(readObject().toString());
+        alert.showAndWait();
     }
 
     private void parseStringInCompanyAll(String company, ArrayList<Company> list) {
@@ -220,18 +229,6 @@ public class InteractionsWithServer extends Constants {
     private void parseStringInDescriptionAll(String worker, LinkedList<Description> list) {
         String[] subStr;
         subStr = worker.split(" ");
-        // может добавить
-        /*
-        if (subStr[1] == null) {
-            subStr[1] = "0";
-        }
-        if (subStr[2] == null) {
-            subStr[2] = "0";
-        }
-        if (subStr[3] == null) {
-            subStr[3] = "0";
-        }
-        */
         list.add(new Description(Integer.parseInt(subStr[0]), Integer.parseInt(subStr[1]), Integer.parseInt(subStr[2]), Integer.parseInt(subStr[3])));
     }
 
@@ -279,80 +276,55 @@ public class InteractionsWithServer extends Constants {
         return sois.readObject().toString().equals("true");
     }
 
-    public Integer calculateCommPerc(int idSelectedEmployee, Salaries month, int profitability) {
-        sendMSG("расчет зарплаты по комиссионной системе");
-        sendMsg(idSelectedEmployee + " " + month + " " + profitability);
-        try {
-            return Integer.valueOf(sois.readObject().toString());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
+    public void addSalaries(String name, String lastname, String patronymic) {
+        sendMSG("addNullSalaries");
+        sendMSG(name + " " + lastname + " " + patronymic);
     }
 
-    public Integer calculateCommPercLeast(int idSelectedEmployee, Salaries month, int profitability) {
+    public ArrayList<Salaries> viewSalaries() {
+        sendMSG("ViewSalaries");
+        result = (ArrayList<String[]>) readObject();
+        ArrayList<Salaries> listSalary = new ArrayList<>();
+
+        for (String[] items : result) {
+            Salaries salary = new Salaries(Integer.parseInt(items[0]), Integer.parseInt(items[1]), Integer.parseInt(items[2]), Integer.parseInt(items[3]), Integer.parseInt(items[4]), Integer.parseInt(items[5]), Integer.parseInt(items[6]), Integer.parseInt(items[7]), Integer.parseInt(items[8]), Integer.parseInt(items[9]), Integer.parseInt(items[10]), Integer.parseInt(items[11]), Integer.parseInt(items[12]));
+            listSalary.add(salary);
+        }
+        return listSalary;
+    }
+
+    public void calculateCommPerc(int idSelectedEmployee, String month, int profitability) {
+        sendMSG("расчет зарплаты по комиссионной системе");
+        sendMSG(idSelectedEmployee + " " + month + " " + profitability);
+    }
+
+    public void calculateCommPercLeast(int idSelectedEmployee, String month, int profitability) {
         sendMSG("расчет зарплаты по комиссионной системе не менее фикс оклада");
         sendMsg(idSelectedEmployee + " " + month + " " + profitability);
-        try {
-            return Integer.valueOf(sois.readObject().toString());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
     }
 
-    public Integer calculateCommPercFixes(int idSelectedEmployee, Salaries month, int profitability) {
+    public void calculateCommPercFixes(int idSelectedEmployee, String month, int profitability) {
         sendMSG("расчет зарплаты по комиссионной системе по фикс окладу");
         sendMsg(idSelectedEmployee + " " + month + " " + profitability);
-        try {
-            return Integer.valueOf(sois.readObject().toString());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
     }
 
-    public Integer calculateDirect(int idSelectedEml, int numberProductsEmpl, String month) {
+    public void calculateDirect(int idSelectedEml, int numberProductsEmpl, String month) {
         sendMSG("расчет зарплаты по прямой сдельной");
-        sendMsg(idSelectedEml + " " + numberProductsEmpl + " " + month);
-        try {
-            return Integer.valueOf(sois.readObject().toString());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        sendMsg(idSelectedEml + " " + month + " " + numberProductsEmpl);
     }
 
-    public Integer calculateIndirectly(int idSelectedEml, int numberProductsCompany, String month) {
-        sendMSG("расчет зарплаты по косвенное сдельной");
+    public void calculateIndirectly(int idSelectedEml, int numberProductsCompany, String month) {
+        sendMSG("расчет зарплаты по косвенной сдельной");
         sendMsg(idSelectedEml + " " + numberProductsCompany + " " + month);
-        try {
-            return Integer.valueOf(sois.readObject().toString());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
     }
 
-    public Integer calculateTimebasedDaily(Employee selectedEmployee) {
+    public void calculateTimebasedDaily(int idSelectedEml, int days, String month) {
         sendMSG("расчет зарплаты по повременной дневной");
-        //sendMsg(selectedEmployee.getHoursWorkedTextField().getText() + " " + selectedEmployee.getWorkRateTextField().getText() + " " + selectedEmployee.getSalaryByContract());
-        try {
-            return Integer.valueOf(sois.readObject().toString());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        sendMsg(idSelectedEml + " " + month + " " + days);
     }
 
-    public Integer calculateTimebasedHourlySalary(Employee selectedEmployee) {
+    public void calculateTimebasedHourlySalary(int idSelectedEml, int hours, String month) {
         sendMSG("расчет зарплаты по повременной часовой");
-        //sendMsg(selectedEmployee.getHoursWorkedTextField().getText() + " " + selectedEmployee.getWorkRateTextField().getText() + " " + selectedEmployee.getSalaryByContract());
-        try {
-            return Integer.valueOf(sois.readObject().toString());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        sendMsg(idSelectedEml + " " + month + " " + hours);
     }
 }

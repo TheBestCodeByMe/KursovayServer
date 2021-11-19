@@ -1,11 +1,9 @@
 package connectionTCP;
 
+import calculation_salaries.CalculationSalaries;
 import com.mysql.cj.result.SqlDateValueFactory;
 import database.SQLFactory;
-import entity.Company;
-import entity.Description;
-import entity.Employee;
-import entity.Users;
+import entity.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -79,7 +77,11 @@ public class Worker implements Runnable {
                     case "deleteUser":
                         deleteUsers();
                         break;
-                    case "editUser":
+                    case "editUserLogin":
+                        editLogin();
+                        break;
+                    case "editUserPassword":
+                        editPassword();
                         break;
                     case "showEmpl":
                         showEmployee();
@@ -111,21 +113,38 @@ public class Worker implements Runnable {
                     case "unblockUser":
                         unblock();
                         break;
+                    case "addNullSalaries":
+                        addNullSalaries();
+                        break;
+                    case "viewSalaries":
+                        viewSalaries();
+                        break;
                     case "расчет зарплаты по комиссионной системе":
+                        commissionSystemPercentage();
                         break;
                     case "расчет зарплаты по комиссионной системе не менее фикс оклада":
+                        commissionSystemPercentageLeastFixed();
                         break;
                     case "расчет зарплаты по комиссионной системе по фикс окладу":
+                        commissionSystemPercentageFixed();
                         break;
                     case "расчет зарплаты по прямой сдельной":
+                        systemDirectPiecework();
                         break;
-                    case "расчет зарплаты по косвенное сдельной":
+                    case "расчет зарплаты по косвенной сдельной":
+                        systemIndirectlyPiecework();
                         break;
                     case "расчет зарплаты по повременной дневной":
+                        systemTimeBasedDaily();
                         break;
                     case "расчет зарплаты по повременной часовой":
+                        systemTimeBasedHourly();
                         break;
                     case "exit":
+                        soos.writeObject("OK");
+                        soos.close();
+                        sois.close();
+                        System.out.println("Client " + clientSocket.getInetAddress().toString() + "disconnected.");
                         break;
                 }
             }
@@ -212,6 +231,20 @@ public class Worker implements Runnable {
     public void unblock() throws IOException, ClassNotFoundException {
         System.out.println("Разблокировка пользователей");
         sqlFactory.getUsers().unblock(Integer.parseInt(sois.readObject().toString()));
+    }
+
+    private void editPassword() throws IOException, ClassNotFoundException {
+        System.out.println("Изменение пароля пользователя");
+        messageFromClient = sois.readObject().toString().split(" ");
+        Users user = new Users(messageFromClient[0], messageFromClient[1]);
+        sqlFactory.getUsers().editPassword(user, messageFromClient[2]);
+    }
+
+    private void editLogin() throws IOException, ClassNotFoundException {
+        System.out.println("Изменение логина пользователя");
+        messageFromClient = sois.readObject().toString().split(" ");
+        Users user = new Users(messageFromClient[0], messageFromClient[1]);
+        sqlFactory.getUsers().editLogin(user, messageFromClient[2]);
     }
 
     public void viewCompany() throws IOException {
@@ -353,9 +386,9 @@ public class Worker implements Runnable {
             messageFromClient = sois.readObject().toString().split(" ");
             Employee employee = new Employee(messageFromClient[3], messageFromClient[4], messageFromClient[5]);
             Description description = new Description(Integer.parseInt(messageFromClient[0]), Integer.parseInt(messageFromClient[1]), Integer.parseInt(messageFromClient[2]), sqlFactory.getEmployee().selectIdEmpl(employee));
-                if (sqlFactory.getDescription().isFind(description)) {
-                    sqlFactory.getDescription().insert(description);
-                }
+            if (sqlFactory.getDescription().isFind(description)) {
+                sqlFactory.getDescription().insert(description);
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -365,5 +398,124 @@ public class Worker implements Runnable {
         System.out.println("Просмотр описания работников");
         ArrayList<String[]> descEmployee = sqlFactory.getDescription().selectAllDescription();
         soos.writeObject(descEmployee);
+    }
+
+    private void addNullSalaries() {
+        System.out.println("Добавление зарплат");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Employee employee = new Employee(messageFromClient[0], messageFromClient[1], messageFromClient[2]);
+            Salaries salaries = new Salaries(sqlFactory.getEmployee().selectIdEmpl(employee), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().insert(salaries);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void systemTimeBasedHourly() {
+        System.out.println("Добавление зарплаты по повременной часовой системе");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.timeBasedHourly(Integer.parseInt(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void systemTimeBasedDaily() {
+        System.out.println("Добавление зарплаты по повременной дневной системе");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.timeBasedDaily(Integer.parseInt(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void systemIndirectlyPiecework() {
+        System.out.println("Добавление зарплаты по косвенной сдельной системе расчёта");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.indirectlyPiecework(Integer.parseInt(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void systemDirectPiecework() {
+        System.out.println("Добавление зарплаты по прямой сдельной системе расчёта");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.directPiecework(Integer.parseInt(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void commissionSystemPercentageFixed() {
+        System.out.println("Добавление зарплаты по комиссионной системе по проценту по фиксированному окладу");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.commSystemPercentageFixed(Integer.parseInt(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void commissionSystemPercentageLeastFixed() {
+        System.out.println("Добавление зарплаты по комиссионной системе по проценту не менее фиксированного оклада");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.commSystemPercentageLeastFixed(Integer.parseInt(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void commissionSystemPercentage() {
+        System.out.println("Добавление зарплаты по комиссионной системе по проценту");
+
+        try {
+            messageFromClient = sois.readObject().toString().split(" ");
+            Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
+            if (sqlFactory.getSalaries().isFind(salaries)) {
+                sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.commSystemPercentage(Integer.parseInt(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void viewSalaries() throws IOException {
+        System.out.println("Просмотр зарплат работников");
+        ArrayList<String[]> salaries = sqlFactory.getSalaries().selectAllSalaries();
+        soos.writeObject(salaries);
     }
 }

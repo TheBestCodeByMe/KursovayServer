@@ -13,4 +13,7 @@ public interface IUsers {
     void delete(int id);
     void block(int id);
     void unblock(int id);
+    void editLogin(Users object, String newLogin);
+    void editPassword(Users object, String newPassword);
+    int selectIdUser(Users object);
 }

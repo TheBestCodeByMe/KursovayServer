@@ -113,8 +113,12 @@ public class EditingEmployees {
 
     @FXML
     void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
-        if (validateTextFields(txtName.getText(), txtLastname.getText(), txtPatronymic.getText())) {
-            String result = interactionsWithServer.addWorker(txtName.getText(), txtLastname.getText(), txtPatronymic.getText());
+        String name = txtName.getText();
+        String lastname = txtLastname.getText();
+        String patronymic = txtPatronymic.getText();
+        if (validateTextFields(name, lastname, patronymic)) {
+            String result = interactionsWithServer.addWorker(name, lastname, patronymic);
+            interactionsWithServer.addSalaries(name, lastname, patronymic);
             if (result.equals("true")) {
                 HelpersCl.bug("Добавление работника прошло успешно.");
                 String days = txtDays.getText();
@@ -133,7 +137,7 @@ public class EditingEmployees {
                     if (Integer.parseInt(days) < 0 || Integer.parseInt(hours) < 0 || Integer.parseInt(products) < 0) {
                         HelpersCl.bug("Число не должно быть меньше 0.");
                     } else {
-                        interactionsWithServer.addDescription(days, hours, products, txtName.getText(), txtLastname.getText(), txtPatronymic.getText());
+                        interactionsWithServer.addDescription(days, hours, products, name, lastname, patronymic);
                         txtName.setText("");
                         txtLastname.setText("");
                         txtPatronymic.setText("");

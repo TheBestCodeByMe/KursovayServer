@@ -26,7 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="3161eae5-dc7d-4168-b367-7c3f9b485122">
-        <schema name="kurswork" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
+        <schema name="kurswork" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>

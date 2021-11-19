@@ -12,7 +12,7 @@
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="1120.0" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="408.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Прямая сдельная система расчёта" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
+                <Text layoutX="408.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Прямая сдельная система расчёта для разработчиков" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
                 <Button fx:id="buttonPayment" layoutX="438.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickPayment" text="Рассчитать" />
                 <Button fx:id="buttonBack" layoutX="760.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
                 <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="361.0">

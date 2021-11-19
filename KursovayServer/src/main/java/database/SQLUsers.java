@@ -4,6 +4,7 @@ import constants.Constants;
 import entity.Users;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SQLUsers implements IUsers {
     private static SQLUsers instance;
@@ -65,6 +66,28 @@ public class SQLUsers implements IUsers {
                 object.getPassword() + "', '" +
                 Constants.STATUS_UNBLOCK + "')";
         dbConnection.execute(str);
+    }
+
+    @Override
+    public void editLogin(Users object, String newLogin) {
+        String str = "UPDATE users SET login = '" + newLogin +
+                "' WHERE iduser = '" + selectIdUser(object) + "'";
+        dbConnection.execute(str);
+    }
+
+    @Override
+    public void editPassword(Users object, String newPassword) {
+        String str = "UPDATE users SET password = '" + newPassword +
+                "' WHERE iduser = '" + selectIdUser(object) + "'";
+        dbConnection.execute(str);
+    }
+
+    @Override
+    public int selectIdUser(Users object) {
+        String str = "SELECT iduser FROM users WHERE login = '" +
+                object.getLogin() + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Integer.parseInt(Arrays.toString(result.get(0)));
     }
 
     @Override

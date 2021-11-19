@@ -23,8 +23,12 @@ public class Salaries implements Serializable {
     private int october;
     private int november;
 
-    public Salaries(int id, int december, int january, int february, int march, int april, int may, int june, int july, int august, int september, int october, int november) {
-        this.id = id;
+    public Salaries(int employeeid) {
+        this.employeeid = employeeid;
+    }
+
+    public Salaries(int employeeid, int december, int january, int february, int march, int april, int may, int june, int july, int august, int september, int october, int november) {
+        this.employeeid = employeeid;
         this.december = december;
         this.january = january;
         this.february = february;
