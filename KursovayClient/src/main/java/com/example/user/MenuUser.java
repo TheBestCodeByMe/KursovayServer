@@ -11,9 +11,6 @@ import javafx.stage.Stage;
 public class MenuUser {
 
     @FXML
-    private Button buttonDayOff;
-
-    @FXML
     private Button buttonSpentDaysHours;
 
     @FXML
@@ -68,19 +65,6 @@ public class MenuUser {
             changePassword.start(stage);
         } catch (Exception e) {
             System.out.println("Cannot open change password.\nWith exception " + e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    void clickDayOff(ActionEvent event) {
-        try {
-            buttonDayOff.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Day_Off dayOff = new Day_Off();
-            dayOff.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open add day off.\nWith exception " + e.getLocalizedMessage());
         }
     }
 
