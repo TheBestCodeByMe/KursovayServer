@@ -29,10 +29,10 @@
                 <TableView fx:id="tableViewMonth" layoutX="374.0" layoutY="65.0" prefHeight="200.0" prefWidth="596.0">
                     <columns>
                         <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" text="Январь" />
-                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="February" />
-                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" text="March" />
-                        <TableColumn fx:id="columnApril" prefWidth="38.39996337890625" text="April" />
-                        <TableColumn fx:id="columnMay" prefWidth="32.0" text="May" />
+                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="Февраль" />
+                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" text="Март" />
+                        <TableColumn fx:id="columnApril" prefWidth="38.39996337890625" text="Апрель" />
+                        <TableColumn fx:id="columnMay" prefWidth="32.0" text="Май" />
                         <TableColumn fx:id="columnJune" prefWidth="40.0" text="Июнь" />
                         <TableColumn fx:id="columnJuly" prefWidth="42.39996337890625" text="Июль" />
                         <TableColumn fx:id="columnAugust" prefWidth="54.39996337890625" text="Август" />

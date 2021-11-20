@@ -13,7 +13,7 @@ public class Varieble_System extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("time-based-calculation.fxml")));
         stage.setTitle("Повременная система расчёта");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 434, 186));
         stage.setResizable(false);
         stage.show();
     }

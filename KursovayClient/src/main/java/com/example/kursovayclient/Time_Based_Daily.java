@@ -13,7 +13,7 @@ public class Time_Based_Daily extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("time-based-daily.fxml")));
         stage.setTitle("Почасовая система расчёта по дневной ставке");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 1110, 386));
         stage.setResizable(false);
         stage.show();
     }

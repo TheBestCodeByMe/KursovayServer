@@ -8,6 +8,7 @@ import com.example.admin.salary.CommisionSystemPercentage;
 import com.example.admin.salary.PieceworkCalculation;
 import com.example.constants.Constants;
 import com.example.kursovayclient.*;
+import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,12 +22,6 @@ public class MenuAdmin {
 
     @FXML
     private URL location;
-
-    @FXML
-    private Button buttonAddDays;
-
-    @FXML
-    private Button buttonAddHours;
 
     @FXML
     private Button buttonBlockUsers;
@@ -91,19 +86,6 @@ public class MenuAdmin {
     }
 
     @FXML
-    void clickAddDays(ActionEvent event) throws IOException {
-        try {
-            buttonAddDays.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Add_Days add_days = new Add_Days();
-            add_days.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open add working days.\nWith exception " + e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
     void clickEditUsers(ActionEvent event) throws IOException {
         try {
             buttonEditUsers.getScene().getWindow().hide();
@@ -157,67 +139,22 @@ public class MenuAdmin {
 
     @FXML
     void clickOutput(ActionEvent event) throws IOException {
-        try {
-            buttonOutput.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Main main = new Main();
-            main.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open main.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToMain(buttonOutput);
     }
 
     @FXML
     void clickVariebleSystem(ActionEvent event) throws IOException {
-        try {
-            buttonVariebleSystem.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Varieble_System variebleSystem = new Varieble_System();
-            variebleSystem.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open varieble system.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToVariebleSystem(buttonVariebleSystem);
     }
 
     @FXML
     void clickCommSystem(ActionEvent event) throws IOException {
-        try {
-            buttonCommSystem.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Commision_System commisionSystem = new Commision_System();
-            commisionSystem.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open commission system.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToCommSystem(buttonCommSystem);
     }
 
     @FXML
     void clickPieceworkSystem(ActionEvent event) throws IOException {
-        try {
-            buttonPieceworkSystem.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Piecework_System pieceworkSystem = new Piecework_System();
-            pieceworkSystem.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open piecework system.\nWith exception " + e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    void clickAddHours(ActionEvent event) throws IOException {
-        try {
-            buttonAddHours.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Add_Hours add_hours = new Add_Hours();
-            add_hours.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open add working hours.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToPieceworkSystem(buttonPieceworkSystem);
     }
 }
 

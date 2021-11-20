@@ -13,7 +13,7 @@ public class Commission_System_Percentage extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("commision-system-percentage.fxml")));
         stage.setTitle("Комиссионная система расчёта по проценту от выручки");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 991, 515));
         stage.setResizable(false);
         stage.show();
     }

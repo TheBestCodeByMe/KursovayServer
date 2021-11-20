@@ -58,15 +58,7 @@ public class ViewUsers {
         columnPassword.setCellValueFactory(cellValue -> cellValue.getValue().passwordProperty());
         columnBlock.setCellValueFactory(cellValue -> cellValue.getValue().statusProperty());
 
-        usersObservableList.clear();
-
-        ArrayList<Users> users = interactionsWithServer.showAllUsers();
-        for (Users user : users) {
-            UsersProperty e = new UsersProperty(user);
-            usersObservableList.add(e);
-        }
-
-        tableUsers.setItems(usersObservableList);
+        HelpersCl.updateUsers(usersObservableList, interactionsWithServer, tableUsers);
     }
 
     @FXML

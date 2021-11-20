@@ -13,7 +13,7 @@ public class Menu_Admin extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menu-admin.fxml")));
         stage.setTitle("Меню администратора");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 501, 390));
         stage.setResizable(false);
         stage.show();
     }

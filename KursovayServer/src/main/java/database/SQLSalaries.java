@@ -34,7 +34,7 @@ public class SQLSalaries implements ISalaries {
 
     @Override
     public void updateSalary(String month, double monthSalary, int id) {
-        String str = "UPDATE salaries SET " + month + " = '" + month +
+        String str = "UPDATE salaries SET " + month + " = '" + monthSalary +
                 "' WHERE employeeid = '" + id + "'";
         dbConnection.execute(str);
     }

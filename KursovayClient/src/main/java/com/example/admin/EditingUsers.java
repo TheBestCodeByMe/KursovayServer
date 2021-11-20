@@ -82,37 +82,23 @@ public class EditingUsers {
 
     @FXML
     void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
-        usersObservableList.clear();
-
-        ArrayList<Users> users = interactionsWithServer.showAllUsers();
-        for (Users user : users) {
-            UsersProperty e = new UsersProperty(user);
-            usersObservableList.add(e);
-        }
-
-        tableUsers.setItems(usersObservableList);
+        HelpersCl.updateUsers(usersObservableList, interactionsWithServer, tableUsers);
     }
 
     @FXML
     void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
-
         HelpersCl.registration(txtLogin.getText(), txtPassword.getText(), txtPassword1.getText());
-
         clickUpdate(event);
     }
 
     @FXML
     void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(tableUsers.getSelectionModel().getSelectedItem() != null) {
+        if (tableUsers.getSelectionModel().getSelectedItem() != null) {
             int id = tableUsers.getSelectionModel().getSelectedItem().getId();
             interactionsWithServer.deleteUsers(id);
             clickUpdate(event);
-        } else{
-                alert.setTitle("Ошибка");
-                alert.setHeaderText(null);
-                alert.setContentText("Вы не выбрали пользователя для удаления!");
-                alert.showAndWait();
+        } else {
+            HelpersCl.bug("Вы не выбрали пользователя для удаления!");
         }
     }
 }

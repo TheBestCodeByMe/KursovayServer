@@ -70,9 +70,11 @@ public class SQLUsers implements IUsers {
 
     @Override
     public void editLogin(Users object, String newLogin) {
-        String str = "UPDATE users SET login = '" + newLogin +
-                "' WHERE iduser = '" + selectIdUser(object) + "'";
-        dbConnection.execute(str);
+        if(selectLoginUsers(newLogin)) {
+            String str = "UPDATE users SET login = '" + newLogin +
+                    "' WHERE iduser = '" + selectIdUser(object) + "'";
+            dbConnection.execute(str);
+        }
     }
 
     @Override
@@ -87,7 +89,7 @@ public class SQLUsers implements IUsers {
         String str = "SELECT iduser FROM users WHERE login = '" +
                 object.getLogin() + "'";
         ArrayList<String[]> result = dbConnection.getArrayResult(str);
-        return Integer.parseInt(Arrays.toString(result.get(0)));
+        return Integer.parseInt(result.get(0)[0]);
     }
 
     @Override

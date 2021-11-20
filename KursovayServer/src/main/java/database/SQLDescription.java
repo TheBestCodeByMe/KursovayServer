@@ -34,23 +34,41 @@ public class SQLDescription implements IDescription {
 
     @Override
     public void updateHours(int hours, int id) {
-        String str = "UPDATE description SET hours = '" +hours +
-                "' WHERE idempl = '" + id + "'";
+        String str = "UPDATE description SET hours = '" + (hours + selectHours(id)) +
+                "' WHERE employeeid = '" + id + "'";
         dbConnection.execute(str);
+    }
+
+    private double selectHours(int id) {
+        String str = "SELECT hours FROM description WHERE employeeid = '" + id + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Double.parseDouble(result.get(0)[0]);
     }
 
     @Override
     public void updateDays(int days, int id) {
-        String str = "UPDATE description SET days = '" + days +
-                "' WHERE idempl = '" + id + "'";
+        String str = "UPDATE description SET days = '" + (days + selectDays(id)) +
+                "' WHERE employeeid = '" + id + "'";
         dbConnection.execute(str);
+    }
+
+    private double selectDays(int id) {
+        String str = "SELECT days FROM description WHERE employeeid = '" + id + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Double.parseDouble(result.get(0)[0]);
     }
 
     @Override
     public void updateProducts(int amount, int id) {
-        String str = "UPDATE description SET numbOfProd = '" + amount +
-                "' WHERE idempl = '" + id + "'";
+        String str = "UPDATE description SET numbOfProd = '" + (amount + selectProducts(id)) +
+                "' WHERE employeeid = '" + id + "'";
         dbConnection.execute(str);
+    }
+
+    private double selectProducts(int id) {
+        String str = "SELECT numbOfProd FROM description WHERE employeeid = '" + id + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Double.parseDouble(result.get(0)[0]);
     }
 
     @Override

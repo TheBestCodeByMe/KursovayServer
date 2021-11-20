@@ -1,52 +1,94 @@
 package com.example.user;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.connection.InteractionsWithServer;
+import com.example.entity.property.EmployeeProperty;
+import com.example.entity.property.SalariesProperty;
 import com.example.kursovayclient.Menu_User;
 import helpers.HelpersCl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewRaiting {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button buttonBack;
 
     @FXML
-    private TableColumn<?, ?> columnId;
+    private TableView<EmployeeProperty> tableViewEmployee;
 
     @FXML
-    private TableColumn<?, ?> columnFam;
+    private TableColumn<EmployeeProperty, Integer> columnId;
 
     @FXML
-    private TableColumn<?, ?> columnName;
+    private TableColumn<EmployeeProperty, String> columnFam;
 
     @FXML
-    private TableColumn<?, ?> columnOtchestvo;
+    private TableColumn<EmployeeProperty, String> columnName;
 
     @FXML
-    private TableColumn<?, ?> columnSalaries;
+    private TableColumn<EmployeeProperty, String> columnPatronymic;
 
     @FXML
-    void initialize() {
-        assert buttonBack != null : "fx:id=\"buttonBack\" was not injected: check your FXML file 'view-raiting.fxml'.";
-        assert columnId != null : "fx:id=\"columnId\" was not injected: check your FXML file 'view-raiting.fxml'.";
-        assert columnFam != null : "fx:id=\"columnFam\" was not injected: check your FXML file 'view-raiting.fxml'.";
-        assert columnName != null : "fx:id=\"columnName\" was not injected: check your FXML file 'view-raiting.fxml'.";
-        assert columnOtchestvo != null : "fx:id=\"columnOtchestvo\" was not injected: check your FXML file 'view-raiting.fxml'.";
-        assert columnSalaries != null : "fx:id=\"columnSalaries\" was not injected: check your FXML file 'view-raiting.fxml'.";
+    private TableView<SalariesProperty> tableViewMonth;
 
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnJanuary;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnFebruary;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnMarch;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnApril;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnMay;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnJune;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnJuly;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnAugust;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnSeptember;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnOctober;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnNovember;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnDecember;
+
+    InteractionsWithServer interactionsWithServer;
+    private final ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
+    private final ObservableList<SalariesProperty> salariesPropertyObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    void initialize() throws IOException, ClassNotFoundException {
+        interactionsWithServer = new InteractionsWithServer();
+
+        HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnPatronymic);
+        HelpersCl.viewTableSalary(columnApril, columnAugust, columnDecember, columnFebruary, columnJanuary, columnJuly, columnJune, columnMarch, columnMay, columnNovember, columnOctober, columnSeptember);
+        HelpersCl.updateEmployeeSalaries(employeePropertyObservableList, salariesPropertyObservableList, interactionsWithServer, tableViewEmployee, tableViewMonth);
     }
 
     @FXML

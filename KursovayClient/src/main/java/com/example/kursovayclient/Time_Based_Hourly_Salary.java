@@ -13,7 +13,7 @@ public class Time_Based_Hourly_Salary extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("time-based-hourly-salary.fxml")));
         stage.setTitle("Повременная система расчёта по часовой ставке");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 1025, 385));
         stage.setResizable(false);
         stage.show();
     }

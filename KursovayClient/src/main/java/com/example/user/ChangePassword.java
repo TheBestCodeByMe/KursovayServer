@@ -1,14 +1,17 @@
 package com.example.user;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.connection.InteractionsWithServer;
 import com.example.kursovayclient.Commision_System;
 import com.example.kursovayclient.Menu_User;
 import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,7 +31,7 @@ public class ChangePassword {
     private TextField txtLogin;
 
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
 
     @FXML
     private TextField txtNewPassword;
@@ -39,9 +42,11 @@ public class ChangePassword {
     @FXML
     private TextField txtRepeatNewPassword;
 
+    InteractionsWithServer interactionsWithServer;
+
     @FXML
     void initialize() {
-
+        interactionsWithServer = new InteractionsWithServer();
     }
 
     @FXML
@@ -50,6 +55,29 @@ public class ChangePassword {
     }
 
     @FXML
-    void clickPassword(ActionEvent event) {
+    void clickPassword(ActionEvent event) throws IOException, ClassNotFoundException {
+        String login = txtLogin.getText();
+        String password = txtPassword.getText();
+        String newPassword = txtNewPassword.getText();
+        String repeatPassword = txtRepeatNewPassword.getText();
+
+        if (HelpersCl.validateTextFields(login, password, newPassword)) {
+            if (newPassword.equals(repeatPassword)) {
+                if (interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) {
+                    interactionsWithServer.editUserPassword(login, newPassword, password);
+                    HelpersCl.notBug("Смена логина прошла успешно.");
+                    txtLogin.setText("");
+                    txtNewPassword.setText("");
+                    txtPassword.setText("");
+                    txtRepeatNewPassword.setText("");
+                } else {
+                    HelpersCl.bug("Данные некорректны.");
+                }
+            } else {
+                HelpersCl.bug("Пароли не совпадают.");
+            }
+        } else {
+            HelpersCl.bug("Все поля должны быть заполнены!!!");
+        }
     }
 }

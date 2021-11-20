@@ -13,7 +13,7 @@ public class Menu_User extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menu-user.fxml")));
         stage.setTitle("Меню пользователя");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 498, 377));
         stage.setResizable(false);
         stage.show();
     }

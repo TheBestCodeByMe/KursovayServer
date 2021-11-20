@@ -2,58 +2,39 @@ package com.example.entity.property;
 
 import com.example.entity.Salaries;
 import com.example.entity.Users;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 public class SalariesProperty {
     private IntegerProperty id;
     private IntegerProperty employeeid;
-    private IntegerProperty december;
-    private IntegerProperty january;
-    private IntegerProperty february;
-    private IntegerProperty march;
-    private IntegerProperty april;
-    private IntegerProperty may;
-    private IntegerProperty june;
-    private IntegerProperty july;
-    private IntegerProperty august;
-    private IntegerProperty september;
-    private IntegerProperty october;
-    private IntegerProperty november;
+    private DoubleProperty december;
+    private DoubleProperty january;
+    private DoubleProperty february;
+    private DoubleProperty march;
+    private DoubleProperty april;
+    private DoubleProperty may;
+    private DoubleProperty june;
+    private DoubleProperty july;
+    private DoubleProperty august;
+    private DoubleProperty september;
+    private DoubleProperty october;
+    private DoubleProperty november;
 
     public SalariesProperty(Salaries salaries) {
         id = new SimpleIntegerProperty(salaries.getId());
         employeeid = new SimpleIntegerProperty(salaries.getEmployeeid());
-        december = new SimpleIntegerProperty(salaries.getDecember());
-        january = new SimpleIntegerProperty(salaries.getJanuary());
-        february = new SimpleIntegerProperty(salaries.getFebruary());
-        march = new SimpleIntegerProperty(salaries.getMarch());
-        april = new SimpleIntegerProperty(salaries.getApril());
-        may = new SimpleIntegerProperty(salaries.getMay());
-        june = new SimpleIntegerProperty(salaries.getJune());
-        july = new SimpleIntegerProperty(salaries.getJuly());
-        august = new SimpleIntegerProperty(salaries.getAugust());
-        september = new SimpleIntegerProperty(salaries.getSeptember());
-        october = new SimpleIntegerProperty(salaries.getOctober());
-        november = new SimpleIntegerProperty(salaries.getNovember());
-    }
-
-    public Salaries toSalaries() {
-        return new Salaries(id.intValue(),
-                employeeid.intValue(),
-                december.intValue(),
-                january.intValue(),
-                february.intValue(),
-                march.intValue(),
-                april.intValue(),
-                may.intValue(),
-                june.intValue(),
-                july.intValue(),
-                august.intValue(),
-                september.intValue(),
-                october.intValue(),
-                november.intValue());
+        december = new SimpleDoubleProperty(salaries.getDecember());
+        january = new SimpleDoubleProperty(salaries.getJanuary());
+        february = new SimpleDoubleProperty(salaries.getFebruary());
+        march = new SimpleDoubleProperty(salaries.getMarch());
+        april = new SimpleDoubleProperty(salaries.getApril());
+        may = new SimpleDoubleProperty(salaries.getMay());
+        june = new SimpleDoubleProperty(salaries.getJune());
+        july = new SimpleDoubleProperty(salaries.getJuly());
+        august = new SimpleDoubleProperty(salaries.getAugust());
+        september = new SimpleDoubleProperty(salaries.getSeptember());
+        october = new SimpleDoubleProperty(salaries.getOctober());
+        november = new SimpleDoubleProperty(salaries.getNovember());
     }
 
     public int getId() {
@@ -80,147 +61,147 @@ public class SalariesProperty {
         this.employeeid.set(employeeid);
     }
 
-    public int getDecember() {
+    public double getDecember() {
         return december.get();
     }
 
-    public IntegerProperty decemberProperty() {
+    public DoubleProperty decemberProperty() {
         return december;
     }
 
-    public void setDecember(int december) {
+    public void setDecember(double december) {
         this.december.set(december);
     }
 
-    public int getJanuary() {
+    public double getJanuary() {
         return january.get();
     }
 
-    public IntegerProperty januaryProperty() {
+    public DoubleProperty januaryProperty() {
         return january;
     }
 
-    public void setJanuary(int january) {
+    public void setJanuary(double january) {
         this.january.set(january);
     }
 
-    public int getFebruary() {
+    public double getFebruary() {
         return february.get();
     }
 
-    public IntegerProperty februaryProperty() {
+    public DoubleProperty februaryProperty() {
         return february;
     }
 
-    public void setFebruary(int february) {
+    public void setFebruary(double february) {
         this.february.set(february);
     }
 
-    public int getMarch() {
+    public double getMarch() {
         return march.get();
     }
 
-    public IntegerProperty marchProperty() {
+    public DoubleProperty marchProperty() {
         return march;
     }
 
-    public void setMarch(int march) {
+    public void setMarch(double march) {
         this.march.set(march);
     }
 
-    public int getApril() {
+    public double getApril() {
         return april.get();
     }
 
-    public IntegerProperty aprilProperty() {
+    public DoubleProperty aprilProperty() {
         return april;
     }
 
-    public void setApril(int april) {
+    public void setApril(double april) {
         this.april.set(april);
     }
 
-    public int getMay() {
+    public double getMay() {
         return may.get();
     }
 
-    public IntegerProperty mayProperty() {
+    public DoubleProperty mayProperty() {
         return may;
     }
 
-    public void setMay(int may) {
+    public void setMay(double may) {
         this.may.set(may);
     }
 
-    public int getJune() {
+    public double getJune() {
         return june.get();
     }
 
-    public IntegerProperty juneProperty() {
+    public DoubleProperty juneProperty() {
         return june;
     }
 
-    public void setJune(int june) {
+    public void setJune(double june) {
         this.june.set(june);
     }
 
-    public int getJuly() {
+    public double getJuly() {
         return july.get();
     }
 
-    public IntegerProperty julyProperty() {
+    public DoubleProperty julyProperty() {
         return july;
     }
 
-    public void setJuly(int july) {
+    public void setJuly(double july) {
         this.july.set(july);
     }
 
-    public int getAugust() {
+    public double getAugust() {
         return august.get();
     }
 
-    public IntegerProperty augustProperty() {
+    public DoubleProperty augustProperty() {
         return august;
     }
 
-    public void setAugust(int august) {
+    public void setAugust(double august) {
         this.august.set(august);
     }
 
-    public int getSeptember() {
+    public double getSeptember() {
         return september.get();
     }
 
-    public IntegerProperty septemberProperty() {
+    public DoubleProperty septemberProperty() {
         return september;
     }
 
-    public void setSeptember(int september) {
+    public void setSeptember(double september) {
         this.september.set(september);
     }
 
-    public int getOctober() {
+    public double getOctober() {
         return october.get();
     }
 
-    public IntegerProperty octoberProperty() {
+    public DoubleProperty octoberProperty() {
         return october;
     }
 
-    public void setOctober(int october) {
+    public void setOctober(double october) {
         this.october.set(october);
     }
 
-    public int getNovember() {
+    public double getNovember() {
         return november.get();
     }
 
-    public IntegerProperty novemberProperty() {
+    public DoubleProperty novemberProperty() {
         return november;
     }
 
-    public void setNovember(int november) {
+    public void setNovember(double november) {
         this.november.set(november);
     }
 }

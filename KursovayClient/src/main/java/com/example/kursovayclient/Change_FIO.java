@@ -13,7 +13,7 @@ public class Change_FIO extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("change-fio.fxml")));
         stage.setTitle("Смена ФИО");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 545, 215));
         stage.setResizable(false);
         stage.show();
     }

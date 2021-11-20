@@ -46,19 +46,11 @@ public class AddUsers {
 
     @FXML
     void clickRegistration(ActionEvent event) throws IOException, ClassNotFoundException {
-            HelpersCl.registration(txtLogin.getText(), txtPassword.getText(), txtPassword1.getText());
+        HelpersCl.registration(txtLogin.getText(), txtPassword.getText(), txtPassword1.getText());
     }
 
     @FXML
     void clickBack(ActionEvent event) {
-        try {
-            buttonBack.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Main main = new Main();
-            main.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open main.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToMain(buttonBack);
     }
 }

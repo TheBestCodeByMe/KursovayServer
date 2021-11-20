@@ -13,7 +13,7 @@ public class Indirectly_Piecework extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("indirectly-piecework.fxml")));
         stage.setTitle("Косвенная сдельная система расчёта");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 999, 385));
         stage.setResizable(false);
         stage.show();
     }

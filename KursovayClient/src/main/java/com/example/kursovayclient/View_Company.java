@@ -14,7 +14,7 @@ public class View_Company extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view-company.fxml")));
         stage.setTitle("Просмотр информации о компании");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 600, 400));
         stage.setResizable(false);
         stage.show();
     }

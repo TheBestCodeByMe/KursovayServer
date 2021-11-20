@@ -13,7 +13,7 @@ public class Block_Users extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("block-users.fxml")));
         stage.setTitle("Блокировка пользователей");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 555, 385));
         stage.setResizable(false);
         stage.show();
     }

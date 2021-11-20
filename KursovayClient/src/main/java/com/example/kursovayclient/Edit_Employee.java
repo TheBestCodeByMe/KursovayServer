@@ -13,7 +13,7 @@ public class Edit_Employee extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("editing-employees.fxml")));
         stage.setTitle("Изменение данных работников");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 610, 536));
         stage.setResizable(false);
         stage.show();
     }

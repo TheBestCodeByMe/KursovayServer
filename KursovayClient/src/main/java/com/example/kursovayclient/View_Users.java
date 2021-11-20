@@ -13,7 +13,7 @@ public class View_Users extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view-users.fxml")));
         stage.setTitle("Просмотр данных пользователей");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 555, 385));
         stage.setResizable(false);
         stage.show();
     }

@@ -13,7 +13,7 @@ public class Comm_Fixed_Percentage extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("commission-system-percentage-fixed-salary.fxml")));
         stage.setTitle("Комиссионная система расчёта по проценту от выручки с фиксированным окладом");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 975, 385));
         stage.setResizable(false);
         stage.show();
     }

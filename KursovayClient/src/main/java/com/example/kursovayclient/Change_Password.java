@@ -13,7 +13,7 @@ public class Change_Password  extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("change-password.fxml")));
         stage.setTitle("Смена пароля");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 545, 215));
         stage.setResizable(false);
         stage.show();
     }

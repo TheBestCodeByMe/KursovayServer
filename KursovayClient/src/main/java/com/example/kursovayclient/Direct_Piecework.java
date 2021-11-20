@@ -13,7 +13,7 @@ public class Direct_Piecework extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("direct-piecework.fxml")));
         stage.setTitle("Прямая сдельная система расчёта");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 1118, 385));
         stage.setResizable(false);
         stage.show();
     }

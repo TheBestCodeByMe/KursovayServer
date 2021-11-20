@@ -87,7 +87,6 @@ public class EditingEmployees {
 
     ActionEvent event1 = new ActionEvent();
     InteractionsWithServer interactionsWithServer;
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     private final ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
     private final ObservableList<DescriptionProperty> descriptionPropertyObservableList = FXCollections.observableArrayList();
 
@@ -95,13 +94,8 @@ public class EditingEmployees {
     void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
-        columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
-        columnName.setCellValueFactory(cellValue -> cellValue.getValue().nameProperty());
-        columnFam.setCellValueFactory(cellValue -> cellValue.getValue().lastNameProperty());
-        columnOtchestvo.setCellValueFactory(cellValue -> cellValue.getValue().patronymicProperty());
-        columnDays.setCellValueFactory(cellValue -> cellValue.getValue().daysProperty().asObject());
-        columnHours.setCellValueFactory(cellValue -> cellValue.getValue().hoursProperty().asObject());
-        columnAmount.setCellValueFactory(cellValue -> cellValue.getValue().numbOfProdProperty().asObject());
+        HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnOtchestvo);
+        HelpersCl.viewTableDescription(columnDays, columnHours, columnAmount);
 
         clickUpdate(event1);
     }
@@ -120,7 +114,7 @@ public class EditingEmployees {
             String result = interactionsWithServer.addWorker(name, lastname, patronymic);
             interactionsWithServer.addSalaries(name, lastname, patronymic);
             if (result.equals("true")) {
-                HelpersCl.bug("Добавление работника прошло успешно.");
+                HelpersCl.notBug("Добавление работника прошло успешно.");
                 String days = txtDays.getText();
                 String hours = txtHours.getText();
                 String products = txtProducts.getText();
@@ -162,22 +156,17 @@ public class EditingEmployees {
 
     @FXML
     void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
+        HelpersCl.updateDescriptions(descriptionPropertyObservableList, interactionsWithServer, tableDescription);
+
         employeePropertyObservableList.clear();
-        descriptionPropertyObservableList.clear();
 
         ArrayList<Employee> workers = interactionsWithServer.showAllEmployes();
-        ArrayList<Description> descriptions = interactionsWithServer.showAllDescription();
         for (Employee worker : workers) {
             EmployeeProperty e = new EmployeeProperty(worker);
             employeePropertyObservableList.add(e);
         }
-        for (Description description : descriptions) {
-            DescriptionProperty e = new DescriptionProperty(description);
-            descriptionPropertyObservableList.add(e);
-        }
 
         tableFIO.setItems(employeePropertyObservableList);
-        tableDescription.setItems(descriptionPropertyObservableList);
     }
 
     @FXML

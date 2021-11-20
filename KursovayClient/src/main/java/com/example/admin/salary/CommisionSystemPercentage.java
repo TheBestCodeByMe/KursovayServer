@@ -1,10 +1,23 @@
 package com.example.admin.salary;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
+import com.example.connection.InteractionsWithServer;
+import com.example.entity.Description;
+import com.example.entity.Employee;
+import com.example.entity.Salaries;
+import com.example.entity.property.DescriptionProperty;
+import com.example.entity.property.EmployeeProperty;
+import com.example.entity.property.SalariesProperty;
 import com.example.kursovayclient.Commision_System;
 import com.example.kursovayclient.Menu_Admin;
+import helpers.HelpersCl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,19 +36,19 @@ public class CommisionSystemPercentage {
     private Button buttonBack;
 
     @FXML
-    private TableView<?> tableViewEmployee;
+    private TableView<EmployeeProperty> tableViewEmployee;
 
     @FXML
-    private TableColumn<?, ?> columnId;
+    private TableColumn<EmployeeProperty, Integer> columnId;
 
     @FXML
-    private TableColumn<?, ?> columnFam;
+    private TableColumn<EmployeeProperty, String> columnFam;
 
     @FXML
-    private TableColumn<?, ?> columnName;
+    private TableColumn<EmployeeProperty, String> columnName;
 
     @FXML
-    private TableColumn<?, ?> columnPatronymic;
+    private TableColumn<EmployeeProperty, String> columnPatronymic;
 
     @FXML
     private Button buttonUpdate;
@@ -47,67 +60,93 @@ public class CommisionSystemPercentage {
     private TextField txtMonth;
 
     @FXML
-    private TableView<?> tableViewMonth;
+    private TableView<SalariesProperty> tableViewMonth;
 
     @FXML
-    private TableColumn<?, ?> columnJanuary;
+    private TableColumn<SalariesProperty, Double> columnJanuary;
 
     @FXML
-    private TableColumn<?, ?> columnFebruary;
+    private TableColumn<SalariesProperty, Double> columnFebruary;
 
     @FXML
-    private TableColumn<?, ?> columnMarch;
+    private TableColumn<SalariesProperty, Double> columnMarch;
 
     @FXML
-    private TableColumn<?, ?> columnApril;
+    private TableColumn<SalariesProperty, Double> columnApril;
 
     @FXML
-    private TableColumn<?, ?> columnMay;
+    private TableColumn<SalariesProperty, Double> columnMay;
 
     @FXML
-    private TableColumn<?, ?> columnJune;
+    private TableColumn<SalariesProperty, Double> columnJune;
 
     @FXML
-    private TableColumn<?, ?> columnJuly;
+    private TableColumn<SalariesProperty, Double> columnJuly;
 
     @FXML
-    private TableColumn<?, ?> columnAugust;
+    private TableColumn<SalariesProperty, Double> columnAugust;
 
     @FXML
-    private TableColumn<?, ?> columnSeptember;
+    private TableColumn<SalariesProperty, Double> columnSeptember;
 
     @FXML
-    private TableColumn<?, ?> columnOctober;
+    private TableColumn<SalariesProperty, Double> columnOctober;
 
     @FXML
-    private TableColumn<?, ?> columnNovember;
+    private TableColumn<SalariesProperty, Double> columnNovember;
 
     @FXML
-    private TableColumn<?, ?> columnDecember;
+    private TableColumn<SalariesProperty, Double> columnDecember;
+
+    ActionEvent event1 = new ActionEvent();
+    InteractionsWithServer interactionsWithServer;
+    private final ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
+    private final ObservableList<SalariesProperty> salariesPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
+        interactionsWithServer = new InteractionsWithServer();
 
+        HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnPatronymic);
+        HelpersCl.viewTableSalary(columnApril, columnAugust, columnDecember, columnFebruary, columnJanuary, columnJuly, columnJune, columnMarch, columnMay, columnNovember, columnOctober, columnSeptember);
+
+        clickUpdate(event1);
     }
 
     @FXML
     void clickBack(ActionEvent event) {
-        try {
-            buttonBack.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Commision_System commisionSystem = new Commision_System();
-            commisionSystem.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open commission system.\nWith exception " + e.getLocalizedMessage());
+        HelpersCl.backToCommSystem(buttonBack);
+    }
+
+    @FXML
+    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
+        HelpersCl.updateEmployeeSalaries(employeePropertyObservableList, salariesPropertyObservableList, interactionsWithServer, tableViewEmployee, tableViewMonth);
+    }
+
+    @FXML
+    void clickPayment(ActionEvent event) throws IOException, ClassNotFoundException {
+        String profitability = txtIncome.getText();
+        String month = txtMonth.getText();
+
+        if (HelpersCl.validateTextFields(profitability, month)) {
+            if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
+                if (HelpersCl.validateTextFields(month)) {
+                    if (profitability.matches("([1-9][0-9]*)?(\\.)?([0-9]{0,2})?")) {
+                        interactionsWithServer.calculateCommPerc(tableViewEmployee.getSelectionModel().getSelectedItem().getId(), HelpersCl.replacementMonth(month), Double.parseDouble(profitability));
+                        txtMonth.setText("");
+                        txtIncome.setText("");
+                    } else {
+                        HelpersCl.bug("Вы ввели некорректное число. Число должно содержать не более 2 знаков после запятой, а также быть положительным.");
+                    }
+                    clickUpdate(event1);
+                } else {
+                    HelpersCl.bug("Такого месяца не существует.");
+                }
+            } else {
+                HelpersCl.bug("Вы не выбрали работника.");
+            }
+        } else {
+            HelpersCl.bug("Все поля должны быть заполнены!!!");
         }
-    }
-
-    @FXML
-    void clickUpdate(ActionEvent event) {
-    }
-
-    @FXML
-    void clickPayment(ActionEvent event) {
     }
 }

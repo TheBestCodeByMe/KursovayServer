@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 
 public class BlockUsers {
     InteractionsWithServer interactionsWithServer;
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     @FXML
     private ResourceBundle resources;

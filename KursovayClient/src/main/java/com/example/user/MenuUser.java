@@ -2,6 +2,7 @@ package com.example.user;
 
 import com.example.constants.Constants;
 import com.example.kursovayclient.*;
+import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -70,15 +71,7 @@ public class MenuUser {
 
     @FXML
     void clickOutput(ActionEvent event) {
-        try {
-            buttonOutput.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Main main = new Main();
-            main.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open main.\nWith exception " + e.getLocalizedMessage());
-        }
+        HelpersCl.backToMain(buttonOutput);
     }
 
     @FXML

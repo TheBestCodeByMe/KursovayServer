@@ -7,18 +7,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="555.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ViewRaiting">
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="557.0" VBox.vgrow="ALWAYS">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="1003.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ViewRaiting">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="1006.0" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="182.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Просмотр зарплат работников" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-                <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню пользователя" />
-                <TableView layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="526.0">
+                <Text layoutX="431.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Просмотр зарплат работников" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
+                <Button fx:id="buttonBack" layoutX="789.0" layoutY="274.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню пользователя" />
+                <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="374.0">
                     <columns>
                         <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
                         <TableColumn fx:id="columnFam" editable="false" prefWidth="136.79999542236328" text="Фамилия" />
                         <TableColumn fx:id="columnName" editable="false" prefWidth="110.4000244140625" text="Имя" />
-               <TableColumn fx:id="columnOtchestvo" prefWidth="149.60003662109375" text="Отчество" />
-               <TableColumn fx:id="columnSalaries" prefWidth="105.60006713867188" text="Зарплата" />
+               <TableColumn fx:id="columnPatronymic" prefWidth="101.5999816894531" text="Отчество" />
+                    </columns>
+                </TableView>
+                <TableView fx:id="tableViewMonth" layoutX="388.0" layoutY="65.0" prefHeight="200.0" prefWidth="596.0">
+                    <columns>
+                        <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" text="Январь" />
+                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="Февраль" />
+                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" text="Март" />
+                        <TableColumn fx:id="columnApril" prefWidth="48.79998779296875" text="Апрель" />
+                        <TableColumn fx:id="columnMay" prefWidth="33.60003662109375" text="Май" />
+                        <TableColumn fx:id="columnJune" prefWidth="38.4000244140625" text="Июнь" />
+                        <TableColumn fx:id="columnJuly" prefWidth="44.0" text="Июль" />
+                        <TableColumn fx:id="columnAugust" prefWidth="43.199951171875" text="Август" />
+                        <TableColumn fx:id="columnSeptember" prefWidth="62.39990234375" text="Сентябрь" />
+                        <TableColumn fx:id="columnOctober" prefWidth="59.19989013671875" text="Октябрь" />
+                        <TableColumn fx:id="columnNovember" prefWidth="55.19989013671875" text="Ноябрь" />
+                        <TableColumn fx:id="columnDecember" prefWidth="56.800048828125" text="Декабрь" />
                     </columns>
                 </TableView>
             </children>

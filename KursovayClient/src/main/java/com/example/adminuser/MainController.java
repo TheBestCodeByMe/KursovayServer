@@ -8,6 +8,7 @@ import com.example.connection.ConnectionToServer;
 import com.example.connection.InteractionsWithServer;
 import com.example.kursovayclient.Add_Users;
 import com.example.kursovayclient.Menu_User;
+import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -47,33 +48,13 @@ public class MainController {
 
     @FXML
     void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
-        if(txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
-            try {
-                buttonEnter.getScene().getWindow().hide();
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                Menu_Admin adminMenu = new Menu_Admin();
-                adminMenu.start(stage);
-            } catch (Exception e) {
-                System.out.println("Cannot open admin menu.\nWith exception" + e.getLocalizedMessage());
-            }
+        if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
+            HelpersCl.backToMenuAdmin(buttonEnter);
         } else {
-            if(interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) {
-                try {
-                    buttonEnter.getScene().getWindow().hide();
-                    Stage stage = new Stage();
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    Menu_User userMenu = new Menu_User();
-                    userMenu.start(stage);
-                } catch (Exception e) {
-                    System.out.println("Cannot open user menu.\nWith exception" + e.getLocalizedMessage());
-                }
-            } else
-            {
-                alert.setTitle("Ошибка");
-                alert.setHeaderText(null);
-                alert.setContentText("У вас нет прав доступа. Введите другие данные.");
-                alert.showAndWait();
+            if (interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) {
+                HelpersCl.backToMenuUser(buttonEnter);
+            } else {
+                HelpersCl.bug("У вас нет прав доступа. Введите другие данные.");
             }
         }
     }

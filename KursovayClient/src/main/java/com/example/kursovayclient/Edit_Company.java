@@ -13,7 +13,7 @@ public class Edit_Company extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("edit-company.fxml")));
         stage.setTitle("Изменение информации о компании");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 600, 400));
         stage.setResizable(false);
         stage.show();
     }

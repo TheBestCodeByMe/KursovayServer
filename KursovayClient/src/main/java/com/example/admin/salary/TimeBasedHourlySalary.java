@@ -1,10 +1,18 @@
 package com.example.admin.salary;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.connection.InteractionsWithServer;
+import com.example.entity.property.DescriptionProperty;
+import com.example.entity.property.EmployeeProperty;
+import com.example.entity.property.SalariesProperty;
 import com.example.kursovayclient.Menu_Admin;
 import com.example.kursovayclient.Varieble_System;
+import helpers.HelpersCl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,21 +31,6 @@ public class TimeBasedHourlySalary {
     private Button buttonBack;
 
     @FXML
-    private TableView<?> tableViewEmployee;
-
-    @FXML
-    private TableColumn<?, ?> columnId;
-
-    @FXML
-    private TableColumn<?, ?> columnFam;
-
-    @FXML
-    private TableColumn<?, ?> columnName;
-
-    @FXML
-    private TableColumn<?, ?> columnPatronymic;
-
-    @FXML
     private Button buttonUpdate;
 
     @FXML
@@ -47,80 +40,126 @@ public class TimeBasedHourlySalary {
     private TextField txtMonth;
 
     @FXML
-    private TableView<?> tableViewMonth;
+    private TableView<EmployeeProperty> tableViewEmployee;
 
     @FXML
-    private TableColumn<?, ?> columnJanuary;
+    private TableColumn<EmployeeProperty, Integer> columnId;
 
     @FXML
-    private TableColumn<?, ?> columnFebruary;
+    private TableColumn<EmployeeProperty, String> columnFam;
 
     @FXML
-    private TableColumn<?, ?> columnMarch;
+    private TableColumn<EmployeeProperty, String> columnName;
 
     @FXML
-    private TableColumn<?, ?> columnApril;
+    private TableColumn<EmployeeProperty, String> columnPatronymic;
 
     @FXML
-    private TableColumn<?, ?> columnMay;
+    private TableView<SalariesProperty> tableViewMonth;
 
     @FXML
-    private TableColumn<?, ?> columnJune;
+    private TableColumn<SalariesProperty, Double> columnJanuary;
 
     @FXML
-    private TableColumn<?, ?> columnJuly;
+    private TableColumn<SalariesProperty, Double> columnFebruary;
 
     @FXML
-    private TableColumn<?, ?> columnAugust;
+    private TableColumn<SalariesProperty, Double> columnMarch;
 
     @FXML
-    private TableColumn<?, ?> columnSeptember;
+    private TableColumn<SalariesProperty, Double> columnApril;
 
     @FXML
-    private TableColumn<?, ?> columnOctober;
+    private TableColumn<SalariesProperty, Double> columnMay;
 
     @FXML
-    private TableColumn<?, ?> columnNovember;
+    private TableColumn<SalariesProperty, Double> columnJune;
 
     @FXML
-    private TableColumn<?, ?> columnDecember;
+    private TableColumn<SalariesProperty, Double> columnJuly;
 
     @FXML
-    private TableView<?> tableViewDescription;
+    private TableColumn<SalariesProperty, Double> columnAugust;
 
     @FXML
-    private TableColumn<?, ?> columnDays;
+    private TableColumn<SalariesProperty, Double> columnSeptember;
 
     @FXML
-    private TableColumn<?, ?> columnHours;
+    private TableColumn<SalariesProperty, Double> columnOctober;
 
     @FXML
-    private TableColumn<?, ?> columnKol;
+    private TableColumn<SalariesProperty, Double> columnNovember;
+
+    @FXML
+    private TableColumn<SalariesProperty, Double> columnDecember;
+
+    @FXML
+    private TableView<DescriptionProperty> tableViewDescription;
+
+    @FXML
+    private TableColumn<DescriptionProperty, Integer> columnHours;
+
+    @FXML
+    private TableColumn<DescriptionProperty, Integer> columnDays;
+
+    @FXML
+    private TableColumn<DescriptionProperty, Integer> columnKol;
+
+    ActionEvent event1 = new ActionEvent();
+    InteractionsWithServer interactionsWithServer;
+    private final ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
+    private final ObservableList<SalariesProperty> salariesPropertyObservableList = FXCollections.observableArrayList();
+    private final ObservableList<DescriptionProperty> descriptionPropertyObservableList = FXCollections.observableArrayList();
 
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
+        interactionsWithServer = new InteractionsWithServer();
 
+        HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnPatronymic);
+        HelpersCl.viewTableSalary(columnApril, columnAugust, columnDecember, columnFebruary, columnJanuary, columnJuly, columnJune, columnMarch, columnMay, columnNovember, columnOctober, columnSeptember);
+        HelpersCl.viewTableDescription(columnDays, columnHours, columnKol);
+
+        clickUpdate(event1);
     }
 
     @FXML
     void clickBack(ActionEvent event) {
-        try {
-            buttonBack.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Varieble_System variebleSystem = new Varieble_System();
-            variebleSystem.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open varieble system.\nWith exception " + e.getLocalizedMessage());
+        HelpersCl.backToVariebleSystem(buttonBack);
+    }
+
+    @FXML
+    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
+        HelpersCl.updateEmployeeSalaries(employeePropertyObservableList, salariesPropertyObservableList, interactionsWithServer, tableViewEmployee, tableViewMonth);
+        HelpersCl.updateDescriptions(descriptionPropertyObservableList, interactionsWithServer, tableViewDescription);
+    }
+
+    @FXML
+    void clickPayment(ActionEvent event) throws IOException, ClassNotFoundException {
+        String hours = txtIncome1.getText();
+        String month = txtMonth.getText();
+
+        if (HelpersCl.validateTextFields(hours, month)) {
+            if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
+                if (HelpersCl.validateTextFields(month)) {
+                    if (hours.matches("([1-9][0-9]*)?")) {
+                        int id = tableViewEmployee.getSelectionModel().getSelectedItem().getId();
+                        interactionsWithServer.calculateTimebasedHourlySalary(id, Integer.parseInt(hours), HelpersCl.replacementMonth(month));
+                        interactionsWithServer.changeHours(Integer.parseInt(hours), id);
+                        txtMonth.setText("");
+                        txtIncome1.setText("");
+                    } else {
+                        HelpersCl.bug("Вы ввели некорректное число часов.");
+                    }
+                    clickUpdate(event1);
+                } else {
+                    HelpersCl.bug("Такого месяца не существует.");
+                }
+            } else {
+                HelpersCl.bug("Вы не выбрали работника.");
+            }
+        } else {
+            HelpersCl.bug("Все поля должны быть заполнены!!!");
         }
-    }
-
-    @FXML
-    void clickUpdate(ActionEvent event) {
-    }
-
-    @FXML
-    void clickPayment(ActionEvent event) {
     }
 }

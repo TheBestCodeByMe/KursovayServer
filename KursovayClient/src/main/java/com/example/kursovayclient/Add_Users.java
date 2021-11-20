@@ -14,7 +14,7 @@ public class Add_Users extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add-users.fxml")));
         stage.setTitle("Регистрация");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 251, 260));
         stage.setResizable(false);
         stage.show();
 

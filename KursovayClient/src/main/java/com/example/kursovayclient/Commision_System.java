@@ -13,7 +13,7 @@ public class Commision_System extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("commission-settlement.fxml")));
         stage.setTitle("Комиссионная система расчёта");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 430, 272));
         stage.setResizable(false);
         stage.show();
     }

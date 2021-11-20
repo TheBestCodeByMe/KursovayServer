@@ -13,7 +13,7 @@ public class View_Salaries extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view-raiting.fxml")));
         stage.setTitle("Просмотр зарплат работников");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 1003, 311));
         stage.setResizable(false);
         stage.show();
     }

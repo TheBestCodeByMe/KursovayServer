@@ -44,19 +44,6 @@ public class PieceworkCalculation {
     @FXML
     void clickPayment(ActionEvent event) {
         try {
-            buttonPayment.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Indirectly_Piecework indirectlyPiecework = new Indirectly_Piecework();
-            indirectlyPiecework.start(stage);
-        } catch (Exception e) {
-            System.out.println("Cannot open indirectly piecework.\nWith exception " + e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    void clickUpdate(ActionEvent event) {
-        try {
             buttonUpdate.getScene().getWindow().hide();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -64,6 +51,19 @@ public class PieceworkCalculation {
             directPiecework.start(stage);
         } catch (Exception e) {
             System.out.println("Cannot open direct piecework.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
+
+    @FXML
+    void clickUpdate(ActionEvent event) {
+        try {
+            buttonPayment.getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Indirectly_Piecework indirectlyPiecework = new Indirectly_Piecework();
+            indirectlyPiecework.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open indirectly piecework.\nWith exception " + e.getLocalizedMessage());
         }
     }
 }

@@ -13,7 +13,7 @@ public class Spent_Days extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view-spent-days-hours.fxml")));
         stage.setTitle("Просмотр отработанных дней/часов");
-        stage.setScene(new Scene(root, 600, 536));
+        stage.setScene(new Scene(root, 628, 387));
         stage.setResizable(false);
         stage.show();
     }
