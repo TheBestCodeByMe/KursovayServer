@@ -30,6 +30,12 @@ public class MenuUser {
     private Button buttonViewCompany;
 
     @FXML
+    private Button buttonGrafics;
+
+    @FXML
+    private Button buttonGrafics1;
+
+    @FXML
     void clickViewCompany(ActionEvent event){
         try {
             buttonViewCompany.getScene().getWindow().hide();
@@ -100,4 +106,27 @@ public class MenuUser {
         }
     }
 
+    @FXML
+    void clickGrafics(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            View_Grafics viewGrafics = new View_Grafics();
+            viewGrafics.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open view diagram.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
+
+    @FXML
+    void clickGrafics1(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            View_Grafics1 viewGrafics = new View_Grafics1();
+            viewGrafics.start(stage);
+        } catch (Exception e) {
+            System.out.println("Cannot open grafic.\nWith exception " + e.getLocalizedMessage());
+        }
+    }
 }
