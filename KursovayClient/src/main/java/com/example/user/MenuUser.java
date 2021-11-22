@@ -1,5 +1,6 @@
 package com.example.user;
 
+import com.example.connection.InteractionsWithServer;
 import com.example.constants.Constants;
 import com.example.kursovayclient.*;
 import helpers.HelpersCl;
@@ -8,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MenuUser {
 
@@ -34,6 +37,9 @@ public class MenuUser {
 
     @FXML
     private Button buttonGrafics1;
+
+    @FXML
+    private Button buttonSave;
 
     @FXML
     void clickViewCompany(ActionEvent event){
@@ -128,5 +134,11 @@ public class MenuUser {
         } catch (Exception e) {
             System.out.println("Cannot open grafic.\nWith exception " + e.getLocalizedMessage());
         }
+    }
+
+    @FXML
+    void clickSave(ActionEvent event) throws IOException, ClassNotFoundException {
+        InteractionsWithServer interactionsWithServer = new InteractionsWithServer();
+        HelpersCl.notBug(interactionsWithServer.saveFile());
     }
 }

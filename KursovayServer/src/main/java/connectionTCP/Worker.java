@@ -1,19 +1,19 @@
 package connectionTCP;
 
 import calculation_salaries.CalculationSalaries;
-import com.mysql.cj.result.SqlDateValueFactory;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import database.SQLFactory;
 import entity.*;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.EmptyStackException;
-import java.util.LinkedList;
 
-// может нужно создать только 1 SQLFactory вместо инициализации в каждом методе
 public class Worker implements Runnable {
     protected Socket clientSocket = null;
     ObjectInputStream sois;
@@ -88,16 +88,10 @@ public class Worker implements Runnable {
                         break;
                     case "deleteAllEmployee":
                         deleteAllEmployee();
-                        break;/*
-                    case "editNameEmpl":
-                        editNameEmployee();
                         break;
-                    case "editLastnameEmpl":
-                        editLastnameEmployee();
+                    case "saveFile":
+                        saveFile();
                         break;
-                    case "editPatronymicEmpl":
-                        editPatronymicEmployee();
-                        break;*/
                     case "addEmpl":
                         addEmployee();
                         break;
@@ -145,6 +139,7 @@ public class Worker implements Runnable {
                         soos.close();
                         sois.close();
                         System.out.println("Client " + clientSocket.getInetAddress().toString() + "disconnected.");
+                        System.exit(0);
                         break;
                 }
             }
@@ -507,5 +502,37 @@ public class Worker implements Runnable {
         System.out.println("Просмотр зарплат работников");
         ArrayList<String[]> salaries = sqlFactory.getSalaries().selectAllSalaries();
         soos.writeObject(salaries);
+    }
+
+    private void saveFile() {
+        System.out.println("Сохранение данных в файл");
+
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get("D:\\Универ\\5 семестр\\Курсовая по ПрогСП\\KursovayServer\\src\\main\\resources\\salaries.json"));
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+
+            ArrayList<String[]> salaries = sqlFactory.getSalaries().selectAllSalaries();
+            ArrayList<String[]> descEmployee = sqlFactory.getDescription().selectAllDescription();
+            ArrayList<String[]> fioEmployee = sqlFactory.getEmployee().selectAllEmployee();
+            ArrayList<String[]> companyEmployee = sqlFactory.getCompany().selectAllCompany();
+            ArrayList<All_About_Employee> list = new ArrayList<>();
+
+            for (int i = 0; i < fioEmployee.size(); i++) {
+                Salaries salary = new Salaries(Double.parseDouble(salaries.get(i)[2]), Double.parseDouble(salaries.get(i)[3]), Double.parseDouble(salaries.get(i)[4]), Double.parseDouble(salaries.get(i)[5]), Double.parseDouble(salaries.get(i)[6]), Double.parseDouble(salaries.get(i)[7]), Double.parseDouble(salaries.get(i)[8]), Double.parseDouble(salaries.get(i)[9]), Double.parseDouble(salaries.get(i)[10]), Double.parseDouble(salaries.get(i)[11]), Double.parseDouble(salaries.get(i)[12]), Double.parseDouble(salaries.get(i)[13]));
+                Description description = new Description(Integer.parseInt(descEmployee.get(i)[2]), Integer.parseInt(descEmployee.get(i)[3]), Integer.parseInt(descEmployee.get(i)[4]));
+                Employee employee = new Employee(fioEmployee.get(i)[2], fioEmployee.get(i)[3], fioEmployee.get(i)[4]);
+
+                All_About_Employee all_about_employee = new All_About_Employee(companyEmployee.get(0)[1], employee.getName(), employee.getLastName(), employee.getPatronymic(), description.getHours(), description.getDays(), description.getNumbOfProd(), salary.getDecember(), salary.getJanuary(), salary.getFebruary(), salary.getMarch(), salary.getApril(), salary.getMay(), salary.getJune(), salary.getJuly(), salary.getAugust(), salary.getSeptember(), salary.getOctober(), salary.getNovember());
+                list.add(all_about_employee);
+            }
+
+            objectWriter.writeValue(new File("D:\\Универ\\5 семестр\\Курсовая по ПрогСП\\KursovayServer\\src\\main\\resources\\salaries.json"), list);
+            soos.writeObject("Данные записаны в файл.");
+            reader.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

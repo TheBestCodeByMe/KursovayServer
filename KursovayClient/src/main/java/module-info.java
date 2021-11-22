@@ -2,6 +2,7 @@ module com.example.kursovayclient {
     requires javafx.controls;
     requires javafx.fxml;
     requires lombok;
+    requires jdk.jfr;
 
 
     opens com.example.kursovayclient to javafx.fxml;

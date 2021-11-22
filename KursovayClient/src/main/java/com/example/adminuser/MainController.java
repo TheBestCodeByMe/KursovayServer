@@ -42,6 +42,9 @@ public class MainController {
     private PasswordField txtPassword;
 
     @FXML
+    private Button buttonOutput;
+
+    @FXML
     void initialize() {
         interactionsWithServer = new InteractionsWithServer();
     }
@@ -70,5 +73,10 @@ public class MainController {
         } catch (Exception e) {
             System.out.println("Cannot open registration.\nWith exception " + e.getLocalizedMessage());
         }
+    }
+
+    @FXML
+    void clickOutput(ActionEvent event) throws IOException {
+        interactionsWithServer.exit();
     }
 }

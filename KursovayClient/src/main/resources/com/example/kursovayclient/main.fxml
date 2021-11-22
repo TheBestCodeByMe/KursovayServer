@@ -16,6 +16,7 @@
             <Button fx:id="buttonRegistration" layoutX="293.0" layoutY="141.0" mnemonicParsing="false" onAction="#clickRegistration" text="Зарегистрироваться" />
             <Button fx:id="buttonEnter" layoutX="105.0" layoutY="234.0" mnemonicParsing="false" onAction="#clickEnter" text="Войти" />
             <TextField fx:id="txtLogin" layoutX="55.0" layoutY="115.0" promptText="Введите логин" />
+            <Button fx:id="buttonOutput" layoutX="434.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickOutput" text="Выход" />
         </children>
     </AnchorPane>
 </children>

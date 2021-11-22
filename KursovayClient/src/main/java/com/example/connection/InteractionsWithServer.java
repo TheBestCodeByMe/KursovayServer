@@ -3,13 +3,12 @@ package com.example.connection;
 import com.example.constants.Constants;
 import com.example.entity.*;
 import helpers.HelpersCl;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 
 public class InteractionsWithServer extends Constants {
     private ObjectInputStream sois;
@@ -143,12 +142,17 @@ public class InteractionsWithServer extends Constants {
         sendMSG(login + " " + password + " " + newPassword);
     }
 
-    public void exit() {
+    public void exit() throws IOException {
         sendMSG("exit");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setContentText(readObject().toString());
         alert.showAndWait();
+        sois.close();
+        soos.close();
+        clientSocket.close();
+        Platform.exit();
+        System.exit(0);
     }
 
     public ArrayList<Description> showAllDescription() {
@@ -258,5 +262,10 @@ public class InteractionsWithServer extends Constants {
     public void calculateTimebasedHourlySalary(int idSelectedEml, int hours, String month) {
         sendMSG("расчет зарплаты по повременной часовой");
         sendMSG(idSelectedEml + " " + month + " " + hours);
+    }
+
+    public String saveFile() throws IOException, ClassNotFoundException {
+        sendMSG("saveFile");
+        return sois.readObject().toString();
     }
 }

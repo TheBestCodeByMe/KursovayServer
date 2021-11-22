@@ -11,14 +11,15 @@
         <AnchorPane maxHeight="-Infinity" maxWidth="-1.0" prefHeight="388.0" prefWidth="474.0" VBox.vgrow="ALWAYS">
             <children>
                 <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Меню пользователя" textAlignment="CENTER" wrappingWidth="481.6812744140625" />
-                <Button fx:id="buttonSpentDaysHours" layoutX="257.0" layoutY="189.0" mnemonicParsing="false" onAction="#clickSpentDaysHours" text="Просмотр отработанных дней и часов" />
-                <Button fx:id="buttonChangePass" layoutX="45.0" layoutY="71.0" mnemonicParsing="false" onAction="#clickChangePass" text="Смена пароля" />
-                <Button fx:id="buttonChangeFIO" layoutX="13.0" layoutY="133.0" mnemonicParsing="false" onAction="#clickChangeFIO" text="Смена логина пользователя" />
-                <Button fx:id="buttonOutput" layoutX="431.0" layoutY="309.0" mnemonicParsing="false" onAction="#clickOutput" text="Выход" />
-                <Button fx:id="buttonViewSalary" layoutX="312.0" layoutY="71.0" mnemonicParsing="false" onAction="#clickViewSalary" text="Просмотр зарплат" />
-                <Button fx:id="buttonViewCompany" layoutX="263.0" layoutY="133.0" mnemonicParsing="false" onAction="#clickViewCompany" text="Просмотр информации о компании" />
-            <Button fx:id="buttonGrafics" layoutX="270.0" layoutY="238.0" mnemonicParsing="false" onAction="#clickGrafics" prefHeight="26.0" prefWidth="202.0" text="Просмотр диаграммы" />
-            <Button fx:id="buttonGrafics1" layoutX="38.0" layoutY="238.0" mnemonicParsing="false" onAction="#clickGrafics1" prefHeight="26.0" prefWidth="202.0" text="Просмотр графика" />
+                <Button fx:id="buttonSpentDaysHours" layoutX="292.0" layoutY="148.0" mnemonicParsing="false" onAction="#clickSpentDaysHours" prefHeight="42.0" prefWidth="147.0" text="Просмотр отработа-&#10;нных дней и часов" textAlignment="CENTER" />
+                <Button fx:id="buttonChangePass" layoutX="92.0" layoutY="56.0" mnemonicParsing="false" onAction="#clickChangePass" text="Смена пароля" />
+                <Button fx:id="buttonChangeFIO" layoutX="92.0" layoutY="92.0" mnemonicParsing="false" onAction="#clickChangeFIO" text="Смена логина&#10;пользователя" textAlignment="CENTER" />
+                <Button fx:id="buttonOutput" layoutX="425.0" layoutY="313.0" mnemonicParsing="false" onAction="#clickOutput" prefHeight="42.0" prefWidth="52.0" text="Выход" />
+                <Button fx:id="buttonViewSalary" layoutX="307.0" layoutY="56.0" mnemonicParsing="false" onAction="#clickViewSalary" text="Просмотр зарплат" />
+                <Button fx:id="buttonViewCompany" layoutX="292.0" layoutY="92.0" mnemonicParsing="false" onAction="#clickViewCompany" text="Просмотр информации&#10;о компании" textAlignment="CENTER" />
+            <Button fx:id="buttonGrafics" layoutX="38.0" layoutY="222.0" mnemonicParsing="false" onAction="#clickGrafics" prefHeight="57.0" prefWidth="202.0" text="Просмотр диаграммы о доходе&#10;компании в каждом месяце" textAlignment="CENTER" />
+            <Button fx:id="buttonGrafics1" layoutX="38.0" layoutY="148.0" mnemonicParsing="false" onAction="#clickGrafics1" prefHeight="58.0" prefWidth="202.0" text="Просмотр графика о зарплатах&#10;работников" textAlignment="CENTER" />
+            <Button fx:id="buttonSave" layoutX="292.0" layoutY="206.0" mnemonicParsing="false" onAction="#clickSave" prefHeight="73.0" prefWidth="147.0" text="Сохранение данных&#10;о зарплате работников&#10;в файл" textAlignment="CENTER" />
             </children>
         </AnchorPane>
     </children>

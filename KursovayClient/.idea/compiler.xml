@@ -14,4 +14,9 @@
       <module name="KursovayClient" target="17" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="KursovayClient" options="--add-exports jdk.jfr/jdk.jfr.internal.consumer=com.example.kursovayclient" />
+    </option>
+  </component>
 </project>

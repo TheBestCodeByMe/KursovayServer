@@ -10,24 +10,24 @@ import java.io.Serializable;
 public class Salaries implements Serializable {
     private int id;
     private int employeeid;
-    private int december;
-    private int january;
-    private int february;
-    private int march;
-    private int april;
-    private int may;
-    private int june;
-    private int july;
-    private int august;
-    private int september;
-    private int october;
-    private int november;
+    private double december;
+    private double january;
+    private double february;
+    private double march;
+    private double april;
+    private double may;
+    private double june;
+    private double july;
+    private double august;
+    private double september;
+    private double october;
+    private double november;
 
     public Salaries(int employeeid) {
         this.employeeid = employeeid;
     }
 
-    public Salaries(int employeeid, int december, int january, int february, int march, int april, int may, int june, int july, int august, int september, int october, int november) {
+    public Salaries(int employeeid, double december, double january, double february, double march, double april, double may, double june, double july, double august, double september, double october, double november) {
         this.employeeid = employeeid;
         this.december = december;
         this.january = january;
@@ -43,7 +43,7 @@ public class Salaries implements Serializable {
         this.november = november;
     }
 
-    public Salaries(int december, int january, int february, int march, int april, int may, int june, int july, int august, int september, int october, int november) {
+    public Salaries(double december, double january, double february, double march, double april, double may, double june, double july, double august, double september, double october, double november) {
         this.december = december;
         this.january = january;
         this.february = february;
@@ -58,7 +58,7 @@ public class Salaries implements Serializable {
         this.november = november;
     }
 
-    public Salaries(int id, int employeeid, int december, int january, int february, int march, int april, int may, int june, int july, int august, int september, int october, int november) {
+    public Salaries(int id, int employeeid, double december, double january, double february, double march, double april, double may, double june, double july, double august, double september, double october, double november) {
         this.id = id;
         this.employeeid = employeeid;
         this.december = december;

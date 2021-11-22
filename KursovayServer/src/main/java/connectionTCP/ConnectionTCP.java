@@ -4,32 +4,32 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ConnectionTCP implements Runnable{
+public class ConnectionTCP implements Runnable {
     protected int serverPort;
     protected ServerSocket serverSocket = null;
     protected boolean isStopped = false;
 
-    public ConnectionTCP(int port){
+    public ConnectionTCP(int port) {
         this.serverPort = port;
     }
 
     @Override
-    public void run(){
+    public void run() {
         openServerSocket();
-        while(! isStopped()){
+        while (!isStopped()) {
             Socket clientSocket = null;
             try {
                 clientSocket = this.serverSocket.accept();
             } catch (IOException e) {
-                if(isStopped()) {
-                    System.out.println("Server Stopped.") ;
+                if (isStopped()) {
+                    System.out.println("Server Stopped.");
                     return;
                 }
                 throw new RuntimeException("Error accepting client connection", e);
             }
             new Thread(new Worker(clientSocket)).start();
         }
-        System.out.println("Server Stopped.") ;
+        System.out.println("Server Stopped.");
     }
 
 
@@ -37,7 +37,7 @@ public class ConnectionTCP implements Runnable{
         return this.isStopped;
     }
 
-    public synchronized void stop(){
+    public synchronized void stop() {
         this.isStopped = true;
         try {
             this.serverSocket.close();

@@ -38,20 +38,20 @@ public class View_Grafics1 extends Application {
         ArrayList<Employee> employees = interactionsWithServer.showAllEmployes();
         for(int i = 0; i < salaries.size(); i++) {
             XYChart.Series series1 = new XYChart.Series();
-            series1.setName("Рабочий: " + employees.get(i).getLastName() + " " + employees.get(i).getName() + " " + employees.get(i).getPatronymic());
+            series1.setName("\nРабочий: " + employees.get(i).getLastName() + " " + employees.get(i).getName() + " " + employees.get(i).getPatronymic());
 
-            series1.getData().add(new XYChart.Data("Jan", Double.parseDouble(Double.toString(salaries.get(i).getJanuary()))));
-            series1.getData().add(new XYChart.Data("Feb", Double.parseDouble(Double.toString(salaries.get(i).getFebruary()))));
-            series1.getData().add(new XYChart.Data("Mar", Double.parseDouble(Double.toString(salaries.get(i).getMarch()))));
-            series1.getData().add(new XYChart.Data("Apr", Double.parseDouble(Double.toString(salaries.get(i).getApril()))));
-            series1.getData().add(new XYChart.Data("May", Double.parseDouble(Double.toString(salaries.get(i).getMay()))));
-            series1.getData().add(new XYChart.Data("Jun", Double.parseDouble(Double.toString(salaries.get(i).getJune()))));
-            series1.getData().add(new XYChart.Data("Jul", Double.parseDouble(Double.toString(salaries.get(i).getJuly()))));
-            series1.getData().add(new XYChart.Data("Aug", Double.parseDouble(Double.toString(salaries.get(i).getAugust()))));
-            series1.getData().add(new XYChart.Data("Sep", Double.parseDouble(Double.toString(salaries.get(i).getSeptember()))));
-            series1.getData().add(new XYChart.Data("Oct", Double.parseDouble(Double.toString(salaries.get(i).getOctober()))));
-            series1.getData().add(new XYChart.Data("Nov", Double.parseDouble(Double.toString(salaries.get(i).getNovember()))));
-            series1.getData().add(new XYChart.Data("Dec", Double.parseDouble(Double.toString(salaries.get(i).getDecember()))));
+            series1.getData().add(new XYChart.Data("Январь", Double.parseDouble(Double.toString(salaries.get(i).getJanuary()))));
+            series1.getData().add(new XYChart.Data("Февраль", Double.parseDouble(Double.toString(salaries.get(i).getFebruary()))));
+            series1.getData().add(new XYChart.Data("Март", Double.parseDouble(Double.toString(salaries.get(i).getMarch()))));
+            series1.getData().add(new XYChart.Data("Апрель", Double.parseDouble(Double.toString(salaries.get(i).getApril()))));
+            series1.getData().add(new XYChart.Data("Май", Double.parseDouble(Double.toString(salaries.get(i).getMay()))));
+            series1.getData().add(new XYChart.Data("Июнь", Double.parseDouble(Double.toString(salaries.get(i).getJune()))));
+            series1.getData().add(new XYChart.Data("Июль", Double.parseDouble(Double.toString(salaries.get(i).getJuly()))));
+            series1.getData().add(new XYChart.Data("Август", Double.parseDouble(Double.toString(salaries.get(i).getAugust()))));
+            series1.getData().add(new XYChart.Data("Сентябрь", Double.parseDouble(Double.toString(salaries.get(i).getSeptember()))));
+            series1.getData().add(new XYChart.Data("Октябрь", Double.parseDouble(Double.toString(salaries.get(i).getOctober()))));
+            series1.getData().add(new XYChart.Data("Ноябрь", Double.parseDouble(Double.toString(salaries.get(i).getNovember()))));
+            series1.getData().add(new XYChart.Data("Декабрь", Double.parseDouble(Double.toString(salaries.get(i).getDecember()))));
 
             lineChart.getData().add(series1);
         }
