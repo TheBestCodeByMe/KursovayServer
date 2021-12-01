@@ -35,132 +35,50 @@ public class Worker implements Runnable {
                 String choice = sois.readObject().toString();
                 System.out.println(choice);
                 switch (choice) {
-                    case "showUsers":
-                        viewUsers();
-                        break;
-                    case "showDescription":
-                        viewDescription();
-                        break;
-                    case "addDescription":
-                        addDescription();
-                        break;
-                    case "updateHours":
-                        updateHours();
-                        break;
-                    case "updateDays":
-                        updateDays();
-                        break;
-                    case "updateNumbProduct":
-                        updateNumbProduct();
-                        break;
-                    case "authorization":
-                        authorization();
-                        break;
-                    case "showCompany":
-                        viewCompany();
-                        break;
-                    case "deleteCompany":
-                        deleteCompany();
-                        break;
-                    case "addCompany":
-                        addCompany();
-                        break;
-                    case "updateCompany":
-                        updateCompany();
-                        break;
-                    case "updateDelCompany":
-                        updateDelCompany();
-                        break;
-                    case "changeNameCompany":
-                        updateNameCompany();
-                        break;
-                    case "deleteUser":
-                        deleteUsers();
-                        break;
-                    case "editUserLogin":
-                        editLogin();
-                        break;
-                    case "editUserPassword":
-                        editPassword();
-                        break;
-                    case "showEmpl":
-                        showEmployee();
-                        break;
-                    case "deleteAllEmployee":
-                        deleteAllEmployee();
-                        break;
-                    case "saveFile":
-                        saveFile();
-                        break;
-                    case "addEmpl":
-                        addEmployee();
-                        break;
-                    case "deleteEmpl":
-                        deleteEmloyee();
-                        break;
-                    case "registerUser":
-                        registration();
-                        break;
-                    case "blockUser":
-                        block();
-                        break;
-                    case "unblockUser":
-                        unblock();
-                        break;
-                    case "addNullSalaries":
-                        addNullSalaries();
-                        break;
-                    case "viewSalaries":
-                        viewSalaries();
-                        break;
-                    case "расчет зарплаты по комиссионной системе":
-                        commissionSystemPercentage();
-                        break;
-                    case "расчет зарплаты по комиссионной системе не менее фикс оклада":
-                        commissionSystemPercentageLeastFixed();
-                        break;
-                    case "расчет зарплаты по комиссионной системе по фикс окладу":
-                        commissionSystemPercentageFixed();
-                        break;
-                    case "расчет зарплаты по прямой сдельной":
-                        systemDirectPiecework();
-                        break;
-                    case "расчет зарплаты по косвенной сдельной":
-                        systemIndirectlyPiecework();
-                        break;
-                    case "расчет зарплаты по повременной дневной":
-                        systemTimeBasedDaily();
-                        break;
-                    case "расчет зарплаты по повременной часовой":
-                        systemTimeBasedHourly();
-                        break;
-                    case "exit":
+                    case "showUsers" -> viewUsers();
+                    case "showDescription" -> viewDescription();
+                    case "addDescription" -> addDescription();
+                    case "updateHours" -> updateHours();
+                    case "updateDays" -> updateDays();
+                    case "updateNumbProduct" -> updateNumbProduct();
+                    case "authorization" -> authorization();
+                    case "showCompany" -> viewCompany();
+                    case "deleteCompany" -> deleteCompany();
+                    case "addCompany" -> addCompany();
+                    case "updateCompany" -> updateCompany();
+                    case "updateDelCompany" -> updateDelCompany();
+                    case "changeNameCompany" -> updateNameCompany();
+                    case "deleteUser" -> deleteUsers();
+                    case "editUserLogin" -> editLogin();
+                    case "editUserPassword" -> editPassword();
+                    case "showEmpl" -> showEmployee();
+                    case "deleteAllEmployee" -> deleteAllEmployee();
+                    case "saveFile" -> saveFile();
+                    case "addEmpl" -> addEmployee();
+                    case "deleteEmpl" -> deleteEmloyee();
+                    case "registerUser" -> registration();
+                    case "blockUser" -> block();
+                    case "unblockUser" -> unblock();
+                    case "addNullSalaries" -> addNullSalaries();
+                    case "viewSalaries" -> viewSalaries();
+                    case "расчет зарплаты по комиссионной системе" -> commissionSystemPercentage();
+                    case "расчет зарплаты по комиссионной системе не менее фикс оклада" -> commissionSystemPercentageLeastFixed();
+                    case "расчет зарплаты по комиссионной системе по фикс окладу" -> commissionSystemPercentageFixed();
+                    case "расчет зарплаты по прямой сдельной" -> systemDirectPiecework();
+                    case "расчет зарплаты по косвенной сдельной" -> systemIndirectlyPiecework();
+                    case "расчет зарплаты по повременной дневной" -> systemTimeBasedDaily();
+                    case "расчет зарплаты по повременной часовой" -> systemTimeBasedHourly();
+                    case "exit" -> {
                         soos.writeObject("OK");
                         soos.close();
                         sois.close();
                         System.out.println("Client " + clientSocket.getInetAddress().toString() + "disconnected.");
                         System.exit(0);
-                        break;
+                    }
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Client disconnected.");
-        }
-    }
-
-    public void writeObject(Object object) {
-        try {
-            soos.writeObject(object);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Object readObject() {
-        try {
-            return sois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);// не требует обработки
         }
     }
 
@@ -218,12 +136,12 @@ public class Worker implements Runnable {
         soos.writeObject(users);
     }
 
-    public void block() throws IOException, ClassNotFoundException {
+    private void block() throws IOException, ClassNotFoundException {
         System.out.println("Блокировка пользователей");
         sqlFactory.getUsers().block(Integer.parseInt(sois.readObject().toString()));
     }
 
-    public void unblock() throws IOException, ClassNotFoundException {
+    private void unblock() throws IOException, ClassNotFoundException {
         System.out.println("Разблокировка пользователей");
         sqlFactory.getUsers().unblock(Integer.parseInt(sois.readObject().toString()));
     }
@@ -242,13 +160,13 @@ public class Worker implements Runnable {
         sqlFactory.getUsers().editLogin(user, messageFromClient[2]);
     }
 
-    public void viewCompany() throws IOException {
+    private void viewCompany() throws IOException {
         System.out.println("Просмотр компании");
         ArrayList<String[]> company = sqlFactory.getCompany().selectAllCompany();
         soos.writeObject(company);
     }
 
-    public void addCompany() {
+    private void addCompany() {
         System.out.println("Добавление компании");
         try {
             messageFromClient = sois.readObject().toString().split(" ");
@@ -259,7 +177,7 @@ public class Worker implements Runnable {
         }
     }
 
-    public void deleteCompany() {
+    private void deleteCompany() {
         System.out.println("Удаление компании");
         try {
             id = Integer.parseInt(sois.readObject().toString());
@@ -269,17 +187,17 @@ public class Worker implements Runnable {
         }
     }
 
-    public void updateCompany() throws IOException, ClassNotFoundException {
+    private void updateCompany() throws IOException, ClassNotFoundException {
         System.out.println("Обновление компании");
         sqlFactory.getCompany().updateNumbEmpl();
     }
 
-    public void updateDelCompany() throws IOException, ClassNotFoundException {
+    private void updateDelCompany() throws IOException, ClassNotFoundException {
         System.out.println("Обновление компании");
         sqlFactory.getCompany().updateDelNumbEmpl();
     }
 
-    public void updateNameCompany() throws IOException, ClassNotFoundException {
+    private void updateNameCompany() throws IOException, ClassNotFoundException {
         System.out.println("Обновление названия компании");
         try {
             messageFromClient = sois.readObject().toString().split(" ");

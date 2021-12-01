@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.example.connection.ConnectionToServer;
 import com.example.connection.InteractionsWithServer;
 import com.example.kursovayclient.Add_Users;
-import com.example.kursovayclient.Menu_User;
 import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +15,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import com.example.kursovayclient.Menu_Admin;
 
 public class MainController {
     InteractionsWithServer interactionsWithServer;

@@ -1,33 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="1110.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.TimeBasedDaily">
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="1110.0" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="462.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Простая повременная система расчёта по дневной ставке" textAlignment="CENTER" wrappingWidth="192.08126831054688" />
-                <Button fx:id="buttonPayment" layoutX="362.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickPayment" text="Рассчитать" />
-                <Button fx:id="buttonBack" layoutX="805.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" />
-                <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="336.0">
+                <Text layoutX="331.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Простая повременная система расчёта по дневной ставке" textAlignment="CENTER" wrappingWidth="524.0812072753906">
+               <font>
+                  <Font name="Book Antiqua" size="25.0" />
+               </font></Text>
+                <Button fx:id="buttonPayment" layoutX="490.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickPayment" text="Рассчитать">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonBack" layoutX="805.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" underline="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="300.0">
                     <columns>
                         <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
                         <TableColumn fx:id="columnFam" editable="false" prefWidth="91.99999237060547" text="Фамилия" />
                         <TableColumn fx:id="columnName" editable="false" prefWidth="88.79995727539062" text="Имя" />
-                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="133.59999084472656" text="Отчество" />
-                  <TableColumn fx:id="copumnDays" prefWidth="64.79998779296875" text="Дни" />
+                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="92.00001525878906" text="Отчество" />
                     </columns>
+               <effect>
+                  <InnerShadow radius="4.75" width="0.0" />
+               </effect>
                 </TableView>
-                <Button fx:id="buttonUpdate" layoutX="523.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить" />
-            <TextField fx:id="txtIncome1" layoutX="14.0" layoutY="293.0" prefHeight="26.0" prefWidth="266.0" promptText="Введите количество дней, если таковых нет" />
-                <TextField fx:id="txtMonth" layoutX="718.0" layoutY="293.0" prefHeight="26.0" prefWidth="122.0" promptText="Введите месяц" />
-                <TableView fx:id="tableViewMonth" layoutX="492.0" layoutY="65.0" prefHeight="200.0" prefWidth="616.0">
+                <Button fx:id="buttonUpdate" layoutX="651.0" layoutY="292.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <TextField fx:id="txtIncome1" layoutX="142.0" layoutY="292.0" prefHeight="26.0" prefWidth="266.0" promptText="Введите количество дней, если таковых нет">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+                <TextField fx:id="txtMonth" layoutX="846.0" layoutY="292.0" prefHeight="26.0" prefWidth="122.0" promptText="Введите месяц">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+                <TableView fx:id="tableViewMonth" layoutX="456.0" layoutY="65.0" prefHeight="200.0" prefWidth="638.0">
                     <columns>
                         <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" text="Январь" />
                         <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="Февраль" />
@@ -40,15 +63,21 @@
                         <TableColumn fx:id="columnSeptember" prefWidth="68.00006103515625" text="Сентябрь" />
                         <TableColumn fx:id="columnOctober" prefWidth="56.7999267578125" text="Октябрь" />
                         <TableColumn fx:id="columnNovember" prefWidth="55.199951171875" text="Ноябрь" />
-                        <TableColumn fx:id="columnDecember" prefWidth="57.5999755859375" text="Декабрь" />
+                        <TableColumn fx:id="columnDecember" prefWidth="74.39999999999998" text="Декабрь" />
                     </columns>
+               <effect>
+                  <InnerShadow radius="4.75" width="0.0" />
+               </effect>
                 </TableView>
-                <TableView fx:id="tableViewDescription" layoutX="349.0" layoutY="65.0" prefHeight="200.0" prefWidth="142.0">
+                <TableView fx:id="tableViewDescription" layoutX="314.0" layoutY="65.0" prefHeight="200.0" prefWidth="142.0">
                     <columns>
                         <TableColumn fx:id="columnDays" prefWidth="36.79998779296875" text="Дни" />
                         <TableColumn fx:id="columnHours" prefWidth="47.20001220703125" text="Часы" />
                         <TableColumn fx:id="columnKol" prefWidth="62.39996337890625" text="Кол-во" />
                     </columns>
+               <effect>
+                  <InnerShadow radius="4.75" width="0.0" />
+               </effect>
                 </TableView>
             </children>
         </AnchorPane>

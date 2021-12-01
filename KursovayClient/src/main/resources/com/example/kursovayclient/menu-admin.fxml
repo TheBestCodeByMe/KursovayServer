@@ -1,42 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="390.0" prefWidth="501.0" spacing="20.0"
-      xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.admin.MenuAdmin">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="390.0" prefWidth="501.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.MenuAdmin">
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-1.0" prefHeight="388.0" prefWidth="474.0" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Меню администратора"
-                      textAlignment="CENTER" wrappingWidth="481.6812744140625"/>
-                <Button fx:id="buttonBlockUsers" layoutX="35.0" layoutY="92.0" mnemonicParsing="false"
-                        onAction="#clickBlockUsers" text="Блокировка пользователей"/>
-                <Button fx:id="buttonEditUsers" layoutX="23.0" layoutY="125.0" mnemonicParsing="false"
-                        onAction="#clickEditUsers" text="Редактирование пользователей"/>
-                <Button fx:id="buttonViewUsers" layoutX="40.0" layoutY="160.0" mnemonicParsing="false"
-                        onAction="#clickViewUsers" text="Просмотр пользователей"/>
-                <Button fx:id="buttonCommSystem" layoutX="272.0" layoutY="92.0" mnemonicParsing="false"
-                        onAction="#clickCommSystem" text="Комиссионная система расчёта"/>
-                <Button fx:id="buttonPieceworkSystem" layoutX="286.0" layoutY="125.0" mnemonicParsing="false"
-                        onAction="#clickPieceworkSystem" text="Сдельная система расчёта"/>
-                <Button fx:id="buttonVariebleSystem" layoutX="277.0" layoutY="160.0" mnemonicParsing="false"
-                        onAction="#clickVariebleSystem" text="Повременная система расчёта"/>
-                <Button fx:id="buttonOutput" layoutX="420.0" layoutY="349.0" mnemonicParsing="false"
-                        onAction="#clickOutput" text="Выход"/>
-                <Button fx:id="buttonEditEmployee" layoutX="282.0" layoutY="199.0" mnemonicParsing="false"
-                        onAction="#clickEditEmployee" text="Редактирование работников"/>
-                <Text layoutX="50.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="Управление пользователями" textAlignment="CENTER" wrappingWidth="138.4000000000001"/>
-                <Text layoutX="297.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="Управление работниками" textAlignment="CENTER" wrappingWidth="138.4000000000001"/>
-                <Button fx:id="buttonViewCompany" layoutX="54.0" layoutY="235.0" mnemonicParsing="false"
-                        onAction="#clickViewCompany" text="Просмотр компаний"/>
-                <Button fx:id="buttonEditCompany" layoutX="36.0" layoutY="271.0" mnemonicParsing="false"
-                        onAction="#clickEditCompany" text="Редактирование компаний"/>
+                <Text layoutX="10.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Меню администратора" textAlignment="CENTER" wrappingWidth="481.6812744140625">
+               <font>
+                  <Font name="Book Antiqua" size="25.0" />
+               </font></Text>
+                <Button fx:id="buttonBlockUsers" layoutX="43.0" layoutY="117.0" mnemonicParsing="false" onAction="#clickBlockUsers" text="Блокировка пользователей">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonEditUsers" layoutX="31.0" layoutY="150.0" mnemonicParsing="false" onAction="#clickEditUsers" text="Редактирование пользователей">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonViewUsers" layoutX="48.0" layoutY="185.0" mnemonicParsing="false" onAction="#clickViewUsers" text="Просмотр пользователей">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonCommSystem" layoutX="280.0" layoutY="117.0" mnemonicParsing="false" onAction="#clickCommSystem" text="Комиссионная система расчёта">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonPieceworkSystem" layoutX="294.0" layoutY="150.0" mnemonicParsing="false" onAction="#clickPieceworkSystem" text="Сдельная система расчёта">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonVariebleSystem" layoutX="285.0" layoutY="185.0" mnemonicParsing="false" onAction="#clickVariebleSystem" text="Повременная система расчёта">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonOutput" layoutX="420.0" layoutY="349.0" mnemonicParsing="false" onAction="#clickOutput" text="Выход" underline="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonEditEmployee" layoutX="290.0" layoutY="224.0" mnemonicParsing="false" onAction="#clickEditEmployee" text="Редактирование работников">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Text layoutX="58.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Управление пользователями" textAlignment="CENTER" wrappingWidth="138.4000000000001">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+                <Text layoutX="305.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Управление работниками" textAlignment="CENTER" wrappingWidth="138.4000000000001">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+                <Button fx:id="buttonViewCompany" layoutX="62.0" layoutY="260.0" mnemonicParsing="false" onAction="#clickViewCompany" text="Просмотр компаний">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="buttonEditCompany" layoutX="44.0" layoutY="296.0" mnemonicParsing="false" onAction="#clickEditCompany" text="Редактирование компаний">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             </children>
         </AnchorPane>
     </children>
