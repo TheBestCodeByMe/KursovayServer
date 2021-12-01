@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 public class Worker implements Runnable {
     protected Socket clientSocket = null;
-    ObjectInputStream sois;
-    ObjectOutputStream soos;
-    SQLFactory sqlFactory = new SQLFactory();
-    String[] messageFromClient;
-    int id;
+    private ObjectInputStream sois;
+    private ObjectOutputStream soos;
+    private SQLFactory sqlFactory = new SQLFactory();
+    private String[] messageFromClient;
+    private int id;
 
     public Worker(Socket clientSocket) {
         this.clientSocket = clientSocket;
