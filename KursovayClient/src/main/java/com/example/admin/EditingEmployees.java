@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class EditingEmployees {
 
@@ -41,13 +42,7 @@ public class EditingEmployees {
     private TextField txtPatronymic;
 
     @FXML
-    private TextField txtHours;
-
-    @FXML
     private TextField txtDays;
-
-    @FXML
-    private TextField txtProducts;
 
     @FXML
     private Button buttonDelete;
@@ -85,6 +80,9 @@ public class EditingEmployees {
     @FXML
     private TableColumn<DescriptionProperty, Integer> columnAmount;
 
+    @FXML
+    private TableColumn<DescriptionProperty, Double> columnAmount1;
+
     ActionEvent event1 = new ActionEvent();
     InteractionsWithServer interactionsWithServer;
     private final ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
@@ -95,7 +93,7 @@ public class EditingEmployees {
         interactionsWithServer = new InteractionsWithServer();
 
         HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnOtchestvo);
-        HelpersCl.viewTableDescription(columnDays, columnHours, columnAmount);
+        HelpersCl.viewTableDescriptionInEditWorkers(columnDays, columnHours, columnAmount, columnAmount1);
 
         clickUpdate(event1);
     }
@@ -110,44 +108,33 @@ public class EditingEmployees {
         String name = txtName.getText();
         String lastname = txtLastname.getText();
         String patronymic = txtPatronymic.getText();
+        String ficsSalary = txtDays.getText();
+
         if (validateTextFields(name, lastname, patronymic)) {
-            String result = interactionsWithServer.addWorker(name, lastname, patronymic);
-            interactionsWithServer.addSalaries(name, lastname, patronymic);
-            if (result.equals("true")) {
-                HelpersCl.notBug("Добавление работника прошло успешно.");
-                String days = txtDays.getText();
-                String hours = txtHours.getText();
-                String products = txtProducts.getText();
-                if (days.equals("") || days.matches("-?([1-9][0-9]*)?") && hours.equals("") || hours.matches("-?([1-9][0-9]*)?") && products.equals("") || products.matches("-?([1-9][0-9]*)?")) {
-                    if (days.equals("")) {
-                        days = "0";
-                    }
-                    if (hours.equals("")) {
-                        hours = "0";
-                    }
-                    if (products.equals("")) {
-                        products = "0";
-                    }
-                    if (Integer.parseInt(days) < 0 || Integer.parseInt(hours) < 0 || Integer.parseInt(products) < 0) {
-                        HelpersCl.bug("Число не должно быть меньше 0.");
+            if (ficsSalary.matches("([1-9][0-9]*)?(\\.)?([0-9]{0,2})?")) {
+                String result = interactionsWithServer.addWorker(name, lastname, patronymic);
+                interactionsWithServer.addSalaries(name, lastname, patronymic);
+                ;
+                if (result.equals("true")) {
+                    HelpersCl.notBug("Добавление работника прошло успешно.");
+                    if (Integer.parseInt(ficsSalary) <= 0) {
+                        HelpersCl.bug("Фиксированный оклад не может быть меньше 0 и 0.");
                     } else {
-                        interactionsWithServer.addDescription(days, hours, products, name, lastname, patronymic);
+                        interactionsWithServer.addDescription("0", "0", ficsSalary, "0", name, lastname, patronymic);
                         txtName.setText("");
                         txtLastname.setText("");
                         txtPatronymic.setText("");
                         txtDays.setText("");
-                        txtHours.setText("");
-                        txtProducts.setText("");
                     }
+                    interactionsWithServer.updateCompany();
+                    clickUpdate(event1);
+                } else if (result.equals("Работник с таким ФИО уже существует.")) {
+                    HelpersCl.bug("Такие работники уже существуют");
                 } else {
-                    HelpersCl.bug("Вы ввели не цифры.");
+                    HelpersCl.bug("Работник не состоит в компании. Сначала добавьте компанию.");
                 }
-                interactionsWithServer.updateCompany();
-                clickUpdate(event1);
-            } else if (result.equals("Работник с таким ФИО уже существует.")) {
-                HelpersCl.bug("Такие работники уже существуют");
             } else {
-                HelpersCl.bug("Работник не состоит в компании. Сначала добавьте компанию.");
+                HelpersCl.bug("Некорректный ввод.");
             }
         } else {
             HelpersCl.bug("ФИО работника должно быть заполнено!!!");

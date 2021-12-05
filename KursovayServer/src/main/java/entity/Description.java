@@ -13,17 +13,19 @@ public class Description implements Serializable {
     private int hours;
     private int days;
     private int numbOfProd;
+    private double ficsSalary;
 
-    public Description(int hours, int days, int numbOfProd) {
+    public Description(int hours, int days, int numbOfPro) {
         this.hours = hours;
         this.days = days;
         this.numbOfProd = numbOfProd;
     }
 
-    public Description(int hours, int days, int numbOfProd, int employeeid) {
+    public Description(int hours, int days, int numbOfProd, double ficsSalary, int employeeid) {
         this.employeeid = employeeid;
         this.hours = hours;
         this.days = days;
         this.numbOfProd = numbOfProd;
+        this.ficsSalary = ficsSalary;
     }
 }

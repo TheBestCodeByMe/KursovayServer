@@ -2,7 +2,6 @@ package connectionTCP;
 
 import calculation_salaries.CalculationSalaries;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import database.SQLFactory;
@@ -73,7 +72,7 @@ public class Worker implements Runnable {
                         soos.close();
                         sois.close();
                         System.out.println("Client " + clientSocket.getInetAddress().toString() + "disconnected.");
-                        System.exit(0);
+                        // System.exit(0);
                     }
                 }
             }
@@ -286,8 +285,8 @@ public class Worker implements Runnable {
 
         try {
             messageFromClient = sois.readObject().toString().split(" ");
-            Employee employee = new Employee(messageFromClient[3], messageFromClient[4], messageFromClient[5]);
-            Description description = new Description(Integer.parseInt(messageFromClient[0]), Integer.parseInt(messageFromClient[1]), Integer.parseInt(messageFromClient[2]), sqlFactory.getEmployee().selectIdEmpl(employee));
+            Employee employee = new Employee(messageFromClient[4], messageFromClient[5], messageFromClient[6]);
+            Description description = new Description(Integer.parseInt(messageFromClient[0]), Integer.parseInt(messageFromClient[1]), Integer.parseInt(messageFromClient[2]), Double.parseDouble(messageFromClient[3]), sqlFactory.getEmployee().selectIdEmpl(employee));
             if (sqlFactory.getDescription().isFind(description)) {
                 sqlFactory.getDescription().insert(description);
             }

@@ -9,34 +9,55 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="292.0" prefWidth="495.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminuser.MainController">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="536.0" prefWidth="610.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminuser.MainController">
 <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="258.0" prefWidth="409.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="536.0" prefWidth="610.0" style="-fx-background-color: rgb(47, 79, 79);" VBox.vgrow="ALWAYS">
         <children>
-            <PasswordField fx:id="txtPassword" layoutX="54.0" layoutY="180.0" promptText="Введите пароль">
+            <Button fx:id="buttonRegistration" layoutX="394.0" layoutY="219.0" mnemonicParsing="false" onAction="#clickRegistration" prefHeight="100.0" prefWidth="150.0" text="Зарегистрироваться">
                <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></PasswordField>
-            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Управление финансами предприятия и разработка автоматизированной системы расчета и анализа зарплат" textAlignment="CENTER" wrappingWidth="481.6812744140625">
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                <font>
-                  <Font name="Book Antiqua" size="25.0" />
-               </font></Text>
-            <Button fx:id="buttonRegistration" layoutX="283.0" layoutY="115.0" mnemonicParsing="false" onAction="#clickRegistration" prefHeight="100.0" prefWidth="150.0" text="Зарегистрироваться">
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="buttonOutput" layoutX="394.0" layoutY="336.0" mnemonicParsing="false" onAction="#clickOutput" prefHeight="100.0" prefWidth="150.0" text="Выход" underline="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="buttonEnter" layoutX="105.0" layoutY="234.0" mnemonicParsing="false" onAction="#clickEnter" text="Войти">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <TextField fx:id="txtLogin" layoutX="55.0" layoutY="128.0" promptText="Введите логин">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <Button fx:id="buttonOutput" layoutX="434.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickOutput" text="Выход" underline="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <font>
+                  <Font size="31.0" />
+               </font></Button>
+            <AnchorPane prefHeight="163.0" prefWidth="618.0" style="-fx-background-color: rgb(0, 128, 138);">
+               <children>
+                  <Text fill="WHITE" layoutX="27.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Управление финансами предприятия и разработка автоматизированной системы расчета и анализа зарплат" textAlignment="CENTER" wrappingWidth="563.28125">
+                     <font>
+                        <Font name="Book Antiqua" size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="51.0" layoutY="210.0" prefHeight="234.0" prefWidth="265.0" style="-fx-background-color: rgb(220, 220, 220); -fx-background-radius: 10;">
+               <children>
+                  <TextField fx:id="txtLogin" layoutX="21.0" layoutY="33.0" prefHeight="34.0" prefWidth="221.0" promptText="Введите логин">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <PasswordField fx:id="txtPassword" layoutX="21.0" layoutY="82.0" prefHeight="34.0" prefWidth="222.0" promptText="Введите пароль">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <Button fx:id="buttonEnter" layoutX="78.0" layoutY="135.0" mnemonicParsing="false" onAction="#clickEnter" prefHeight="78.0" prefWidth="108.0" style="-fx-background-color: rgb(0, 200, 208);" text="Войти" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
         </children>
     </AnchorPane>
 </children>

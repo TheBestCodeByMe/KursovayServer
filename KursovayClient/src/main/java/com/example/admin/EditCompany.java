@@ -115,7 +115,7 @@ public class EditCompany {
             interactionsWithServer.deleteCompany(id);
             clickUpdate(event1);
         } else {
-            HelpersCl.bug("Вы не выбрали пользователя для удаления!");
+            HelpersCl.bug("Вы не выбрали компанию для удаления!");
         }
     }
 }

@@ -73,10 +73,11 @@ public class SQLDescription implements IDescription {
 
     @Override
     public void insert(Description object) {
-        String str = "INSERT INTO description(employeeid, hours, days, numbOfProd) VALUES('" +
+        String str = "INSERT INTO description(employeeid, hours, days, numbOfProd, ficssalary) VALUES('" +
                 object.getEmployeeid() + "', '" + object.getHours() + "', '" +
                 object.getDays() + "', '" +
-                object.getNumbOfProd() + "')";
+                object.getNumbOfProd() + "', '" +
+                object.getFicsSalary() +"')";
         dbConnection.execute(str);
     }
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminuser.ViewCompany">
+<AnchorPane prefHeight="536.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminuser.ViewCompany">
    <children>
       <Button fx:id="buttonBack" layoutX="31.0" layoutY="187.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" underline="true">
          <cursor>

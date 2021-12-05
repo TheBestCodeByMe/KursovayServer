@@ -29,8 +29,8 @@ public class View_Grafics extends Application {
     @Override
     public void start(Stage stage) {
         Scene scene = new Scene(new Group());
-        stage.setTitle("Доход компании по месяцам");
-        stage.setWidth(500);
+        stage.setTitle("Расходы компании на зарплаты сотрудникам по месяцам");
+        stage.setWidth(610);
         stage.setHeight(500);
 
         InteractionsWithServer interactionsWithServer = new InteractionsWithServer();
@@ -68,7 +68,7 @@ public class View_Grafics extends Application {
                         new PieChart.Data("Декабрь: " + salDecember + " руб.", salDecember));
 
         final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("Доход компании по месяцам");
+        chart.setTitle("Расходы компании на зарплаты сотрудникам по месяцам");
 
         chart.setLabelLineLength(10);
         chart.setLegendSide(Side.LEFT);

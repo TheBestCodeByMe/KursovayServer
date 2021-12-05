@@ -9,34 +9,47 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="454.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ChangeFio">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="610.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ChangeFio">
 <children>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="454.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="610.0" style="-fx-background-color: rgb(47, 79, 79);" VBox.vgrow="ALWAYS">
         <children>
-            <Text layoutX="129.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Смена логина" textAlignment="CENTER" wrappingWidth="192.08126831054688">
-               <font>
-                  <Font name="Book Antiqua" size="25.0" />
-               </font></Text>
-            <Button fx:id="buttonLogin" layoutX="177.0" layoutY="142.0" mnemonicParsing="false" onAction="#clickLogin" text="Сменить логин">
+            <Button fx:id="buttonLogin" layoutX="257.0" layoutY="415.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="95.0" prefWidth="125.0" text="Сменить логин">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <TextField fx:id="txtLogin" layoutX="55.0" layoutY="54.0" promptText="Введите логин">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField fx:id="txtNewLogin" layoutX="263.0" layoutY="54.0" prefHeight="63.0" prefWidth="150.0" promptText="Введите новый логин">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <Button fx:id="buttonBack" layoutX="282.0" layoutY="174.0" mnemonicParsing="false" onAction="#clickBack" text="Вернутья в главное меню" underline="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <PasswordField fx:id="txtPassword" layoutX="55.0" layoutY="91.0" promptText="Введите пароль">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></PasswordField>
+            <AnchorPane prefHeight="114.0" prefWidth="610.0" style="-fx-background-color: rgb(0, 128, 138);">
+               <children>
+                  <Text fill="WHITE" layoutX="150.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Смена логина" textAlignment="CENTER" wrappingWidth="310.4812316894531">
+                     <font>
+                        <Font name="Book Antiqua" size="40.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="buttonBack" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="48.0" prefWidth="53.0" text="&lt;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="174.0" layoutY="158.0" prefHeight="223.0" prefWidth="292.0" style="-fx-background-color: rgb(220,220,220); -fx-background-radius: 10;">
+               <children>
+                  <TextField fx:id="txtLogin" layoutX="71.0" layoutY="28.0" promptText="Введите логин">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <PasswordField fx:id="txtPassword" layoutX="70.0" layoutY="72.0" promptText="Введите пароль">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <TextField fx:id="txtNewLogin" layoutX="71.0" layoutY="132.0" prefHeight="63.0" prefWidth="150.0" promptText="Введите новый логин">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </AnchorPane>
         </children>
     </AnchorPane>
 </children>

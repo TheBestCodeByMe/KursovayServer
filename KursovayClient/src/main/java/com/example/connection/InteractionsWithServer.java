@@ -162,7 +162,7 @@ public class InteractionsWithServer extends Constants {
         ArrayList<Description> listDesc = new ArrayList<>();
 
         for (String[] items : result) {
-            Description description = new Description(Integer.parseInt(items[0]), Integer.parseInt(items[2]), Integer.parseInt(items[3]), Integer.parseInt(items[4]), Integer.parseInt(items[1]));
+            Description description = new Description(Integer.parseInt(items[0]), Integer.parseInt(items[2]), Integer.parseInt(items[3]), Integer.parseInt(items[4]), Double.parseDouble(items[5]), Integer.parseInt(items[1]));
             listDesc.add(description);
         }
         return listDesc;
@@ -200,9 +200,9 @@ public class InteractionsWithServer extends Constants {
         return sois.readObject().toString();
     }
 
-    public void addDescription(String days, String hours, String products, String name, String firstNameTextFieldText, String patronymicTextFieldText) throws IOException, ClassNotFoundException {
+    public void addDescription(String days, String hours, String ficsSalary, String products, String name, String firstNameTextFieldText, String patronymicTextFieldText) {
         sendMSG("addDescription");
-        sendMSG(hours + " " + days + " " + products + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
+        sendMSG(hours + " " + days + " " + products + " " + ficsSalary + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
     }
 
     public boolean registerUser(String login, String password) throws IOException, ClassNotFoundException {

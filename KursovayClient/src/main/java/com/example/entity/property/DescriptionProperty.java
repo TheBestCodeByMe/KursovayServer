@@ -2,9 +2,7 @@ package com.example.entity.property;
 
 import com.example.entity.Description;
 import com.example.entity.Users;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 public class DescriptionProperty {
     private IntegerProperty id;
@@ -12,6 +10,7 @@ public class DescriptionProperty {
     private IntegerProperty hours;
     private IntegerProperty days;
     private IntegerProperty numbOfProd;
+    private DoubleProperty ficsSalary;
 
     public DescriptionProperty(Description description)
     {
@@ -20,14 +19,7 @@ public class DescriptionProperty {
         hours = new SimpleIntegerProperty(description.getHours());
         days = new SimpleIntegerProperty(description.getDays());
         numbOfProd = new SimpleIntegerProperty(description.getNumbOfProd());
-    }
-
-    public Description toDescription(){
-        return new Description(id.intValue(),
-                employeeid.intValue(),
-                hours.intValue(),
-                days.intValue(),
-                numbOfProd.intValue());
+        ficsSalary = new SimpleDoubleProperty(description.getFicsSalary());
     }
 
     public int getId() {
@@ -88,5 +80,17 @@ public class DescriptionProperty {
 
     public void setNumbOfProd(int numbOfProd) {
         this.numbOfProd.set(numbOfProd);
+    }
+
+    public double getFicsSalary() {
+        return ficsSalary.get();
+    }
+
+    public DoubleProperty ficsSalaryProperty() {
+        return ficsSalary;
+    }
+
+    public void setFicsSalary(double ficsSalary) {
+        this.ficsSalary.set(ficsSalary);
     }
 }

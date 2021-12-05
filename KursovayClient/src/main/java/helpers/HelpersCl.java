@@ -150,6 +150,13 @@ public class HelpersCl {
         columnAmount.setCellValueFactory(cellValue -> cellValue.getValue().numbOfProdProperty().asObject());
     }
 
+    public static void viewTableDescriptionInEditWorkers(TableColumn<DescriptionProperty, Integer> columnDays, TableColumn<DescriptionProperty, Integer> columnHours, TableColumn<DescriptionProperty, Integer> columnAmount, TableColumn<DescriptionProperty, Double> columnAmount1) {
+        columnDays.setCellValueFactory(cellValue -> cellValue.getValue().daysProperty().asObject());
+        columnHours.setCellValueFactory(cellValue -> cellValue.getValue().hoursProperty().asObject());
+        columnAmount.setCellValueFactory(cellValue -> cellValue.getValue().numbOfProdProperty().asObject());
+        columnAmount1.setCellValueFactory(cellValue -> cellValue.getValue().ficsSalaryProperty().asObject());
+    }
+
     public static void updateEmployeeSalaries(ObservableList<EmployeeProperty> employeePropertyObservableList, ObservableList<SalariesProperty> salariesPropertyObservableList, InteractionsWithServer interactionsWithServer, TableView<EmployeeProperty> tableViewEmployee, TableView<SalariesProperty> tableViewMonth) throws IOException, ClassNotFoundException {
         employeePropertyObservableList.clear();
         salariesPropertyObservableList.clear();

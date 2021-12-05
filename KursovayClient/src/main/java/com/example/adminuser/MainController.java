@@ -48,6 +48,7 @@ public class MainController {
 
     @FXML
     void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
+        if(!txtLogin.getText().isEmpty() && !txtPassword.getText().isEmpty()){
         if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
             HelpersCl.backToMenuAdmin(buttonEnter);
         } else {
@@ -56,6 +57,8 @@ public class MainController {
             } else {
                 HelpersCl.bug("У вас нет прав доступа. Введите другие данные.");
             }
+        }}else{
+            HelpersCl.bug("Вы не ввели данные.");
         }
     }
 
