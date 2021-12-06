@@ -10,47 +10,53 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="1003.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ViewRaiting">
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="1006.0" VBox.vgrow="ALWAYS">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1003.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.user.ViewRaiting">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1006.0" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="263.0" layoutY="37.0" stroke="#3613e8" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" text="Просмотр зарплат работников" textAlignment="CENTER" wrappingWidth="479.2814025878906">
-            <font>
-               <Font name="Book Antiqua" size="25.0" />
-            </font></Text>
-                <Button fx:id="buttonBack" layoutX="935.0" layoutY="274.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" underline="true">
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor></Button>
-                <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="374.0">
+                <TableView fx:id="tableViewEmployee" layoutX="18.0" layoutY="138.0" prefHeight="382.0" prefWidth="374.0" style="-fx-background-color: rgb(220,220,220);">
                     <columns>
-                        <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
-                        <TableColumn fx:id="columnFam" editable="false" prefWidth="136.79999542236328" text="Фамилия" />
-                        <TableColumn fx:id="columnName" editable="false" prefWidth="110.4000244140625" text="Имя" />
-               <TableColumn fx:id="columnPatronymic" prefWidth="101.5999816894531" text="Отчество" />
+                        <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" style="-fx-background-color: rgb(180,180,180);" text="Id" />
+                        <TableColumn fx:id="columnFam" editable="false" prefWidth="136.79999542236328" style="-fx-background-color: rgb(200,200,200);" text="Фамилия" />
+                        <TableColumn fx:id="columnName" editable="false" prefWidth="110.4000244140625" style="-fx-background-color: rgb(200,200,200);" text="Имя" />
+               <TableColumn fx:id="columnPatronymic" prefWidth="101.5999816894531" style="-fx-background-color: rgb(200,200,200);" text="Отчество" />
                     </columns>
             <effect>
                <InnerShadow radius="4.75" width="0.0" />
             </effect>
                 </TableView>
-                <TableView fx:id="tableViewMonth" layoutX="388.0" layoutY="65.0" prefHeight="200.0" prefWidth="596.0">
+                <TableView fx:id="tableViewMonth" layoutX="392.0" layoutY="138.0" prefHeight="382.0" prefWidth="596.0" style="-fx-background-color: rgb(220,220,220);">
                     <columns>
-                        <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" text="Январь" />
-                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="Февраль" />
-                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" text="Март" />
-                        <TableColumn fx:id="columnApril" prefWidth="48.79998779296875" text="Апрель" />
-                        <TableColumn fx:id="columnMay" prefWidth="33.60003662109375" text="Май" />
-                        <TableColumn fx:id="columnJune" prefWidth="38.4000244140625" text="Июнь" />
-                        <TableColumn fx:id="columnJuly" prefWidth="44.0" text="Июль" />
-                        <TableColumn fx:id="columnAugust" prefWidth="43.199951171875" text="Август" />
-                        <TableColumn fx:id="columnSeptember" prefWidth="62.39990234375" text="Сентябрь" />
-                        <TableColumn fx:id="columnOctober" prefWidth="59.19989013671875" text="Октябрь" />
-                        <TableColumn fx:id="columnNovember" prefWidth="55.19989013671875" text="Ноябрь" />
-                        <TableColumn fx:id="columnDecember" prefWidth="55.2000732421875" text="Декабрь" />
+                        <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" style="-fx-background-color: rgb(200,200,200);" text="Январь" />
+                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" style="-fx-background-color: rgb(200,200,200);" text="Февраль" />
+                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" style="-fx-background-color: rgb(200,200,200);" text="Март" />
+                        <TableColumn fx:id="columnApril" prefWidth="48.79998779296875" style="-fx-background-color: rgb(200,200,200);" text="Апрель" />
+                        <TableColumn fx:id="columnMay" prefWidth="33.60003662109375" style="-fx-background-color: rgb(200,200,200);" text="Май" />
+                        <TableColumn fx:id="columnJune" prefWidth="38.4000244140625" style="-fx-background-color: rgb(200,200,200);" text="Июнь" />
+                        <TableColumn fx:id="columnJuly" prefWidth="44.0" style="-fx-background-color: rgb(200,200,200);" text="Июль" />
+                        <TableColumn fx:id="columnAugust" prefWidth="43.199951171875" style="-fx-background-color: rgb(200,200,200);" text="Август" />
+                        <TableColumn fx:id="columnSeptember" prefWidth="62.39990234375" style="-fx-background-color: rgb(200,200,200);" text="Сентябрь" />
+                        <TableColumn fx:id="columnOctober" prefWidth="59.19989013671875" style="-fx-background-color: rgb(200,200,200);" text="Октябрь" />
+                        <TableColumn fx:id="columnNovember" prefWidth="55.19989013671875" style="-fx-background-color: rgb(200,200,200);" text="Ноябрь" />
+                        <TableColumn fx:id="columnDecember" prefWidth="55.2000732421875" style="-fx-background-color: rgb(200,200,200);" text="Декабрь" />
                     </columns>
             <effect>
                <InnerShadow radius="4.75" width="0.0" />
             </effect>
                 </TableView>
+         <AnchorPane prefHeight="114.0" prefWidth="1006.0" style="-fx-background-color: rgb(0, 128, 138);">
+            <children>
+                      <Text fill="WHITE" layoutX="211.0" layoutY="70.0" text="Просмотр зарплат работников" textAlignment="CENTER" wrappingWidth="676.8813781738281">
+                  <font>
+                     <Font name="Book Antiqua" size="40.0" />
+                  </font>
+               </Text>
+                      <Button fx:id="buttonBack" layoutX="32.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="48.0" prefWidth="54.0" text="&lt;">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+            </children>
+         </AnchorPane>
             </children>
         </AnchorPane>
     </VBox>

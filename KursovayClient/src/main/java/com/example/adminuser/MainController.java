@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.kursovayclient.Add_Users;
 import helpers.HelpersCl;
 import javafx.event.ActionEvent;
@@ -48,16 +49,20 @@ public class MainController {
 
     @FXML
     void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
-        if(!txtLogin.getText().isEmpty() && !txtPassword.getText().isEmpty()){
-        if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
-            HelpersCl.backToMenuAdmin(buttonEnter);
-        } else {
-            if (interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) {
-                HelpersCl.backToMenuUser(buttonEnter);
+        if (!txtLogin.getText().isEmpty() &&
+                !txtPassword.getText().isEmpty() &&
+                txtLogin.getText().matches(Constants.REGULAR_FOR_LOGIN) &&
+                txtPassword.getText().matches(Constants.REGULAR_FOR_PASSWORD)) {
+            if (txtLogin.getText().equals("admin") && txtPassword.getText().equals("admin")) {
+                HelpersCl.backToMenuAdmin(buttonEnter);
             } else {
-                HelpersCl.bug("У вас нет прав доступа. Введите другие данные.");
+                if (interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) {
+                    HelpersCl.backToMenuUser(buttonEnter);
+                } else {
+                    HelpersCl.bug("У вас нет прав доступа. Введите другие данные.");
+                }
             }
-        }}else{
+        } else {
             HelpersCl.bug("Вы не ввели данные.");
         }
     }
