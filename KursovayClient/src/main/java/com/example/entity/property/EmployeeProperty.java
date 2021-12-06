@@ -8,11 +8,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class EmployeeProperty {
-    private IntegerProperty id;
-    private IntegerProperty idCompany;
-    private StringProperty name;
-    private StringProperty lastName;
-    private StringProperty patronymic;
+    private final IntegerProperty id;
+    private final IntegerProperty idCompany;
+    private final StringProperty name;
+    private final StringProperty lastName;
+    private final StringProperty patronymic;
 
     public EmployeeProperty(Employee employee) {
         id = new SimpleIntegerProperty(employee.getId());
@@ -20,26 +20,6 @@ public class EmployeeProperty {
         name = new SimpleStringProperty(employee.getName());
         lastName = new SimpleStringProperty(employee.getLastName());
         patronymic = new SimpleStringProperty(employee.getPatronymic());
-    }
-
-    public Employee toEmployee() {
-        return new Employee(id.intValue(),
-                idCompany.intValue(),
-                name.getValue(),
-                lastName.getValue(),
-                patronymic.getValue());
-    }
-
-    public int getIdCompany() {
-        return idCompany.get();
-    }
-
-    public IntegerProperty idCompanyProperty() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany.set(idCompany);
     }
 
     public int getId() {
@@ -66,27 +46,11 @@ public class EmployeeProperty {
         this.name.set(name);
     }
 
-    public String getLastName() {
-        return lastName.get();
-    }
-
     public StringProperty lastNameProperty() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
-    }
-
-    public String getPatronymic() {
-        return patronymic.get();
-    }
-
     public StringProperty patronymicProperty() {
         return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic.set(patronymic);
     }
 }

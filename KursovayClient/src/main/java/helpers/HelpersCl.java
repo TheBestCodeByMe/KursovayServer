@@ -162,7 +162,7 @@ public class HelpersCl {
         columnAmount1.setCellValueFactory(cellValue -> cellValue.getValue().ficsSalaryProperty().asObject());
     }
 
-    public static void updateEmployeeSalaries(ObservableList<EmployeeProperty> employeePropertyObservableList, ObservableList<SalariesProperty> salariesPropertyObservableList, InteractionsWithServer interactionsWithServer, TableView<EmployeeProperty> tableViewEmployee, TableView<SalariesProperty> tableViewMonth) throws IOException, ClassNotFoundException {
+    public static void updateEmployeeSalaries(ObservableList<EmployeeProperty> employeePropertyObservableList, ObservableList<SalariesProperty> salariesPropertyObservableList, InteractionsWithServer interactionsWithServer, TableView<EmployeeProperty> tableViewEmployee, TableView<SalariesProperty> tableViewMonth) {
         employeePropertyObservableList.clear();
         salariesPropertyObservableList.clear();
 
@@ -181,7 +181,7 @@ public class HelpersCl {
         tableViewMonth.setItems(salariesPropertyObservableList);
     }
 
-    public static void updateDescriptions(ObservableList<DescriptionProperty> descriptionPropertyObservableList, InteractionsWithServer interactionsWithServer, TableView<DescriptionProperty> tableDescription) throws IOException, ClassNotFoundException {
+    public static void updateDescriptions(ObservableList<DescriptionProperty> descriptionPropertyObservableList, InteractionsWithServer interactionsWithServer, TableView<DescriptionProperty> tableDescription) {
         descriptionPropertyObservableList.clear();
 
         ArrayList<Description> descriptions = interactionsWithServer.showAllDescription();
@@ -194,7 +194,7 @@ public class HelpersCl {
         tableDescription.setItems(descriptionPropertyObservableList);
     }
 
-    public static void updateUsers(ObservableList<UsersProperty> usersObservableList, InteractionsWithServer interactionsWithServer, TableView<UsersProperty> tableUsers) throws IOException, ClassNotFoundException {
+    public static void updateUsers(ObservableList<UsersProperty> usersObservableList, InteractionsWithServer interactionsWithServer, TableView<UsersProperty> tableUsers) {
         usersObservableList.clear();
 
         ArrayList<Users> users = interactionsWithServer.showAllUsers();

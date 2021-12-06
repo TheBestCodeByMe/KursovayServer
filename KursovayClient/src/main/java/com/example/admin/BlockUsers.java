@@ -1,37 +1,21 @@
 package com.example.admin;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.entity.Users;
 import com.example.entity.property.UsersProperty;
-import com.example.kursovayclient.Menu_Admin;
 import helpers.HelpersCl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class BlockUsers {
     InteractionsWithServer interactionsWithServer;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button buttonBlock;
 
     @FXML
     private Button buttonBack;
@@ -51,13 +35,10 @@ public class BlockUsers {
     @FXML
     private TableColumn<UsersProperty, String> columnBlock;
 
-    @FXML
-    private Button buttonUnblock;
-
     private final ObservableList<UsersProperty> usersObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() throws IOException, ClassNotFoundException {
+    void initialize() {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
@@ -86,24 +67,26 @@ public class BlockUsers {
     }
 
     @FXML
-    void clickBlock(ActionEvent event) throws IOException, ClassNotFoundException {
-        try {
-            int id = tableUser.getSelectionModel().getSelectedItem().getId();
-            interactionsWithServer.blockUsers(id);
-        } catch (NullPointerException e) {// если 0
+    void clickBlock(ActionEvent event) {
+        int id = tableUser.getSelectionModel().getSelectedItem().getId();
 
+        if (tableUser.getSelectionModel().getSelectedItem() != null) {
+            interactionsWithServer.blockUsers(id);
+        } else {
+            HelpersCl.bug("Вы не выбрали пользователя.");
         }
 
         update();
     }
 
     @FXML
-    void clickUnblock(ActionEvent event) throws IOException, ClassNotFoundException {
-        try {
-            int id = tableUser.getSelectionModel().getSelectedItem().getId();
-            interactionsWithServer.unblockUsers(id);
-        } catch (NullPointerException e) {// если 0
+    void clickUnblock(ActionEvent event) {
+        int id = tableUser.getSelectionModel().getSelectedItem().getId();
 
+        if (tableUser.getSelectionModel().getSelectedItem() != null) {
+            interactionsWithServer.unblockUsers(id);
+        } else {
+            HelpersCl.bug("Вы не выбрали пользователя.");
         }
 
         update();

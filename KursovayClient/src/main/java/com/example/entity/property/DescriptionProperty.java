@@ -5,12 +5,12 @@ import com.example.entity.Users;
 import javafx.beans.property.*;
 
 public class DescriptionProperty {
-    private IntegerProperty id;
-    private IntegerProperty employeeid;
-    private IntegerProperty hours;
-    private IntegerProperty days;
-    private IntegerProperty numbOfProd;
-    private DoubleProperty ficsSalary;
+    private final IntegerProperty id;
+    private final IntegerProperty employeeid;
+    private final IntegerProperty hours;
+    private final IntegerProperty days;
+    private final IntegerProperty numbOfProd;
+    private final DoubleProperty ficsSalary;
 
     public DescriptionProperty(Description description)
     {
@@ -34,63 +34,19 @@ public class DescriptionProperty {
         this.id.set(id);
     }
 
-    public int getEmployeeid() {
-        return employeeid.get();
-    }
-
-    public IntegerProperty employeeidProperty() {
-        return employeeid;
-    }
-
-    public void setEmployeeid(int employeeid) {
-        this.employeeid.set(employeeid);
-    }
-
-    public int getHours() {
-        return hours.get();
-    }
-
     public IntegerProperty hoursProperty() {
         return hours;
-    }
-
-    public void setHours(int hours) {
-        this.hours.set(hours);
-    }
-
-    public int getDays() {
-        return days.get();
     }
 
     public IntegerProperty daysProperty() {
         return days;
     }
 
-    public void setDays(int days) {
-        this.days.set(days);
-    }
-
-    public int getNumbOfProd() {
-        return numbOfProd.get();
-    }
-
     public IntegerProperty numbOfProdProperty() {
         return numbOfProd;
     }
 
-    public void setNumbOfProd(int numbOfProd) {
-        this.numbOfProd.set(numbOfProd);
-    }
-
-    public double getFicsSalary() {
-        return ficsSalary.get();
-    }
-
     public DoubleProperty ficsSalaryProperty() {
         return ficsSalary;
-    }
-
-    public void setFicsSalary(double ficsSalary) {
-        this.ficsSalary.set(ficsSalary);
     }
 }

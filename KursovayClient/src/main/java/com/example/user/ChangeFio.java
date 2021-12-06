@@ -1,32 +1,17 @@
 package com.example.user;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.constants.Constants;
-import com.example.kursovayclient.Commision_System;
-import com.example.kursovayclient.Menu_User;
 import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class ChangeFio {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button buttonLogin;
 
     @FXML
     private TextField txtLogin;

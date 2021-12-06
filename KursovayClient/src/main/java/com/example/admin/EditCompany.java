@@ -10,20 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import lombok.experimental.Helper;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class EditCompany {
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button buttonBack;
@@ -41,18 +31,6 @@ public class EditCompany {
     private TableColumn<CompanyProperty, Integer> columnNumbEmpl;
 
     @FXML
-    private Button butttonAdd;
-
-    @FXML
-    private Button buttonUpdate;
-
-    @FXML
-    private Button buttonDelete;
-
-    @FXML
-    private Button buttonEditName;
-
-    @FXML
     private TextField txtName;
 
     ActionEvent event1 = new ActionEvent();
@@ -60,7 +38,7 @@ public class EditCompany {
     private final ObservableList<CompanyProperty> companyPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() throws IOException, ClassNotFoundException {
+    void initialize() {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
@@ -103,7 +81,7 @@ public class EditCompany {
     }
 
     @FXML
-    void clickAdd(ActionEvent event) throws IOException, ClassNotFoundException {
+    void clickAdd(ActionEvent event) {
         if (!txtName.getText().equals("")) {
             interactionsWithServer.addCompany(txtName.getText(), 0);
             clickUpdate(event1);

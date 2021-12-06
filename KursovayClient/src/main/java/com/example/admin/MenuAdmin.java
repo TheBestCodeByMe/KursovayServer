@@ -1,11 +1,5 @@
 package com.example.admin;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.example.admin.salary.CommisionSystemPercentage;
-import com.example.admin.salary.PieceworkCalculation;
 import com.example.constants.Constants;
 import com.example.kursovayclient.*;
 import helpers.HelpersCl;
@@ -16,12 +10,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MenuAdmin {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button buttonBlockUsers;
@@ -49,9 +37,6 @@ public class MenuAdmin {
 
     @FXML
     private Button buttonViewCompany;
-
-    @FXML
-    private Button buttonEditCompany;
 
     @FXML
     void initialize() {
@@ -86,7 +71,7 @@ public class MenuAdmin {
     }
 
     @FXML
-    void clickEditUsers(ActionEvent event) throws IOException {
+    void clickEditUsers(ActionEvent event) {
         try {
             buttonEditUsers.getScene().getWindow().hide();
             Stage stage = new Stage();
@@ -99,7 +84,7 @@ public class MenuAdmin {
     }
 
     @FXML
-    void clickBlockUsers(ActionEvent event) throws IOException {
+    void clickBlockUsers(ActionEvent event) {
         try {
             buttonBlockUsers.getScene().getWindow().hide();
             Stage stage = new Stage();
@@ -112,7 +97,7 @@ public class MenuAdmin {
     }
 
     @FXML
-    void clickViewUsers(ActionEvent event) throws IOException {
+    void clickViewUsers(ActionEvent event) {
         try {
             buttonViewUsers.getScene().getWindow().hide();
             Stage stage = new Stage();
@@ -125,7 +110,7 @@ public class MenuAdmin {
     }
 
     @FXML
-    void clickEditEmployee(ActionEvent event) throws IOException {
+    void clickEditEmployee(ActionEvent event) {
         try {
             buttonEditEmployee.getScene().getWindow().hide();
             Stage stage = new Stage();
@@ -138,22 +123,22 @@ public class MenuAdmin {
     }
 
     @FXML
-    void clickOutput(ActionEvent event) throws IOException {
+    void clickOutput(ActionEvent event) {
         HelpersCl.backToMain(buttonOutput);
     }
 
     @FXML
-    void clickVariebleSystem(ActionEvent event) throws IOException {
+    void clickVariebleSystem(ActionEvent event) {
         HelpersCl.backToVariebleSystem(buttonVariebleSystem);
     }
 
     @FXML
-    void clickCommSystem(ActionEvent event) throws IOException {
+    void clickCommSystem(ActionEvent event) {
         HelpersCl.backToCommSystem(buttonCommSystem);
     }
 
     @FXML
-    void clickPieceworkSystem(ActionEvent event) throws IOException {
+    void clickPieceworkSystem(ActionEvent event) {
         HelpersCl.backToPieceworkSystem(buttonPieceworkSystem);
     }
 }

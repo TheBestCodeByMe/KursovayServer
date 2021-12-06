@@ -1,19 +1,11 @@
 package com.example.admin.salary;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.constants.Constants;
-import com.example.entity.Employee;
-import com.example.entity.Salaries;
 import com.example.entity.property.EmployeeProperty;
 import com.example.entity.property.SalariesProperty;
-import com.example.kursovayclient.Commision_System;
-import com.example.kursovayclient.Menu_Admin;
 import helpers.HelpersCl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,13 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class CommissionSystemPercenageLeastFixedSalary {
-
-    @FXML
-    private Button buttonPayment;
 
     @FXML
     private Button buttonBack;
@@ -48,9 +35,6 @@ public class CommissionSystemPercenageLeastFixedSalary {
 
     @FXML
     private TableColumn<EmployeeProperty, String> columnPatronymic;
-
-    @FXML
-    private Button buttonUpdate;
 
     @FXML
     private TextField txtIncome;

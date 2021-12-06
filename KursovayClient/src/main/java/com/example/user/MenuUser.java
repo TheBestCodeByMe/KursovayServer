@@ -33,15 +33,6 @@ public class MenuUser {
     private Button buttonViewCompany;
 
     @FXML
-    private Button buttonGrafics;
-
-    @FXML
-    private Button buttonGrafics1;
-
-    @FXML
-    private Button buttonSave;
-
-    @FXML
     void clickViewCompany(ActionEvent event){
         try {
             buttonViewCompany.getScene().getWindow().hide();

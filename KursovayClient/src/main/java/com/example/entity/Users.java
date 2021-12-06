@@ -20,21 +20,6 @@ public class Users implements Serializable {
         this.status = status;
     }
 
-    public Users(String login, String password, String status) {
-        this.login = login;
-        this.password = password;
-        this.status = status;
-    }
-
-    public Users() {
-
-    }
-
-    public Users(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "Users{" +

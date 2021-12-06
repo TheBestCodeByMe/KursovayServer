@@ -1,8 +1,6 @@
 package com.example.adminuser;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.constants.Constants;
@@ -10,7 +8,6 @@ import com.example.kursovayclient.Add_Users;
 import helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,13 +16,6 @@ import javafx.stage.Stage;
 
 public class MainController {
     InteractionsWithServer interactionsWithServer;
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button buttonRegistration;
@@ -38,9 +28,6 @@ public class MainController {
 
     @FXML
     private PasswordField txtPassword;
-
-    @FXML
-    private Button buttonOutput;
 
     @FXML
     void initialize() {
@@ -68,7 +55,7 @@ public class MainController {
     }
 
     @FXML
-    void clickRegistration(ActionEvent event) throws IOException {
+    void clickRegistration(ActionEvent event) {
         try {
             buttonRegistration.getScene().getWindow().hide();
             Stage stage = new Stage();

@@ -12,12 +12,6 @@ public class Company implements Serializable {
     private String name;
     private int numberEmpl;
 
-    public Company(int id, String name, int numberEmpl) {
-        this.id = id;
-        this.name = name;
-        this.numberEmpl = numberEmpl;
-    }
-
     public Company(String name, int numberEmpl) {
         this.name = name;
         this.numberEmpl = numberEmpl;
@@ -25,10 +19,6 @@ public class Company implements Serializable {
 
     public Company(int id, String name) {
         this.id = id;
-        this.name = name;
-    }
-
-    public Company(String name) {
         this.name = name;
     }
 }

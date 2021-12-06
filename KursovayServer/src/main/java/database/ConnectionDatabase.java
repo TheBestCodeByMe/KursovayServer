@@ -2,17 +2,16 @@ package database;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ConnectionDatabase {
     private static ConnectionDatabase instance;
     private static final String url = "jdbc:mysql://localhost:3306/kurswork";
     private static final String user = "root";
     private static final String password = "root";
-    private Statement statement;
-    private Connection  connect;
+    private final Statement statement;
+    private final Connection  connect;
     private ResultSet resultSet;
-    ArrayList<String[]> masResult;
+    private ArrayList<String[]> masResult;
 
     public ConnectionDatabase() {
         try {
@@ -24,6 +23,7 @@ public class ConnectionDatabase {
         }
     }
 
+    /*
     public void setResultSet(String str) {//устанавливает модель выборки
         try {
             String select = str;
@@ -32,6 +32,7 @@ public class ConnectionDatabase {
             e.printStackTrace();
         }
     }
+    */
 
     public void execute(String query) {
         try {

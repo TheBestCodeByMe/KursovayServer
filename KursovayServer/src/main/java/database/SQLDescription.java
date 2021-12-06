@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class SQLDescription implements IDescription {
     private static SQLDescription instance;
-    private ConnectionDatabase dbConnection;
+    private final ConnectionDatabase dbConnection;
 
     private SQLDescription() {
         dbConnection = ConnectionDatabase.getInstance();
@@ -79,5 +79,12 @@ public class SQLDescription implements IDescription {
                 object.getNumbOfProd() + "', '" +
                 object.getFicsSalary() +"')";
         dbConnection.execute(str);
+    }
+
+    @Override
+    public double getFixedSalary(int id) {
+        String str = "SELECT ficssalary FROM description WHERE employeeid = '" + id + "'";
+        ArrayList<String[]> result = dbConnection.getArrayResult(str);
+        return Double.parseDouble(result.get(0)[0]);
     }
 }

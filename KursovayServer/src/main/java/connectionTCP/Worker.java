@@ -4,6 +4,7 @@ import calculation_salaries.CalculationSalaries;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import constants.Constants;
 import database.SQLFactory;
 import entity.*;
 
@@ -14,10 +15,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Worker implements Runnable {
-    protected Socket clientSocket = null;
+    protected Socket clientSocket;
     private ObjectInputStream sois;
     private ObjectOutputStream soos;
-    private SQLFactory sqlFactory = new SQLFactory();
+    private final SQLFactory sqlFactory = new SQLFactory();
     private String[] messageFromClient;
     private int id;
 
@@ -394,6 +395,7 @@ public class Worker implements Runnable {
             messageFromClient = sois.readObject().toString().split(" ");
             Salaries salaries = new Salaries(Integer.parseInt(messageFromClient[0]));
             if (!sqlFactory.getSalaries().isFind(salaries)) {
+                Constants.FIXED_SALARY = sqlFactory.getDescription().getFixedSalary(Integer.parseInt(messageFromClient[0]));
                 sqlFactory.getSalaries().updateSalary(messageFromClient[1], CalculationSalaries.commSystemPercentageLeastFixed(Double.parseDouble(messageFromClient[2])), Integer.parseInt(messageFromClient[0]));
             }
         } catch (IOException | ClassNotFoundException e) {

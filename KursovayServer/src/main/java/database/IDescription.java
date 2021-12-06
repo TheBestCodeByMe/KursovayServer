@@ -11,4 +11,5 @@ public interface IDescription {
     void updateDays(int days, int id);
     void updateProducts(int amount, int id);
     void insert(Description object);
+    double getFixedSalary(int id);
 }

@@ -1,14 +1,7 @@
 package com.example.admin;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import com.example.connection.InteractionsWithServer;
-import com.example.entity.Users;
 import com.example.entity.property.UsersProperty;
-import com.example.kursovayclient.Menu_Admin;
 import helpers.HelpersCl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,16 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class ViewUsers {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button buttonBack;
@@ -50,7 +35,7 @@ public class ViewUsers {
     private final ObservableList<UsersProperty> usersObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() throws IOException, ClassNotFoundException {
+    void initialize() {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());

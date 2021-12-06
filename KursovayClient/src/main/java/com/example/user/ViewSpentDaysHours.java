@@ -1,16 +1,11 @@
 package com.example.user;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.entity.Employee;
 import com.example.entity.property.DescriptionProperty;
 import com.example.entity.property.EmployeeProperty;
-import com.example.entity.property.SalariesProperty;
-import com.example.kursovayclient.Menu_User;
 import helpers.HelpersCl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,8 +14,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class ViewSpentDaysHours {
 
@@ -57,11 +50,10 @@ public class ViewSpentDaysHours {
 
     InteractionsWithServer interactionsWithServer;
     private final ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
-    private final ObservableList<SalariesProperty> salariesPropertyObservableList = FXCollections.observableArrayList();
     private final ObservableList<DescriptionProperty> descriptionPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() throws IOException, ClassNotFoundException {
+    void initialize() {
         interactionsWithServer = new InteractionsWithServer();
 
         HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnPatronymic);

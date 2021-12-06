@@ -1,17 +1,11 @@
 package com.example.admin;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.constants.Constants;
-import com.example.entity.Company;
-import com.example.entity.Description;
 import com.example.entity.Employee;
-import com.example.entity.property.CompanyProperty;
 import com.example.entity.property.DescriptionProperty;
 import com.example.entity.property.EmployeeProperty;
 import helpers.HelpersCl;
@@ -20,18 +14,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 
 public class EditingEmployees {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button buttonEnter;
 
     @FXML
     private TextField txtLastname;
@@ -44,12 +28,6 @@ public class EditingEmployees {
 
     @FXML
     private TextField txtDays;
-
-    @FXML
-    private Button buttonDelete;
-
-    @FXML
-    private Button buttonUpdate;
 
     @FXML
     private Button buttonBack;
@@ -90,7 +68,7 @@ public class EditingEmployees {
     private final ObservableList<DescriptionProperty> descriptionPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() throws IOException, ClassNotFoundException {
+    void initialize() {
         interactionsWithServer = new InteractionsWithServer();
 
         HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnOtchestvo);
@@ -145,7 +123,7 @@ public class EditingEmployees {
     }
 
     @FXML
-    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
+    void clickUpdate(ActionEvent event) {
         HelpersCl.updateDescriptions(descriptionPropertyObservableList, interactionsWithServer, tableDescription);
 
         employeePropertyObservableList.clear();
@@ -160,7 +138,7 @@ public class EditingEmployees {
     }
 
     @FXML
-    void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
+    void clickDelete(ActionEvent event) {
         if (tableFIO.getSelectionModel().getSelectedItem() != null) {
             int id = tableFIO.getSelectionModel().getSelectedItem().getId();
             interactionsWithServer.deleteWorker(id);

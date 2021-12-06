@@ -7,20 +7,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class  CompanyProperty {
-    private IntegerProperty id;
-    private StringProperty name;
-    private IntegerProperty numberEmpl;
+    private final IntegerProperty id;
+    private final StringProperty name;
+    private final IntegerProperty numberEmpl;
 
     public CompanyProperty(Company company) {
         id = new SimpleIntegerProperty(company.getId());
         name = new SimpleStringProperty(company.getName());
         numberEmpl = new SimpleIntegerProperty(company.getNumberEmpl());
-    }
-
-    public Company toCompany(){
-        return new Company(id.intValue(),
-                name.getValue(),
-                numberEmpl.intValue());
     }
 
     public int getId() {
@@ -47,15 +41,7 @@ public class  CompanyProperty {
         this.name.set(name);
     }
 
-    public int getNumberEmpl() {
-        return numberEmpl.get();
-    }
-
     public IntegerProperty numberEmplProperty() {
         return numberEmpl;
-    }
-
-    public void setNumberEmpl(int numberEmpl) {
-        this.numberEmpl.set(numberEmpl);
     }
 }

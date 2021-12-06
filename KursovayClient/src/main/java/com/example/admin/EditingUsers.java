@@ -1,12 +1,8 @@
 package com.example.admin;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
-import com.example.entity.Users;
 import com.example.entity.property.UsersProperty;
 import helpers.HelpersCl;
 import javafx.collections.FXCollections;
@@ -20,15 +16,6 @@ public class EditingUsers {
     ActionEvent event;
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button buttonEnter;
-
-    @FXML
     private TextField txtLogin;
 
     @FXML
@@ -36,12 +23,6 @@ public class EditingUsers {
 
     @FXML
     private TextField txtPassword1;
-
-    @FXML
-    private Button buttonDelete;
-
-    @FXML
-    private Button buttonUpdate;
 
     @FXML
     private Button buttonBack;
@@ -64,7 +45,7 @@ public class EditingUsers {
     private final ObservableList<UsersProperty> usersObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() throws IOException, ClassNotFoundException {
+    void initialize() {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
@@ -81,7 +62,7 @@ public class EditingUsers {
     }
 
     @FXML
-    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
+    void clickUpdate(ActionEvent event) {
         HelpersCl.updateUsers(usersObservableList, interactionsWithServer, tableUsers);
     }
 
@@ -95,7 +76,7 @@ public class EditingUsers {
     }
 
     @FXML
-    void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
+    void clickDelete(ActionEvent event) {
         if (tableUsers.getSelectionModel().getSelectedItem() != null) {
             int id = tableUsers.getSelectionModel().getSelectedItem().getId();
             interactionsWithServer.deleteUsers(id);

@@ -4,11 +4,10 @@ import constants.Constants;
 import entity.Users;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SQLUsers implements IUsers {
     private static SQLUsers instance;
-    private ConnectionDatabase dbConnection;
+    private final ConnectionDatabase dbConnection;
 
     private SQLUsers() {
         dbConnection = ConnectionDatabase.getInstance();

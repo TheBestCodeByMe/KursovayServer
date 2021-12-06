@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class SQLEmployee implements IEmployee {
     private static SQLEmployee instance;
-    private ConnectionDatabase dbConnection;
+    private final ConnectionDatabase dbConnection;
 
     private SQLEmployee() {
         dbConnection = ConnectionDatabase.getInstance();
@@ -47,6 +47,7 @@ public class SQLEmployee implements IEmployee {
         return dbConnection.getArrayResult(str);
     }
 
+/*
     @Override
     public void updateName(Employee object, int id) {
         String str = "UPDATE employes SET name = '" + object.getName() +
@@ -67,6 +68,7 @@ public class SQLEmployee implements IEmployee {
                 "' WHERE idempl = '" + id + "'";
         dbConnection.execute(str);
     }
+    */
 
     @Override
     public void insert(Employee object) {

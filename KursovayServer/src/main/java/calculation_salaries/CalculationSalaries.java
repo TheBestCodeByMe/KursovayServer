@@ -9,11 +9,7 @@ public class CalculationSalaries {
 
     public static double commSystemPercentageLeastFixed(double profitability) {
         double salary = commSystemPercentage(profitability);
-        if (salary > Constants.FIXED_SALARY) {
-            return salary;
-        } else {
-            return Constants.FIXED_SALARY;
-        }
+        return Math.max(salary, Constants.FIXED_SALARY);
     }
 
     public static double commSystemPercentageFixed(double profitability) {

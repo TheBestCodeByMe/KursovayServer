@@ -1,9 +1,5 @@
 package com.example.admin.salary;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.example.admin.EditingUsers;
 import com.example.kursovayclient.*;
 import helpers.HelpersCl;
 import javafx.event.ActionEvent;
@@ -13,12 +9,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PieceworkCalculation {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button buttonPayment;

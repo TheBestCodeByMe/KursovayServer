@@ -17,9 +17,4 @@ public class Company implements Serializable {
         this.name = name;
         this.numberEmpl = numberEmpl;
     }
-
-    public Company(String name, int numberEmpl) {
-        this.name = name;
-        this.numberEmpl = numberEmpl;
-    }
 }

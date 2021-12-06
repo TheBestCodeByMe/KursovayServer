@@ -1,11 +1,8 @@
 package database;
 
 import entity.Company;
-import entity.Users;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public interface ICompany {
     ArrayList<String[]> selectAllCompany();

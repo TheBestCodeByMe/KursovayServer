@@ -5,20 +5,20 @@ import com.example.entity.Users;
 import javafx.beans.property.*;
 
 public class SalariesProperty {
-    private IntegerProperty id;
-    private IntegerProperty employeeid;
-    private DoubleProperty december;
-    private DoubleProperty january;
-    private DoubleProperty february;
-    private DoubleProperty march;
-    private DoubleProperty april;
-    private DoubleProperty may;
-    private DoubleProperty june;
-    private DoubleProperty july;
-    private DoubleProperty august;
-    private DoubleProperty september;
-    private DoubleProperty october;
-    private DoubleProperty november;
+    private final IntegerProperty id;
+    private final IntegerProperty employeeid;
+    private final DoubleProperty december;
+    private final DoubleProperty january;
+    private final DoubleProperty february;
+    private final DoubleProperty march;
+    private final DoubleProperty april;
+    private final DoubleProperty may;
+    private final DoubleProperty june;
+    private final DoubleProperty july;
+    private final DoubleProperty august;
+    private final DoubleProperty september;
+    private final DoubleProperty october;
+    private final DoubleProperty november;
 
     public SalariesProperty(Salaries salaries) {
         id = new SimpleIntegerProperty(salaries.getId());
@@ -49,28 +49,8 @@ public class SalariesProperty {
         this.id.set(id);
     }
 
-    public int getEmployeeid() {
-        return employeeid.get();
-    }
-
-    public IntegerProperty employeeidProperty() {
-        return employeeid;
-    }
-
-    public void setEmployeeid(int employeeid) {
-        this.employeeid.set(employeeid);
-    }
-
-    public double getDecember() {
-        return december.get();
-    }
-
     public DoubleProperty decemberProperty() {
         return december;
-    }
-
-    public void setDecember(double december) {
-        this.december.set(december);
     }
 
     public double getJanuary() {
@@ -85,16 +65,8 @@ public class SalariesProperty {
         this.january.set(january);
     }
 
-    public double getFebruary() {
-        return february.get();
-    }
-
     public DoubleProperty februaryProperty() {
         return february;
-    }
-
-    public void setFebruary(double february) {
-        this.february.set(february);
     }
 
     public double getMarch() {
@@ -109,99 +81,35 @@ public class SalariesProperty {
         this.march.set(march);
     }
 
-    public double getApril() {
-        return april.get();
-    }
-
     public DoubleProperty aprilProperty() {
         return april;
-    }
-
-    public void setApril(double april) {
-        this.april.set(april);
-    }
-
-    public double getMay() {
-        return may.get();
     }
 
     public DoubleProperty mayProperty() {
         return may;
     }
 
-    public void setMay(double may) {
-        this.may.set(may);
-    }
-
-    public double getJune() {
-        return june.get();
-    }
-
     public DoubleProperty juneProperty() {
         return june;
-    }
-
-    public void setJune(double june) {
-        this.june.set(june);
-    }
-
-    public double getJuly() {
-        return july.get();
     }
 
     public DoubleProperty julyProperty() {
         return july;
     }
 
-    public void setJuly(double july) {
-        this.july.set(july);
-    }
-
-    public double getAugust() {
-        return august.get();
-    }
-
     public DoubleProperty augustProperty() {
         return august;
-    }
-
-    public void setAugust(double august) {
-        this.august.set(august);
-    }
-
-    public double getSeptember() {
-        return september.get();
     }
 
     public DoubleProperty septemberProperty() {
         return september;
     }
 
-    public void setSeptember(double september) {
-        this.september.set(september);
-    }
-
-    public double getOctober() {
-        return october.get();
-    }
-
     public DoubleProperty octoberProperty() {
         return october;
     }
 
-    public void setOctober(double october) {
-        this.october.set(october);
-    }
-
-    public double getNovember() {
-        return november.get();
-    }
-
     public DoubleProperty novemberProperty() {
         return november;
-    }
-
-    public void setNovember(double november) {
-        this.november.set(november);
     }
 }

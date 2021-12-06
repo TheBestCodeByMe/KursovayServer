@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class SQLSalaries implements ISalaries {
     private static SQLSalaries instance;
-    private ConnectionDatabase dbConnection;
+    private final ConnectionDatabase dbConnection;
 
     private SQLSalaries() {
         dbConnection = ConnectionDatabase.getInstance();

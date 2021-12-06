@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class SQLCompany implements ICompany {
     private static SQLCompany instance;
-    private ConnectionDatabase dbConnection;
+    private final ConnectionDatabase dbConnection;
 
     private SQLCompany() {
         dbConnection = ConnectionDatabase.getInstance();
