@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.kursovayclient.Commision_System;
 import com.example.kursovayclient.Menu_User;
 import helpers.HelpersCl;
@@ -64,12 +65,16 @@ public class ChangePassword {
         if (HelpersCl.validateTextFields(login, password, newPassword)) {
             if (newPassword.equals(repeatPassword)) {
                 if (interactionsWithServer.checkAccount(txtLogin.getText(), txtPassword.getText())) {
-                    interactionsWithServer.editUserPassword(login, newPassword, password);
-                    HelpersCl.notBug("Смена логина прошла успешно.");
-                    txtLogin.setText("");
-                    txtNewPassword.setText("");
-                    txtPassword.setText("");
-                    txtRepeatNewPassword.setText("");
+                    if(newPassword.matches(Constants.REGULAR_FOR_PASSWORD)) {
+                        interactionsWithServer.editUserPassword(login, newPassword, password);
+                        HelpersCl.notBug("Смена пароля прошла успешно.");
+                        txtLogin.setText("");
+                        txtNewPassword.setText("");
+                        txtPassword.setText("");
+                        txtRepeatNewPassword.setText("");
+                    } else{
+                        HelpersCl.bug("Новый пароль некорректен. Разрешённые символы:\nбуквенно-цифровой символ и знак подчёркивания.");
+                    }
                 } else {
                     HelpersCl.bug("Данные некорректны.");
                 }

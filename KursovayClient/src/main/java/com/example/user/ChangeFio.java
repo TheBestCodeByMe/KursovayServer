@@ -1,9 +1,11 @@
 package com.example.user;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.kursovayclient.Commision_System;
 import com.example.kursovayclient.Menu_User;
 import helpers.HelpersCl;
@@ -50,20 +52,28 @@ public class ChangeFio {
     }
 
     @FXML
-    void clickLogin(ActionEvent event) {
+    void clickLogin(ActionEvent event) throws IOException, ClassNotFoundException {
         String login = txtLogin.getText();
         String password = txtPassword.getText();
         String newLogin = txtNewLogin.getText();
 
         if (HelpersCl.validateTextFields(login, password, newLogin)) {
-            if (!login.equals("admin")) {
-                interactionsWithServer.editUserLogin(login, newLogin, password);
-                HelpersCl.notBug("Смена логина прошла успешно.");
-                txtLogin.setText("");
-                txtNewLogin.setText("");
-                txtPassword.setText("");
+            if (interactionsWithServer.checkAccount(login, password)) {
+                if (!newLogin.equals("admin")) {
+                    if (newLogin.matches(Constants.REGULAR_FOR_LOGIN)) {
+                        interactionsWithServer.editUserLogin(login, newLogin, password);
+                        HelpersCl.notBug("Смена логина прошла успешно.");
+                        txtLogin.setText("");
+                        txtNewLogin.setText("");
+                        txtPassword.setText("");
+                    } else {
+                        HelpersCl.bug("Такой логин недопустим. Разрешённые символы:\nбуквенно-цифровой символ и знак подчёркивания.");
+                    }
+                } else {
+                    HelpersCl.bug("Введённый вами логин использовать нельзя.");
+                }
             } else {
-                HelpersCl.bug("Введённый вами логин использовать нельзя.");
+                HelpersCl.bug("Такого пользователя не существует.");
             }
         } else {
             HelpersCl.bug("Все поля должны быть заполнены!!!");

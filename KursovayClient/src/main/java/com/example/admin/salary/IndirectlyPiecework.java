@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.entity.property.EmployeeProperty;
 import com.example.entity.property.SalariesProperty;
 import com.example.kursovayclient.Menu_Admin;
@@ -125,7 +126,7 @@ public class IndirectlyPiecework {
         if (HelpersCl.validateTextFields(numberProducts, month)) {
             if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
                 if (HelpersCl.validateTextFields(month)) {
-                    if (numberProducts.matches("([1-9][0-9]*)?")) {
+                    if (numberProducts.matches(Constants.REGULAR_FOR_INTEGER)) {
                         int id = tableViewEmployee.getSelectionModel().getSelectedItem().getId();
                         interactionsWithServer.calculateIndirectly(id, Integer.parseInt(numberProducts), HelpersCl.replacementMonth(month));
                         txtMonth.setText("");

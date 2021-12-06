@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.entity.Description;
 import com.example.entity.Employee;
 import com.example.entity.Salaries;
@@ -131,7 +132,7 @@ public class CommisionSystemPercentage {
         if (HelpersCl.validateTextFields(profitability, month)) {
             if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
                 if (HelpersCl.validateTextFields(month)) {
-                    if (profitability.matches("([1-9][0-9]*)?(\\.)?([0-9]{0,2})?")) {
+                    if (profitability.matches(Constants.REGULAR_FOR_SALARY)) {
                         interactionsWithServer.calculateCommPerc(tableViewEmployee.getSelectionModel().getSelectedItem().getId(), HelpersCl.replacementMonth(month), Double.parseDouble(profitability));
                         txtMonth.setText("");
                         txtIncome.setText("");

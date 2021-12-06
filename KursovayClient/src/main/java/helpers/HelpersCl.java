@@ -1,6 +1,7 @@
 package helpers;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.entity.Description;
 import com.example.entity.Employee;
 import com.example.entity.Salaries;
@@ -100,18 +101,22 @@ public class HelpersCl {
     public static void registration(String login, String password, String repeatPassword) throws IOException, ClassNotFoundException {
         InteractionsWithServer interactionsWithServer = new InteractionsWithServer();
         if (validateTextFields(login, password, repeatPassword)) {
-            if (password.equals(repeatPassword)) {
-                if (!login.equals("admin")) {
-                    if (interactionsWithServer.registerUser(login, password)) {
-                        notBug("Регистрация прошла успешно.");
+            if (login.matches(Constants.REGULAR_FOR_LOGIN) && password.matches(Constants.REGULAR_FOR_PASSWORD)) {
+                if (password.equals(repeatPassword)) {
+                    if (!login.equals("admin")) {
+                        if (interactionsWithServer.registerUser(login, password)) {
+                            notBug("Регистрация прошла успешно.");
+                        } else {
+                            bug("Пользователи с таким логином уже существуют.");
+                        }
                     } else {
-                        bug("Пользователи с таким логином уже существуют.");
+                        bug("Введённый вами логин использовать нельзя.");
                     }
                 } else {
-                    bug("Введённый вами логин использовать нельзя.");
+                    bug("Пароли не совпадают.");
                 }
             } else {
-                bug("Пароли не совпадают.");
+                HelpersCl.bug("Логин и пароль не должен превышать 20 символов.\nРазрешённые символы:\nбуквенно-цифровой символ и знаки подчёркивания");
             }
         } else {
             bug("Все поля должны быть заполнены!!!");

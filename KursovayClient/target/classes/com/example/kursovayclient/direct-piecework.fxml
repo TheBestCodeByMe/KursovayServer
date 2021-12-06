@@ -21,7 +21,7 @@
                         <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" style="-fx-background-color: rgb(180,180,180);" text="Id" />
                         <TableColumn fx:id="columnFam" editable="false" prefWidth="102.4000244140625" style="-fx-background-color: rgb(200,200,200);" text="Фамилия" />
                         <TableColumn fx:id="columnName" editable="false" prefWidth="103.20001220703125" style="-fx-background-color: rgb(200,200,200);" text="Имя" />
-                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="104.79997558593749" style="-fx-background-color: rgb(200,200,200);" text="Отчество" />
+                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="103.19998474121093" style="-fx-background-color: rgb(200,200,200);" text="Отчество" />
                     </columns>
                <effect>
                   <InnerShadow radius="4.75" width="0.0" />

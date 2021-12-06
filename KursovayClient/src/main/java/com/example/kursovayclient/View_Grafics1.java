@@ -23,14 +23,14 @@ public class View_Grafics1 extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Line Chart Sample");
+        stage.setTitle("График зарплат работников");
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Month");
+        xAxis.setLabel("Месяц");
         final LineChart<String, Number> lineChart =
                 new LineChart<String, Number>(xAxis, yAxis);
 
-        lineChart.setTitle("Monitoring");
+        lineChart.setTitle("График зарплат работников");
         lineChart.setLegendSide(Side.LEFT);
 
         InteractionsWithServer interactionsWithServer = new InteractionsWithServer();

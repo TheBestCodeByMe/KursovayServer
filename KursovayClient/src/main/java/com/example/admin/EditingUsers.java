@@ -88,6 +88,9 @@ public class EditingUsers {
     @FXML
     void clickEnter(ActionEvent event) throws IOException, ClassNotFoundException {
         HelpersCl.registration(txtLogin.getText(), txtPassword.getText(), txtPassword1.getText());
+        txtLogin.setText("");
+        txtPassword.setText("");
+        txtPassword1.setText("");
         clickUpdate(event);
     }
 

@@ -68,7 +68,7 @@ public class BlockUsers {
         update();
     }
 
-    public void update() throws IOException, ClassNotFoundException {
+    public void update() {
         usersObservableList.clear();
 
         ArrayList<Users> users = interactionsWithServer.showAllUsers();

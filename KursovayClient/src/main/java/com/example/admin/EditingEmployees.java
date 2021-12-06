@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.entity.Company;
 import com.example.entity.Description;
 import com.example.entity.Employee;
@@ -110,11 +111,13 @@ public class EditingEmployees {
         String patronymic = txtPatronymic.getText();
         String ficsSalary = txtDays.getText();
 
-        if (validateTextFields(name, lastname, patronymic)) {
-            if (ficsSalary.matches("([1-9][0-9]*)?(\\.)?([0-9]{0,2})?")) {
+        if (HelpersCl.validateTextFields(name, lastname, patronymic)) {
+            if (ficsSalary.matches(Constants.REGULAR_FOR_SALARY) &&
+                    name.matches(Constants.REGULAR_FOR_EMPLOYEE) &&
+                    lastname.matches(Constants.REGULAR_FOR_EMPLOYEE) &&
+                    patronymic.matches(Constants.REGULAR_FOR_EMPLOYEE)) {
                 String result = interactionsWithServer.addWorker(name, lastname, patronymic);
                 interactionsWithServer.addSalaries(name, lastname, patronymic);
-                ;
                 if (result.equals("true")) {
                     HelpersCl.notBug("Добавление работника прошло успешно.");
                     if (Integer.parseInt(ficsSalary) <= 0) {
@@ -166,9 +169,5 @@ public class EditingEmployees {
             HelpersCl.bug("Вы не выбрали работника для удаления!");
         }
         interactionsWithServer.updateDelCompany();
-    }
-
-    private static boolean validateTextFields(String name, String lastname, String patronymic) {
-        return !Objects.equals(name, "") && !Objects.equals(lastname, "") && !Objects.equals(patronymic, "");
     }
 }

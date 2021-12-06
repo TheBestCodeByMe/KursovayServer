@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.entity.property.EmployeeProperty;
 import com.example.entity.property.SalariesProperty;
 import com.example.kursovayclient.Commision_System;
@@ -125,7 +126,7 @@ public class CommissionSystemPercentageFixedSalary {
         if (HelpersCl.validateTextFields(profitability, month)) {
             if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
                 if (HelpersCl.validateTextFields(month)) {
-                    if (profitability.matches("([1-9][0-9]*)?(\\.)?([0-9]{0,2})?")) {
+                    if (profitability.matches(Constants.REGULAR_FOR_SALARY)) {
                         interactionsWithServer.calculateCommPercFixes(tableViewEmployee.getSelectionModel().getSelectedItem().getId(), HelpersCl.replacementMonth(month), Double.parseDouble(profitability));
                         txtMonth.setText("");
                         txtIncome.setText("");

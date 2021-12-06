@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.entity.property.DescriptionProperty;
 import com.example.entity.property.EmployeeProperty;
 import com.example.entity.property.SalariesProperty;
@@ -142,7 +143,7 @@ public class TimeBasedHourlySalary {
         if (HelpersCl.validateTextFields(hours, month)) {
             if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
                 if (HelpersCl.validateTextFields(month)) {
-                    if (hours.matches("([1-9][0-9]*)?")) {
+                    if (hours.matches(Constants.REGULAR_FOR_INTEGER)) {
                         int id = tableViewEmployee.getSelectionModel().getSelectedItem().getId();
                         interactionsWithServer.calculateTimebasedHourlySalary(id, Integer.parseInt(hours), HelpersCl.replacementMonth(month));
                         interactionsWithServer.changeHours(Integer.parseInt(hours), id);

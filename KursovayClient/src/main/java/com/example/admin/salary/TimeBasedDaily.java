@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.connection.InteractionsWithServer;
+import com.example.constants.Constants;
 import com.example.entity.property.DescriptionProperty;
 import com.example.entity.property.EmployeeProperty;
 import com.example.entity.property.SalariesProperty;
@@ -141,7 +142,7 @@ public class TimeBasedDaily {
         if (HelpersCl.validateTextFields(days, month)) {
             if (tableViewEmployee.getSelectionModel().getSelectedItem() != null) {
                 if (HelpersCl.validateTextFields(month)) {
-                    if (days.matches("([1-9][0-9]*)?")) {
+                    if (days.matches(Constants.REGULAR_FOR_INTEGER)) {
                         int id = tableViewEmployee.getSelectionModel().getSelectedItem().getId();
                         interactionsWithServer.calculateTimebasedDaily(id, Integer.parseInt(days), HelpersCl.replacementMonth(month));
                         interactionsWithServer.changeDays(days, id);

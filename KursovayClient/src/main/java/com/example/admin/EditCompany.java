@@ -76,12 +76,16 @@ public class EditCompany {
     }
 
     @FXML
-    void clickEditName(ActionEvent event) throws IOException {
+    void clickEditName(ActionEvent event) {
         if (!txtName.getText().equals("") && tableCompany.getSelectionModel().getSelectedItem() != null) {
-            interactionsWithServer.changeNameCompany(txtName.getText(), tableCompany.getSelectionModel().getSelectedItem().getId());
-            clickUpdate(event1);
+            if(txtName.getText().matches(Constants.REGULAR_FOR_COMPANY)) {
+                interactionsWithServer.changeNameCompany(txtName.getText(), tableCompany.getSelectionModel().getSelectedItem().getId());
+                clickUpdate(event1);
+            } else {
+                HelpersCl.bug("Название компании не должно превышать 20 символов.");
+            }
         } else {
-            HelpersCl.bug("Название компании должно быть заполнено!!! А также выбрана компания, у которой изменяется имя.");
+            HelpersCl.bug("Название компании должно быть заполнено. А также должно быть выбрано id компании.");
         }
     }
 
