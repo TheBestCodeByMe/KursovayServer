@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
@@ -12,8 +13,8 @@ public class Commission_System_Percentage extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("commision-system-percentage.fxml")));
-        stage.setTitle("Комиссионная система расчёта по проценту от выручки");
-        stage.setScene(new Scene(root, 991, 515));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root, 991, 536));
         stage.setResizable(false);
         stage.show();
     }

@@ -9,26 +9,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="536.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminuser.ViewCompany">
+<AnchorPane prefHeight="536.0" prefWidth="610.0" style="-fx-background-color: rgb(47, 79, 79);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminuser.ViewCompany">
    <children>
-      <Button fx:id="buttonBack" layoutX="31.0" layoutY="187.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" underline="true">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <TableView fx:id="tableCompany" layoutX="103.0" layoutY="72.0" prefHeight="256.0" prefWidth="393.0">
+      <TableView fx:id="tableCompany" layoutX="56.0" layoutY="235.0" prefHeight="128.0" prefWidth="498.0" style="-fx-background-color: rgb(220, 220, 220);">
         <columns>
-          <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="columnName" prefWidth="155.20001220703125" text="Company's name" />
-            <TableColumn fx:id="columnNumbEmpl" prefWidth="162.39996337890625" text="Number of employees" />
+          <TableColumn fx:id="columnId" prefWidth="75.0" style="-fx-background-color: rgb(180, 180, 180);" text="Id" />
+          <TableColumn fx:id="columnName" prefWidth="196.0" style="-fx-background-color: rgb(200, 200, 200);" text="Название компании" />
+            <TableColumn fx:id="columnNumbEmpl" prefWidth="226.39999389648438" style="-fx-background-color: rgb(200, 200, 200);" text="Количество работников&#10;            в компании" />
         </columns>
          <effect>
             <InnerShadow radius="4.75" width="0.0" />
          </effect>
       </TableView>
-      <Label layoutX="86.0" layoutY="24.0" text="Просмотр информации о компании">
-         <font>
-            <Font name="Book Antiqua" size="25.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="114.0" prefWidth="610.0" style="-fx-background-color: rgb(0, 128, 138);">
+         <children>
+            <Label layoutX="99.0" layoutY="5.0" text="Просмотр информации&#10;о компании" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Book Antiqua Bold" size="40.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonBack" layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="49.0" prefWidth="54.0" text="&lt;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -13,78 +13,79 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="536.0" prefWidth="610.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.EditingEmployees">
 <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="344.0" prefWidth="610.0" translateY="113.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="610.0" style="-fx-background-color: rgb(47, 79, 79);" translateY="113.0" VBox.vgrow="ALWAYS">
         <children>
-            <Text layoutX="153.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Редактирование работников" textAlignment="CENTER" wrappingWidth="372.0811767578125">
-               <font>
-                  <Font name="Book Antiqua" size="25.0" />
-               </font></Text>
-            <Button fx:id="buttonEnter" layoutX="127.0" layoutY="276.0" mnemonicParsing="false" onAction="#clickEnter" text="Добавить работника">
+            <Button fx:id="buttonEnter" layoutX="313.0" layoutY="108.0" mnemonicParsing="false" onAction="#clickEnter" prefHeight="72.0" prefWidth="134.0" text="Добавить работника">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <TextField fx:id="txtLastname" layoutX="22.0" layoutY="160.0" promptText="Введите фамилию">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField fx:id="txtName" layoutX="21.0" layoutY="202.0" promptText="Введите имя">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField fx:id="txtPatronymic" layoutX="21.0" layoutY="239.0" promptText="Введите отчество">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField fx:id="txtHours" layoutX="216.0" layoutY="202.0" prefHeight="26.0" prefWidth="246.0" promptText="Введите количество отработанных часов">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField fx:id="txtDays" layoutX="216.0" layoutY="160.0" prefHeight="26.0" prefWidth="246.0" promptText="Введите количество отработанных дней">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <TextField fx:id="txtProducts" layoutX="215.0" layoutY="238.0" prefHeight="26.0" prefWidth="246.0" promptText="Введите количество изготовленных изделий">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <Text layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Обязательные поля ввода:" textAlignment="CENTER" wrappingWidth="192.08126831054688">
-               <font>
-                  <Font name="Book Antiqua" size="15.0" />
-               </font></Text>
-            <Text layoutX="216.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Можете добавить информацию в 1 поле в зависимости от того, по какой системе для этого работника будет рассчитываться зарплата:" textAlignment="CENTER" wrappingWidth="246.39999999999998">
-               <font>
-                  <Font name="Book Antiqua" size="15.0" />
-               </font></Text>
-            <Button fx:id="buttonDelete" layoutX="482.0" layoutY="289.0" mnemonicParsing="false" onAction="#clickDelete" text="Удалить работника">
+            <Button fx:id="buttonDelete" layoutX="313.0" layoutY="226.0" mnemonicParsing="false" onAction="#clickDelete" prefHeight="26.0" prefWidth="134.0" text="Удалить работника">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="buttonUpdate" layoutX="354.0" layoutY="289.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить таблицу">
+            <Button fx:id="buttonUpdate" layoutX="477.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить таблицу">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="buttonBack" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" underline="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
+            <TableView fx:id="tableFIO" layoutX="5.0" layoutY="327.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="308.0" style="-fx-background-color: rgb(220, 220, 220);">
+              <columns>
+                <TableColumn fx:id="columnId" editable="false" minWidth="2.3999632596969604" prefWidth="32.800047278404236" style="-fx-background-color: rgb(180, 180, 180);" text="Id" />
+                <TableColumn fx:id="columnFam" editable="false" prefWidth="99.20001983642578" style="-fx-background-color: rgb(200, 200, 200);" text="Фамилия" />
+                  <TableColumn fx:id="columnName" editable="false" prefWidth="56.79998779296875" style="-fx-background-color: rgb(200, 200, 200);" text="Имя" />
+                  <TableColumn fx:id="columnOtchestvo" editable="false" prefWidth="118.39998779296877" style="-fx-background-color: rgb(200, 200, 200);" text="Отчество" />
+              </columns>
+               <effect>
+                  <InnerShadow radius="4.75" width="0.0" />
+               </effect>
+            </TableView>
+            <AnchorPane prefHeight="53.0" prefWidth="610.0" style="-fx-background-color: rgb(0, 128, 138);">
+               <children>
+                  <Text fill="WHITE" layoutX="119.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Редактирование работников" textAlignment="CENTER" wrappingWidth="372.0811767578125">
+                     <font>
+                        <Font name="Book Antiqua" size="25.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="buttonBack" layoutX="11.0" layoutY="13.0" mnemonicParsing="false" onAction="#clickBack" text="&lt;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="277.0" style="-fx-background-color: rgb(220,220,220); -fx-background-radius: 10;">
+               <children>
+                  <TextField fx:id="txtLastname" layoutX="70.0" layoutY="14.0" promptText="Введите фамилию">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="txtName" layoutX="70.0" layoutY="52.0" promptText="Введите имя">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="txtPatronymic" layoutX="70.0" layoutY="90.0" promptText="Введите отчество">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="txtDays" layoutX="11.0" layoutY="132.0" prefHeight="26.0" prefWidth="255.0" promptText="Введите фиксированный оклад работника">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <Text fill="#ff5050" layoutX="458.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для удаления:&#10;- выбери id работника;&#10;- нажмите &quot;удалить&quot;" />
+            <Text fill="#ff5050" layoutX="458.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для добавления:&#10;- введите данные;&#10;- нажмите &quot;добавить&quot;" />
         </children>
     </AnchorPane>
-      <TableView fx:id="tableFIO" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="308.0" translateX="-145.0" translateY="101.0">
+      <TableView fx:id="tableDescription" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="201.0" prefWidth="290.0" style="-fx-background-color: rgb(220, 220, 220);" translateX="153.0" translateY="-122.0">
         <columns>
-          <TableColumn fx:id="columnId" editable="false" minWidth="2.3999632596969604" prefWidth="32.800047278404236" text="Id" />
-          <TableColumn fx:id="columnFam" prefWidth="99.20001983642578" text="Фамилия" />
-            <TableColumn fx:id="columnName" prefWidth="56.79998779296875" text="Имя" />
-            <TableColumn fx:id="columnOtchestvo" prefWidth="117.59991455078125" text="Отчество" />
-        </columns>
-         <effect>
-            <InnerShadow radius="4.75" width="0.0" />
-         </effect>
-      </TableView>
-      <TableView fx:id="tableDescription" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="201.0" prefWidth="290.0" translateX="153.0" translateY="-122.0">
-        <columns>
-            <TableColumn fx:id="columnHours" prefWidth="69.60003662109375" text="Часы" />
-            <TableColumn fx:id="columnDays" prefWidth="69.60003662109375" text="Дни" />
-            <TableColumn fx:id="columnAmount" prefWidth="147.19998168945312" text="Количество изделий" />
+            <TableColumn fx:id="columnHours" editable="false" prefWidth="46.39996337890625" style="-fx-background-color: rgb(200, 200, 200);" text="Часы" />
+            <TableColumn fx:id="columnDays" editable="false" prefWidth="56.0" style="-fx-background-color: rgb(200, 200, 200);" text="Дни" />
+            <TableColumn fx:id="columnAmount" editable="false" prefWidth="103.19998168945312" style="-fx-background-color: rgb(200, 200, 200);" text="Изделия" />
+            <TableColumn fx:id="columnAmount1" editable="false" prefWidth="84.79998779296875" style="-fx-background-color: rgb(200, 200, 200);" text="Оклад" />
         </columns>
          <effect>
             <InnerShadow radius="4.75" width="0.0" />

@@ -11,28 +11,34 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="610.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.ViewUsers">
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="610.0" VBox.vgrow="ALWAYS">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="610.0" style="-fx-background-color: rgb(47, 79, 79);" VBox.vgrow="ALWAYS">
     <children>
-        <Text layoutX="147.0" layoutY="37.0" stroke="#3613e8f5" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" text="Просмотр пользователей" textAlignment="CENTER" wrappingWidth="336.8811950683594">
-            <font>
-               <Font name="Book Antiqua" size="25.0" />
-            </font></Text>
-        <Button fx:id="buttonBack" layoutX="27.0" layoutY="177.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="30.0" prefWidth="60.0" text="Назад" underline="true">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor></Button>
-        <TableView fx:id="tableUsers" blendMode="DARKEN" layoutX="103.0" layoutY="62.0" prefHeight="294.0" prefWidth="425.0">
+         <AnchorPane prefHeight="114.0" prefWidth="610.0" style="-fx-background-color: rgb(0, 128, 138);">
+            <children>
+              <Text fill="WHITE" layoutX="84.0" layoutY="70.0" text="Просмотр пользователей" textAlignment="CENTER" wrappingWidth="511.28118896484375">
+                  <font>
+                     <Font name="Book Antiqua Bold" size="40.0" />
+                  </font>
+               </Text>
+              <Button fx:id="buttonBack" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="48.0" prefWidth="60.0" text="&lt;">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+            </children>
+         </AnchorPane>
+        <TableView fx:id="tableUsers" layoutX="27.0" layoutY="138.0" prefHeight="383.0" prefWidth="556.0" style="-fx-background-color: rgb(220, 220, 220);">
             <columns>
-                <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
-                <TableColumn fx:id="columnLogin" editable="false" prefWidth="124.00006103515625" text="Логин" />
-                <TableColumn fx:id="columnPassword" editable="false" prefWidth="153.5999755859375" text="Пароль" />
-               <TableColumn fx:id="columnBlock" editable="false" prefWidth="123.99993896484375" text="Заблокированные" />
+                <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" style="-fx-background-color: rgb(180, 180, 180);" text="Id" />
+                <TableColumn fx:id="columnLogin" editable="false" prefWidth="190.39998626708984" style="-fx-background-color: rgb(200, 200, 200);" text="Логин" />
+                <TableColumn fx:id="columnPassword" editable="false" prefWidth="187.20001220703125" style="-fx-background-color: rgb(200, 200, 200);" text="Пароль" />
+               <TableColumn fx:id="columnBlock" editable="false" prefWidth="154.40005493164062" style="-fx-background-color: rgb(200,200,200);" text="Заблокированные" />
             </columns>
             <effect>
-               <InnerShadow blurType="GAUSSIAN" height="42.03" radius="10.0075" width="0.0" />
+               <InnerShadow blurType="GAUSSIAN" height="21.02" radius="4.755" width="0.0" />
             </effect>
         </TableView>
     </children>

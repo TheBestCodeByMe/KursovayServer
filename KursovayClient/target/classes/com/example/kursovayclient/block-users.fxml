@@ -10,36 +10,43 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="555.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.BlockUsers">
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="557.0" VBox.vgrow="ALWAYS">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="610.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.BlockUsers">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="610.0" style="-fx-background-color: rgb(47, 79, 79);" VBox.vgrow="ALWAYS">
         <children>
-            <Text layoutX="99.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Блокировка пользователей" textAlignment="CENTER" wrappingWidth="359.2811584472656">
-            <font>
-               <Font name="Book Antiqua" size="25.0" />
-            </font></Text>
-            <Button fx:id="buttonBlock" layoutX="151.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickBlock" text="Заблокировать">
+            <Button fx:id="buttonBlock" layoutX="69.0" layoutY="417.0" mnemonicParsing="false" onAction="#clickBlock" prefHeight="95.0" prefWidth="106.0" text="Заблокировать">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-            <Button fx:id="buttonBack" layoutX="333.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" underline="true">
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor></Button>
-            <TableView fx:id="tableUser" layoutX="14.0" layoutY="65.0" prefHeight="200.0" prefWidth="526.0">
+            <TableView fx:id="tableUser" layoutX="42.0" layoutY="98.0" prefHeight="305.0" prefWidth="526.0" style="-fx-background-color: rgb(220, 220, 220);">
                 <columns>
-                    <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
-                    <TableColumn fx:id="columnLogin" editable="false" prefWidth="140.0000762939453" text="Логин" />
-                    <TableColumn fx:id="columnPassword" editable="false" prefWidth="169.60003662109375" text="Пароль" />
-               <TableColumn fx:id="columnBlock" editable="false" prefWidth="190.39999999999998" text="Заблокированные" />
+                    <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" style="-fx-background-color: rgb(180, 180, 180);" text="Id" />
+                    <TableColumn fx:id="columnLogin" editable="false" prefWidth="140.0000762939453" style="-fx-background-color: rgb(200, 200, 200);" text="Логин" />
+                    <TableColumn fx:id="columnPassword" editable="false" prefWidth="169.60003662109375" style="-fx-background-color: rgb(200, 200, 200);" text="Пароль" />
+               <TableColumn fx:id="columnBlock" editable="false" prefWidth="190.39999999999998" style="-fx-background-color: rgb(200, 200, 200);" text="Заблокированные" />
                 </columns>
             <effect>
                <InnerShadow radius="4.75" width="0.0" />
             </effect>
             </TableView>
-            <Button fx:id="buttonUnblock" layoutX="307.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickUnblock" text="Разблокировать">
+            <Button fx:id="buttonUnblock" layoutX="209.0" layoutY="417.0" mnemonicParsing="false" onAction="#clickUnblock" prefHeight="95.0" prefWidth="106.0" text="Разблокировать">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
+         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="610.0" style="-fx-background-color: rgb(0, 128, 138);">
+            <children>
+                  <Text fill="WHITE" layoutX="125.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Блокировка пользователей" textAlignment="CENTER" wrappingWidth="359.2811584472656">
+                  <font>
+                     <Font name="Book Antiqua" size="25.0" />
+                  </font>
+               </Text>
+                  <Button fx:id="buttonBack" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="46.0" prefWidth="46.0" text="&lt;">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+            </children>
+         </AnchorPane>
+         <Text fill="#ff3636" layoutX="349.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для того, чтобы заблокировать&#10;(разблокировать) пользователя&#10;необходимо:&#10;- выбрать пользователя в таблице;&#10;- нажать на необходимую клавишу" />
         </children>
     </AnchorPane>
 </VBox>

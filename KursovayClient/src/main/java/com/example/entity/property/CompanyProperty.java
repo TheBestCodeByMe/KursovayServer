@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class CompanyProperty {
+public class  CompanyProperty {
     private IntegerProperty id;
     private StringProperty name;
     private IntegerProperty numberEmpl;

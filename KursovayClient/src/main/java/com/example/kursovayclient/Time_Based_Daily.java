@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
@@ -12,8 +13,8 @@ public class Time_Based_Daily extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("time-based-daily.fxml")));
-        stage.setTitle("Почасовая система расчёта по дневной ставке");
-        stage.setScene(new Scene(root, 1110, 386));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root, 1110, 536));
         stage.setResizable(false);
         stage.show();
     }
