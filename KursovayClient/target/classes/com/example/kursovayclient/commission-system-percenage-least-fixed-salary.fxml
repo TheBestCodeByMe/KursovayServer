@@ -5,70 +5,97 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="969.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.CommissionSystemPercenageLeastFixedSalary">
+<VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="969.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.admin.salary.CommissionSystemPercenageLeastFixedSalary">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="990.0" VBox.vgrow="ALWAYS">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="980.0" style="-fx-background-color: rgb(47, 79, 79);" VBox.vgrow="ALWAYS">
             <children>
-                <Text layoutX="278.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Комиссионная система расчёта по проценту от выручки, но не менее фиксированного оклада" textAlignment="CENTER" wrappingWidth="595.9999999999999">
-               <font>
-                  <Font name="Book Antiqua" size="25.0" />
-               </font></Text>
-                <Button fx:id="buttonPayment" layoutX="419.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickPayment" text="Рассчитать">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-                <Button fx:id="buttonBack" layoutX="760.0" layoutY="342.0" mnemonicParsing="false" onAction="#clickBack" text="Вернуться в меню администратора" underline="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-                <TableView fx:id="tableViewEmployee" layoutX="15.0" layoutY="70.0" prefHeight="200.0" prefWidth="360.0">
+                <TableView fx:id="tableViewEmployee" layoutX="14.0" layoutY="135.0" prefHeight="200.0" prefWidth="360.0" style="-fx-background-color: rgb(220, 220, 220);">
                     <columns>
-                        <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" text="Id" />
-                        <TableColumn fx:id="columnFam" editable="false" prefWidth="124.00001525878906" text="Фамилия" />
-                        <TableColumn fx:id="columnName" editable="false" prefWidth="93.60003662109375" text="Имя" />
-                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="114.4000244140625" text="Отчество" />
+                        <TableColumn fx:id="columnId" editable="false" prefWidth="23.999966621398926" style="-fx-background-color: rgb(180, 180, 180);" text="Id" />
+                        <TableColumn fx:id="columnFam" editable="false" prefWidth="124.00001525878906" style="-fx-background-color: rgb(200,200,200);" text="Фамилия" />
+                        <TableColumn fx:id="columnName" editable="false" prefWidth="93.60003662109375" style="-fx-background-color: rgb(200,200,200);" text="Имя" />
+                        <TableColumn fx:id="columnPatronymic" editable="false" prefWidth="114.4000244140625" style="-fx-background-color: rgb(200,200,200);" text="Отчество" />
                     </columns>
                <effect>
                   <InnerShadow radius="4.75" width="0.0" />
                </effect>
                 </TableView>
-                <Button fx:id="buttonUpdate" layoutX="576.0" layoutY="294.0" mnemonicParsing="false" onAction="#clickUpdate" text="Обновить">
+                <Button fx:id="buttonUpdate" layoutX="825.0" layoutY="411.0" mnemonicParsing="false" onAction="#clickUpdate" prefHeight="67.0" prefWidth="76.0" text="Обновить">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
-                <TextField fx:id="txtIncome" layoutX="31.0" layoutY="293.0" prefHeight="26.0" prefWidth="328.0" promptText="Введите доход, полученный от деятельности сотрудника">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-                <TextField fx:id="txtMonth" layoutX="742.0" layoutY="293.0" prefHeight="26.0" prefWidth="122.0" promptText="Введите месяц">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-                <TableView fx:id="tableViewMonth" layoutX="375.0" layoutY="70.0" prefHeight="200.0" prefWidth="596.0">
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+                <TableView fx:id="tableViewMonth" layoutX="374.0" layoutY="135.0" prefHeight="200.0" prefWidth="596.0" style="-fx-background-color: rgb(220, 220, 220);">
                     <columns>
-                        <TableColumn fx:id="columnJanuary" prefWidth="49.60003662109375" text="Январь" />
-                        <TableColumn fx:id="columnFebruary" prefWidth="61.5999755859375" text="Февраль" />
-                        <TableColumn fx:id="columnMarch" prefWidth="40.800018310546875" text="Март" />
-                        <TableColumn fx:id="columnApril" prefWidth="38.39996337890625" text="Апрель" />
-                        <TableColumn fx:id="columnMay" prefWidth="32.0" text="Май" />
-                        <TableColumn fx:id="columnJune" prefWidth="40.0" text="Июнь" />
-                        <TableColumn fx:id="columnJuly" prefWidth="42.39996337890625" text="Июль" />
-                        <TableColumn fx:id="columnAugust" prefWidth="54.39996337890625" text="Август" />
-                        <TableColumn fx:id="columnSeptember" prefWidth="62.39990234375" text="Сентябрь" />
-                        <TableColumn fx:id="columnOctober" prefWidth="59.19989013671875" text="Октябрь" />
-                        <TableColumn fx:id="columnNovember" prefWidth="55.19989013671875" text="Ноябрь" />
-                        <TableColumn fx:id="columnDecember" prefWidth="56.800048828125" text="Декабрь" />
+                        <TableColumn fx:id="columnJanuary" prefWidth="48.0" style="-fx-background-color: rgb(200,200,200);" text="Январь" />
+                        <TableColumn fx:id="columnFebruary" prefWidth="62.39996337890625" style="-fx-background-color: rgb(200,200,200);" text="Февраль" />
+                        <TableColumn fx:id="columnMarch" prefWidth="36.799957275390625" style="-fx-background-color: rgb(200,200,200);" text="Март" />
+                        <TableColumn fx:id="columnApril" prefWidth="54.4000244140625" style="-fx-background-color: rgb(200,200,200);" text="Апрель" />
+                        <TableColumn fx:id="columnMay" prefWidth="32.0" style="-fx-background-color: rgb(200,200,200);" text="Май" />
+                        <TableColumn fx:id="columnJune" prefWidth="40.79998779296875" style="-fx-background-color: rgb(200,200,200);" text="Июнь" />
+                        <TableColumn fx:id="columnJuly" prefWidth="40.0" style="-fx-background-color: rgb(200,200,200);" text="Июль" />
+                        <TableColumn fx:id="columnAugust" prefWidth="48.0" style="-fx-background-color: rgb(200,200,200);" text="Август" />
+                        <TableColumn fx:id="columnSeptember" prefWidth="62.39990234375" style="-fx-background-color: rgb(200,200,200);" text="Сентябрь" />
+                        <TableColumn fx:id="columnOctober" prefWidth="59.19989013671875" style="-fx-background-color: rgb(200,200,200);" text="Октябрь" />
+                        <TableColumn fx:id="columnNovember" prefWidth="55.19989013671875" style="-fx-background-color: rgb(200,200,200);" text="Ноябрь" />
+                        <TableColumn fx:id="columnDecember" prefWidth="56.800048828125" style="-fx-background-color: rgb(200,200,200);" text="Декабрь" />
                     </columns>
                <effect>
                   <InnerShadow radius="4.75" width="0.0" />
                </effect>
                 </TableView>
+            <AnchorPane layoutX="5.0" prefHeight="114.0" prefWidth="969.0" style="-fx-background-color: rgb(0, 128, 138);">
+               <children>
+                      <Text fill="WHITE" layoutX="97.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Комиссионная система расчёта по проценту от выручки, но не менее фиксированного оклада" textAlignment="CENTER" wrappingWidth="863.9999999999999">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="35.0" />
+                     </font>
+                  </Text>
+                      <Button fx:id="buttonBack" layoutX="27.0" layoutY="21.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="60.0" prefWidth="70.0" text="&lt;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="374.0" layoutY="350.0" minHeight="-Infinity" prefHeight="191.0" prefWidth="360.0" style="-fx-background-color: rgb(220, 220, 220); -fx-background-radius: 10;">
+               <children>
+                      <TextField fx:id="txtIncome" layoutX="16.0" layoutY="25.0" prefHeight="26.0" prefWidth="328.0" promptText="Введите доход, полученный от деятельности сотрудника">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                      <TextField fx:id="txtMonth" layoutX="117.0" layoutY="67.0" prefHeight="26.0" prefWidth="122.0" promptText="Введите месяц">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                      <Button fx:id="buttonPayment" layoutX="125.0" layoutY="117.0" mnemonicParsing="false" onAction="#clickPayment" prefHeight="60.0" prefWidth="105.0" style="-fx-background-color: rgb(0, 200, 208);" text="Рассчитать">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </AnchorPane>
+            <Text fill="#f20f0f" layoutX="32.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для расчёта заработной платы:&#10;- введите доход, полученный от деятельности сотрудника;&#10;- введите месяц;&#10;- выберите id сотрудника;&#10;- нажмите &quot;рассчитать&quot;" />
             </children>
         </AnchorPane>
     </children>
