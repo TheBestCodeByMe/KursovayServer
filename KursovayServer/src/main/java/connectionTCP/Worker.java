@@ -1,12 +1,12 @@
 package connectionTCP;
 
 import calculation_salaries.CalculationSalaries;
+import com.example.entity.*;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import constants.Constants;
 import database.SQLFactory;
-import entity.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -84,12 +84,10 @@ public class Worker implements Runnable {
 
     private void authorization() {
         System.out.println("Авторизация");
-        String[] messageFromClient;
         try {
-            messageFromClient = sois.readObject().toString().split(" ");
-            Users users = new Users(messageFromClient[0], messageFromClient[1]);
+            Users user = (Users) sois.readObject();
 
-            if (sqlFactory.getUsers().checkUser(users)) {
+            if (sqlFactory.getUsers().checkUser(user)) {
                 soos.writeObject("true");
             } else {
                 soos.writeObject("У вас нет прав доступа. Введите другие данные.");
@@ -102,8 +100,7 @@ public class Worker implements Runnable {
     private void registration() throws IOException, ClassNotFoundException {
         System.out.println("Регистрация");
         try {
-            messageFromClient = sois.readObject().toString().split(" ");
-            Users users = new Users(messageFromClient[0], messageFromClient[1]);
+            Users users = (Users) sois.readObject();
 
             if (sqlFactory.getUsers().selectLoginUsers(users.getLogin())) {
                 soos.writeObject("true");
@@ -130,9 +127,7 @@ public class Worker implements Runnable {
 
     private void viewUsers() throws IOException {
         System.out.println("Просмотр пользователей");
-        //ArrayList<Users> users = sqlFactory.getUsers().selectAllUsers();
         ArrayList<String[]> users = sqlFactory.getUsers().selectAllUsersV();
-        //soos.writeObject(users.size());
         soos.writeObject(users);
     }
 
@@ -148,16 +143,14 @@ public class Worker implements Runnable {
 
     private void editPassword() throws IOException, ClassNotFoundException {
         System.out.println("Изменение пароля пользователя");
-        messageFromClient = sois.readObject().toString().split(" ");
-        Users user = new Users(messageFromClient[0], messageFromClient[1]);
-        sqlFactory.getUsers().editPassword(user, messageFromClient[2]);
+        Users user = (Users) sois.readObject();
+        sqlFactory.getUsers().editPassword(user);
     }
 
     private void editLogin() throws IOException, ClassNotFoundException {
         System.out.println("Изменение логина пользователя");
-        messageFromClient = sois.readObject().toString().split(" ");
-        Users user = new Users(messageFromClient[0], messageFromClient[1]);
-        sqlFactory.getUsers().editLogin(user, messageFromClient[2]);
+        Users user = (Users) sois.readObject();
+        sqlFactory.getUsers().editLogin(user);
     }
 
     private void viewCompany() throws IOException {
@@ -223,11 +216,11 @@ public class Worker implements Runnable {
         System.out.println("Добавление работника");
 
         try {
-            messageFromClient = sois.readObject().toString().split(" ");
-            Employee employee = new Employee(messageFromClient[0], messageFromClient[1], messageFromClient[2], sqlFactory.getCompany().selectIdCompany());
+            Employee employee = (Employee) sois.readObject();
+
             if (sqlFactory.getCompany().selectAllCompany().size() != 0) {
                 if (sqlFactory.getEmployee().isFind(employee)) {
-                    sqlFactory.getEmployee().insert(employee);
+                    sqlFactory.getEmployee().insert(employee, sqlFactory.getCompany().selectIdCompany());
                     soos.writeObject("true");
                 } else {
                     soos.writeObject("Работник с таким ФИО уже существует.");
@@ -285,11 +278,11 @@ public class Worker implements Runnable {
         System.out.println("Добавление описания");
 
         try {
-            messageFromClient = sois.readObject().toString().split(" ");
-            Employee employee = new Employee(messageFromClient[4], messageFromClient[5], messageFromClient[6]);
-            Description description = new Description(Integer.parseInt(messageFromClient[0]), Integer.parseInt(messageFromClient[1]), Integer.parseInt(messageFromClient[2]), Double.parseDouble(messageFromClient[3]), sqlFactory.getEmployee().selectIdEmpl(employee));
+            Employee employee = (Employee) sois.readObject();
+            Description description = (Description) sois.readObject();
+
             if (sqlFactory.getDescription().isFind(description)) {
-                sqlFactory.getDescription().insert(description);
+                sqlFactory.getDescription().insert(description, sqlFactory.getEmployee().selectIdEmpl(employee));
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

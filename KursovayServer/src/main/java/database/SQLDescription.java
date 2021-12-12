@@ -1,6 +1,6 @@
 package database;
 
-import entity.Description;
+import com.example.entity.Description;
 
 import java.util.ArrayList;
 
@@ -72,9 +72,9 @@ public class SQLDescription implements IDescription {
     }
 
     @Override
-    public void insert(Description object) {
+    public void insert(Description object, int idemployee) {
         String str = "INSERT INTO description(employeeid, hours, days, numbOfProd, ficssalary) VALUES('" +
-                object.getEmployeeid() + "', '" + object.getHours() + "', '" +
+                idemployee + "', '" + object.getHours() + "', '" +
                 object.getDays() + "', '" +
                 object.getNumbOfProd() + "', '" +
                 object.getFicsSalary() +"')";

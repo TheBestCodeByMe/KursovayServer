@@ -1,11 +1,8 @@
-package helpers;
+package com.example.helpers;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.constants.Constants;
-import com.example.entity.Description;
-import com.example.entity.Employee;
-import com.example.entity.Salaries;
-import com.example.entity.Users;
+import com.example.entity.*;
 import com.example.entity.property.DescriptionProperty;
 import com.example.entity.property.EmployeeProperty;
 import com.example.entity.property.SalariesProperty;

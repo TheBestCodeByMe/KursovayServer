@@ -1,6 +1,6 @@
 package database;
 
-import entity.Employee;
+import com.example.entity.Employee;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class SQLEmployee implements IEmployee {
     private static SQLEmployee instance;
     private final ConnectionDatabase dbConnection;
 
-    private SQLEmployee() {
+    SQLEmployee() {
         dbConnection = ConnectionDatabase.getInstance();
     }
 
@@ -71,9 +71,9 @@ public class SQLEmployee implements IEmployee {
     */
 
     @Override
-    public void insert(Employee object) {
+    public void insert(Employee object, int id) {
         String str = "INSERT INTO employes(companyid, name, lastname, patronymic) VALUES('" +
-                object.getCompanyId() + "', '" + object.getName() + "', '" +
+                id + "', '" + object.getName() + "', '" +
                 object.getLastName() + "', '" +
                 object.getPatronymic() + "')";
         dbConnection.execute(str);

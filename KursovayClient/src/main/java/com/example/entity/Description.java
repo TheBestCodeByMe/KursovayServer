@@ -23,4 +23,25 @@ public class Description implements Serializable {
         this.ficsSalary = ficsSalary;
         this.employeeid = employeeid;
     }
+
+    public Description(int hours, int days, int numbOfPro) {
+        this.hours = hours;
+        this.days = days;
+        this.numbOfProd = numbOfProd;
+    }
+
+    public Description(int hours, int days, int numbOfProd, double ficsSalary, int employeeid) {
+        this.employeeid = employeeid;
+        this.hours = hours;
+        this.days = days;
+        this.numbOfProd = numbOfProd;
+        this.ficsSalary = ficsSalary;
+    }
+
+    public Description(int hours, int days, int numbOfProd, double ficsSalary) {
+        this.hours = hours;
+        this.days = days;
+        this.numbOfProd = numbOfProd;
+        this.ficsSalary = ficsSalary;
+    }
 }

@@ -3,7 +3,7 @@ package com.example.adminuser;
 import java.io.IOException;
 
 import com.example.connection.InteractionsWithServer;
-import helpers.HelpersCl;
+import com.example.helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

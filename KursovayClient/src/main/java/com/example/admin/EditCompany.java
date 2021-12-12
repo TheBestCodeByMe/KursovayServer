@@ -4,7 +4,7 @@ import com.example.connection.InteractionsWithServer;
 import com.example.constants.Constants;
 import com.example.entity.Company;
 import com.example.entity.property.CompanyProperty;
-import helpers.HelpersCl;
+import com.example.helpers.HelpersCl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

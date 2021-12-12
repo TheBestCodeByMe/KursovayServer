@@ -6,7 +6,7 @@ import com.example.connection.InteractionsWithServer;
 import com.example.entity.Employee;
 import com.example.entity.property.DescriptionProperty;
 import com.example.entity.property.EmployeeProperty;
-import helpers.HelpersCl;
+import com.example.helpers.HelpersCl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

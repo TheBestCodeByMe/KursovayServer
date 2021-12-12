@@ -1,7 +1,7 @@
 package database;
 
 import constants.Constants;
-import entity.Users;
+import com.example.entity.Users;
 
 import java.util.ArrayList;
 
@@ -68,17 +68,17 @@ public class SQLUsers implements IUsers {
     }
 
     @Override
-    public void editLogin(Users object, String newLogin) {
-        if(selectLoginUsers(newLogin)) {
-            String str = "UPDATE users SET login = '" + newLogin +
+    public void editLogin(Users object) {
+        if(selectLoginUsers(object.getNewLogin())) {
+            String str = "UPDATE users SET login = '" + object.getNewLogin() +
                     "' WHERE iduser = '" + selectIdUser(object) + "'";
             dbConnection.execute(str);
         }
     }
 
     @Override
-    public void editPassword(Users object, String newPassword) {
-        String str = "UPDATE users SET password = '" + newPassword +
+    public void editPassword(Users object) {
+        String str = "UPDATE users SET password = '" + object.getNewLogin() +
                 "' WHERE iduser = '" + selectIdUser(object) + "'";
         dbConnection.execute(str);
     }

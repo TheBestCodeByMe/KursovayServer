@@ -2,7 +2,7 @@ package com.example.admin;
 
 import com.example.constants.Constants;
 import com.example.kursovayclient.*;
-import helpers.HelpersCl;
+import com.example.helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

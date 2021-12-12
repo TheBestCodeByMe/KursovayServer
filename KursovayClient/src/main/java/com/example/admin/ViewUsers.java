@@ -2,7 +2,7 @@ package com.example.admin;
 
 import com.example.connection.InteractionsWithServer;
 import com.example.entity.property.UsersProperty;
-import helpers.HelpersCl;
+import com.example.helpers.HelpersCl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

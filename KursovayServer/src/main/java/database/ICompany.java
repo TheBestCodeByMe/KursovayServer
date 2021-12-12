@@ -1,6 +1,6 @@
 package database;
 
-import entity.Company;
+import com.example.entity.Company;
 
 import java.util.ArrayList;
 

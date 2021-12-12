@@ -1,7 +1,7 @@
 package com.example.admin.salary;
 
 import com.example.kursovayclient.*;
-import helpers.HelpersCl;
+import com.example.helpers.HelpersCl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,6 +1,6 @@
 package database;
 
-import entity.Employee;
+import com.example.entity.Employee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

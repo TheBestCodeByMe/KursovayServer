@@ -1,6 +1,6 @@
 package database;
 
-import entity.Users;
+import com.example.entity.Users;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public interface IUsers {
     void delete(int id);
     void block(int id);
     void unblock(int id);
-    void editLogin(Users object, String newLogin);
-    void editPassword(Users object, String newPassword);
+    void editLogin(Users object);
     int selectIdUser(Users object);
+    void editPassword(Users user);
 }

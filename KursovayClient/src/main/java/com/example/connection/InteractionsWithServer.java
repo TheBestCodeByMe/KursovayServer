@@ -2,7 +2,7 @@ package com.example.connection;
 
 import com.example.constants.Constants;
 import com.example.entity.*;
-import helpers.HelpersCl;
+import com.example.helpers.HelpersCl;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
@@ -31,7 +31,15 @@ public class InteractionsWithServer extends Constants {
         try {
             object = sois.readObject();
         } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return object;
+    }
 
+    public Object writeObject(Object object) {
+        try {
+            soos.writeObject(object);
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return object;
@@ -134,12 +142,14 @@ public class InteractionsWithServer extends Constants {
 
     public void editUserLogin(String login, String newLogin, String password) {
         sendMSG("editUserLogin");
-        sendMSG(login + " " + password + " " + newLogin);
+        Users user = new Users(login, password, newLogin);
+        writeObject(user);
     }
 
     public void editUserPassword(String login, String newPassword, String password) {
         sendMSG("editUserPassword");
-        sendMSG(login + " " + password + " " + newPassword);
+        Users user = new Users(login, password, newPassword);
+        writeObject(user);
     }
 
     public void exit() throws IOException {
@@ -170,7 +180,8 @@ public class InteractionsWithServer extends Constants {
 
     public boolean checkAccount(String login, String password) throws IOException, ClassNotFoundException {
         sendMSG("authorization");
-        sendMSG(login + " " + password);
+        Users user = new Users(login, password);
+        writeObject(user);
         return sois.readObject().toString().equals("true");
     }
 
@@ -196,19 +207,23 @@ public class InteractionsWithServer extends Constants {
 
     public String addWorker(String name, String firstNameTextFieldText, String patronymicTextFieldText) throws IOException, ClassNotFoundException {
         sendMSG("addEmpl");
-        sendMSG(name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
+        Employee employee = new Employee(name, firstNameTextFieldText, patronymicTextFieldText);
+        writeObject(employee);
         return sois.readObject().toString();
     }
 
-    public void addDescription(String days, String hours, String ficsSalary, String products, String name, String firstNameTextFieldText, String patronymicTextFieldText) {
+    public void addDescription(String days, String hours, String ficsSalary, String products, String name, String lastname, String patronymic) {
         sendMSG("addDescription");
-        sendMSG(hours + " " + days + " " + products + " " + ficsSalary + " " + name + " " + firstNameTextFieldText + " " + patronymicTextFieldText);
+        Description description = new Description(Integer.parseInt(hours), Integer.parseInt(days), Integer.parseInt(products), Double.parseDouble(ficsSalary));
+        Employee employee = new Employee(name, lastname, patronymic);
+        writeObject(employee);
+        writeObject(description);
     }
 
     public boolean registerUser(String login, String password) throws IOException, ClassNotFoundException {
         sendMSG("registerUser");
-        sendMSG(login + " " + password);
-
+        Users user = new Users(login, password);
+        writeObject(user);
         return sois.readObject().toString().equals("true");
     }
 
