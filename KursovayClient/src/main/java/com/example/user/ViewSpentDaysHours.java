@@ -1,5 +1,6 @@
 package com.example.user;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.connection.InteractionsWithServer;
@@ -53,7 +54,7 @@ public class ViewSpentDaysHours {
     private final ObservableList<DescriptionProperty> descriptionPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnPatronymic);

@@ -1,5 +1,6 @@
 package com.example.adminuser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.connection.InteractionsWithServer;
@@ -36,7 +37,7 @@ public class ViewCompany {
     private final ObservableList<CompanyProperty> companyPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());

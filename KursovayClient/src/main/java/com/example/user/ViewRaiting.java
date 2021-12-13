@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
+
 public class ViewRaiting {
 
     @FXML
@@ -76,7 +78,7 @@ public class ViewRaiting {
     private final ObservableList<SalariesProperty> salariesPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnPatronymic);

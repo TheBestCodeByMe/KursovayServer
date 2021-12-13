@@ -16,13 +16,14 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class View_Grafics1 extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException, ClassNotFoundException {
         stage.setTitle("График зарплат работников");
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();

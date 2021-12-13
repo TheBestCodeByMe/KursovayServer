@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
+
 public class ViewUsers {
 
     @FXML
@@ -35,7 +37,7 @@ public class ViewUsers {
     private final ObservableList<UsersProperty> usersObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());

@@ -1,5 +1,6 @@
 package com.example.admin;
 
+import java.io.IOException;
 import java.util.*;
 
 import com.example.connection.InteractionsWithServer;
@@ -38,7 +39,7 @@ public class BlockUsers {
     private final ObservableList<UsersProperty> usersObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
@@ -49,7 +50,7 @@ public class BlockUsers {
         update();
     }
 
-    public void update() {
+    public void update() throws IOException, ClassNotFoundException {
         usersObservableList.clear();
 
         ArrayList<Users> users = interactionsWithServer.showAllUsers();
@@ -67,7 +68,7 @@ public class BlockUsers {
     }
 
     @FXML
-    void clickBlock(ActionEvent event) {
+    void clickBlock(ActionEvent event) throws IOException, ClassNotFoundException {
         int id = tableUser.getSelectionModel().getSelectedItem().getId();
 
         if (tableUser.getSelectionModel().getSelectedItem() != null) {
@@ -80,7 +81,7 @@ public class BlockUsers {
     }
 
     @FXML
-    void clickUnblock(ActionEvent event) {
+    void clickUnblock(ActionEvent event) throws IOException, ClassNotFoundException {
         int id = tableUser.getSelectionModel().getSelectedItem().getId();
 
         if (tableUser.getSelectionModel().getSelectedItem() != null) {

@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditCompany {
@@ -38,7 +39,7 @@ public class EditCompany {
     private final ObservableList<CompanyProperty> companyPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
@@ -54,7 +55,7 @@ public class EditCompany {
     }
 
     @FXML
-    void clickEditName(ActionEvent event) {
+    void clickEditName(ActionEvent event) throws IOException, ClassNotFoundException {
         if (!txtName.getText().equals("") && tableCompany.getSelectionModel().getSelectedItem() != null) {
             if(txtName.getText().matches(Constants.REGULAR_FOR_COMPANY)) {
                 interactionsWithServer.changeNameCompany(txtName.getText(), tableCompany.getSelectionModel().getSelectedItem().getId());
@@ -68,7 +69,7 @@ public class EditCompany {
     }
 
     @FXML
-    void clickUpdate(ActionEvent event) {
+    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
         companyPropertyObservableList.clear();
 
         ArrayList<Company> companies = interactionsWithServer.showAllCompany();
@@ -81,7 +82,7 @@ public class EditCompany {
     }
 
     @FXML
-    void clickAdd(ActionEvent event) {
+    void clickAdd(ActionEvent event) throws IOException, ClassNotFoundException {
         if (!txtName.getText().equals("")) {
             interactionsWithServer.addCompany(txtName.getText(), 0);
             clickUpdate(event1);
@@ -91,7 +92,7 @@ public class EditCompany {
     }
 
     @FXML
-    void clickDelete(ActionEvent event) {
+    void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
         if (tableCompany.getSelectionModel().getSelectedItem() != null) {
             int id = tableCompany.getSelectionModel().getSelectedItem().getId();
             interactionsWithServer.deleteCompany(id);

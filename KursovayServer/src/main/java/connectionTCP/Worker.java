@@ -128,7 +128,13 @@ public class Worker implements Runnable {
     private void viewUsers() throws IOException {
         System.out.println("Просмотр пользователей");
         ArrayList<String[]> users = sqlFactory.getUsers().selectAllUsersV();
-        soos.writeObject(users);
+        ArrayList<Users> listUsers = new ArrayList<>();
+
+        for (String[] items : users) {
+            Users user = new Users(Integer.parseInt(items[0]), items[1], items[2], items[3]);
+            listUsers.add(user);
+        }
+        soos.writeObject(listUsers);
     }
 
     private void block() throws IOException, ClassNotFoundException {
@@ -155,15 +161,20 @@ public class Worker implements Runnable {
 
     private void viewCompany() throws IOException {
         System.out.println("Просмотр компании");
-        ArrayList<String[]> company = sqlFactory.getCompany().selectAllCompany();
-        soos.writeObject(company);
+        ArrayList<String[]> companies = sqlFactory.getCompany().selectAllCompany();
+        ArrayList<Company> listCompany = new ArrayList<>();
+
+        for (String[] items : companies) {
+            Company company = new Company(Integer.parseInt(items[0]), items[1], Integer.parseInt(items[2]));
+            listCompany.add(company);
+        }
+        soos.writeObject(listCompany);
     }
 
     private void addCompany() {
         System.out.println("Добавление компании");
         try {
-            messageFromClient = sois.readObject().toString().split(" ");
-            Company company = new Company(messageFromClient[0], Integer.parseInt(messageFromClient[1]));
+            Company company = (Company) sois.readObject();
             sqlFactory.getCompany().insert(company);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -193,9 +204,7 @@ public class Worker implements Runnable {
     private void updateNameCompany() throws IOException, ClassNotFoundException {
         System.out.println("Обновление названия компании");
         try {
-            messageFromClient = sois.readObject().toString().split(" ");
-            Company company = new Company(Integer.parseInt(messageFromClient[1]), messageFromClient[0]);
-
+            Company company = (Company) sois.readObject();
             sqlFactory.getCompany().updateNameCompany(company);
         } catch (IOException e) {
             e.printStackTrace();
@@ -241,7 +250,13 @@ public class Worker implements Runnable {
     private void showEmployee() throws IOException {
         System.out.println("Просмотр ФИО работников");
         ArrayList<String[]> fioEmployee = sqlFactory.getEmployee().selectAllEmployee();
-        soos.writeObject(fioEmployee);
+        ArrayList<Employee> listWorkers = new ArrayList<>();
+
+        for (String[] items : fioEmployee) {
+            Employee employee = new Employee(Integer.parseInt(items[0]), items[2], items[3], items[4]);
+            listWorkers.add(employee);
+        }
+        soos.writeObject(listWorkers);
     }
 
     private void updateNumbProduct() {
@@ -292,15 +307,20 @@ public class Worker implements Runnable {
     private void viewDescription() throws IOException {
         System.out.println("Просмотр описания работников");
         ArrayList<String[]> descEmployee = sqlFactory.getDescription().selectAllDescription();
-        soos.writeObject(descEmployee);
+        ArrayList<Description> listDesc = new ArrayList<>();
+
+        for (String[] items : descEmployee) {
+            Description description = new Description(Integer.parseInt(items[0]), Integer.parseInt(items[2]), Integer.parseInt(items[3]), Integer.parseInt(items[4]), Double.parseDouble(items[5]), Integer.parseInt(items[1]));
+            listDesc.add(description);
+        }
+        soos.writeObject(listDesc);
     }
 
     private void addNullSalaries() {
         System.out.println("Добавление зарплат");
 
         try {
-            messageFromClient = sois.readObject().toString().split(" ");
-            Employee employee = new Employee(messageFromClient[0], messageFromClient[1], messageFromClient[2]);
+            Employee employee = (Employee) sois.readObject();
             Salaries salaries = new Salaries(sqlFactory.getEmployee().selectIdEmpl(employee), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             if (sqlFactory.getSalaries().isFind(salaries)) {
                 sqlFactory.getSalaries().insert(salaries);
@@ -413,7 +433,14 @@ public class Worker implements Runnable {
     private void viewSalaries() throws IOException {
         System.out.println("Просмотр зарплат работников");
         ArrayList<String[]> salaries = sqlFactory.getSalaries().selectAllSalaries();
-        soos.writeObject(salaries);
+        ArrayList<Salaries> listSalary = new ArrayList<>();
+
+        for (String[] items : salaries) {
+            Salaries salary = new Salaries(Integer.parseInt(items[0]), Integer.parseInt(items[1]), Double.parseDouble(items[2]), Double.parseDouble(items[3]), Double.parseDouble(items[4]), Double.parseDouble(items[5]), Double.parseDouble(items[6]), Double.parseDouble(items[7]), Double.parseDouble(items[8]), Double.parseDouble(items[9]), Double.parseDouble(items[10]), Double.parseDouble(items[11]), Double.parseDouble(items[12]), Double.parseDouble(items[13]));
+            listSalary.add(salary);
+        }
+
+        soos.writeObject(listSalary);
     }
 
     private void saveFile() {

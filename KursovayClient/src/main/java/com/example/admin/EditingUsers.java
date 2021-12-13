@@ -45,7 +45,7 @@ public class EditingUsers {
     private final ObservableList<UsersProperty> usersObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         columnId.setCellValueFactory(cellValue -> cellValue.getValue().idProperty().asObject());
@@ -62,7 +62,7 @@ public class EditingUsers {
     }
 
     @FXML
-    void clickUpdate(ActionEvent event) {
+    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
         HelpersCl.updateUsers(usersObservableList, interactionsWithServer, tableUsers);
     }
 
@@ -76,7 +76,7 @@ public class EditingUsers {
     }
 
     @FXML
-    void clickDelete(ActionEvent event) {
+    void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
         if (tableUsers.getSelectionModel().getSelectedItem() != null) {
             int id = tableUsers.getSelectionModel().getSelectedItem().getId();
             interactionsWithServer.deleteUsers(id);

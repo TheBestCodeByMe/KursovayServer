@@ -21,13 +21,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class View_Grafics extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException, ClassNotFoundException {
         Scene scene = new Scene(new Group());
         stage.setTitle("Расходы компании на зарплаты сотрудникам по месяцам");
         stage.setWidth(610);

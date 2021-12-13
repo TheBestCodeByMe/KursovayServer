@@ -54,53 +54,26 @@ public class InteractionsWithServer extends Constants {
         }
     }
 
-    public ArrayList<Employee> showAllEmployes() {
+    public ArrayList<Employee> showAllEmployes() throws IOException, ClassNotFoundException {
         sendMSG("showEmpl");
-        result = (ArrayList<String[]>) readObject();
-
-        ArrayList<Employee> listWorkers = new ArrayList<>();
-
-        for (String[] items : result) {
-            Employee employee = new Employee(Integer.parseInt(items[0]), items[2], items[3], items[4]);
-            listWorkers.add(employee);
-        }
-
-        return listWorkers;
+        return (ArrayList<Employee>) sois.readObject();
     }
 
-    public ArrayList<Users> showAllUsers() {
+    public ArrayList<Users> showAllUsers() throws IOException, ClassNotFoundException {
         sendMSG("showUsers");
-
-        result = (ArrayList<String[]>) readObject();
-
-        ArrayList<Users> listUsers = new ArrayList<>();
-
-        for (String[] items : result) {
-            Users user = new Users(Integer.parseInt(items[0]), items[1], items[2], items[3]);
-            listUsers.add(user);
-        }
-
-        return listUsers;
+        return (ArrayList<Users>) sois.readObject();
     }
 
-    public ArrayList<Company> showAllCompany() {
+    public ArrayList<Company> showAllCompany() throws IOException, ClassNotFoundException {
         sendMSG("showCompany");
-
-        result = (ArrayList<String[]>) readObject();
-        ArrayList<Company> listCompany = new ArrayList<>();
-
-        for (String[] items : result) {
-            Company company = new Company(Integer.parseInt(items[0]), items[1], Integer.parseInt(items[2]));
-            listCompany.add(company);
-        }
-
-        return listCompany;
+        return (ArrayList<Company>) sois.readObject();
     }
 
-    public void addCompany(String name, int numberEmpl) {
+    public void addCompany(String name, int numberEmpl) throws IOException, ClassNotFoundException {
         if (showAllCompany().size() == 0) {
             sendMSG("addCompany");
-            sendMSG(name + " " + numberEmpl);
+            Company company = new Company(name, numberEmpl);
+            writeObject(company);
         } else {
             HelpersCl.bug("Компания уже существует. Удалите предыдущую для создания новой.");
         }
@@ -108,7 +81,8 @@ public class InteractionsWithServer extends Constants {
 
     public void changeNameCompany(String name, int id) {
         sendMSG("changeNameCompany");
-        sendMSG(name + " " + id);
+        Company company = new Company(id, name);
+        writeObject(company);
     }
 
     public void changeHours(int hours, int id) {
@@ -165,17 +139,9 @@ public class InteractionsWithServer extends Constants {
         System.exit(0);
     }
 
-    public ArrayList<Description> showAllDescription() {
+    public ArrayList<Description> showAllDescription() throws IOException, ClassNotFoundException {
         sendMSG("showDescription");
-
-        result = (ArrayList<String[]>) readObject();
-        ArrayList<Description> listDesc = new ArrayList<>();
-
-        for (String[] items : result) {
-            Description description = new Description(Integer.parseInt(items[0]), Integer.parseInt(items[2]), Integer.parseInt(items[3]), Integer.parseInt(items[4]), Double.parseDouble(items[5]), Integer.parseInt(items[1]));
-            listDesc.add(description);
-        }
-        return listDesc;
+        return (ArrayList<Description>) sois.readObject();
     }
 
     public boolean checkAccount(String login, String password) throws IOException, ClassNotFoundException {
@@ -229,19 +195,13 @@ public class InteractionsWithServer extends Constants {
 
     public void addSalaries(String name, String lastname, String patronymic) {
         sendMSG("addNullSalaries");
-        sendMSG(name + " " + lastname + " " + patronymic);
+        Employee employee = new Employee(name, lastname, patronymic);
+        writeObject(employee);
     }
 
-    public ArrayList<Salaries> viewSalaries() {
+    public ArrayList<Salaries> viewSalaries() throws IOException, ClassNotFoundException {
         sendMSG("viewSalaries");
-        result = (ArrayList<String[]>) readObject();
-        ArrayList<Salaries> listSalary = new ArrayList<>();
-
-        for (String[] items : result) {
-            Salaries salary = new Salaries(Integer.parseInt(items[0]), Integer.parseInt(items[1]), Double.parseDouble(items[2]), Double.parseDouble(items[3]), Double.parseDouble(items[4]), Double.parseDouble(items[5]), Double.parseDouble(items[6]), Double.parseDouble(items[7]), Double.parseDouble(items[8]), Double.parseDouble(items[9]), Double.parseDouble(items[10]), Double.parseDouble(items[11]), Double.parseDouble(items[12]), Double.parseDouble(items[13]));
-            listSalary.add(salary);
-        }
-        return listSalary;
+        return (ArrayList<Salaries>) sois.readObject();
     }
 
     public void calculateCommPerc(int idSelectedEmployee, String month, double profitability) {

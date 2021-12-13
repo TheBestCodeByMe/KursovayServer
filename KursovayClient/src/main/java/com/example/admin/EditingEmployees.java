@@ -68,7 +68,7 @@ public class EditingEmployees {
     private final ObservableList<DescriptionProperty> descriptionPropertyObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         interactionsWithServer = new InteractionsWithServer();
 
         HelpersCl.viewTableEmployee(columnId, columnName, columnFam, columnOtchestvo);
@@ -123,7 +123,7 @@ public class EditingEmployees {
     }
 
     @FXML
-    void clickUpdate(ActionEvent event) {
+    void clickUpdate(ActionEvent event) throws IOException, ClassNotFoundException {
         HelpersCl.updateDescriptions(descriptionPropertyObservableList, interactionsWithServer, tableDescription);
 
         employeePropertyObservableList.clear();
@@ -138,7 +138,7 @@ public class EditingEmployees {
     }
 
     @FXML
-    void clickDelete(ActionEvent event) {
+    void clickDelete(ActionEvent event) throws IOException, ClassNotFoundException {
         if (tableFIO.getSelectionModel().getSelectedItem() != null) {
             int id = tableFIO.getSelectionModel().getSelectedItem().getId();
             interactionsWithServer.deleteWorker(id);
