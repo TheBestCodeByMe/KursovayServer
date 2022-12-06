@@ -16,7 +16,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="KursovayClient" options="--add-exports jdk.jfr/jdk.jfr.internal.consumer=com.example.kursovayclient" />
+      <module name="KursovayClient" options="" />
     </option>
   </component>
 </project>

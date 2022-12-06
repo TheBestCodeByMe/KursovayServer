@@ -10,7 +10,7 @@ public class SQLUsers implements IUsers {
     private final ConnectionDatabase dbConnection;
 
     private SQLUsers() {
-        dbConnection = ConnectionDatabase.getInstance();
+        dbConnection = ConnectionDatabase.getInstance(); // Лучше подключать в каждом методе
     }
 
     public static synchronized SQLUsers getInstance() {
